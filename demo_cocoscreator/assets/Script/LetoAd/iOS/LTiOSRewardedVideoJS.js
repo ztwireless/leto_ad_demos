@@ -19,6 +19,11 @@ var LTiOSRewardedVideoJS = LTiOSRewardedVideoJS || {
     showAd : function(adId) {
         LTiOSJS.printJsLog("LTiOSRewardedVideoJS::showAd(" + adId + ")");
         return jsb.reflection.callStaticMethod(OC_RV_WRAPPER_CLASS, "show:", adId);
+    },
+
+    destroy: function(adId) {
+        LTiOSJS.printJsLog("LTiOSRewardedVideoJS::destroy(" + adId + ")");
+        return jsb.reflection.callStaticMethod(OC_RV_WRAPPER_CLASS, "destroy:", adId);
     }
 };
 
