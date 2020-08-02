@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    android.libraryVariants.all { variant ->
+        if(variant.name.equalsIgnoreCase("release")) {
+            variant.outputs.all { output ->
+                def f = output.outputFileName
+                if (f != null && f.endsWith('.aar')) {
+                    def fileName = "leto_ad_cocosjs_bridge.aar"
+                    output.outputFileName = fileName
+                }
+            }
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation "com.android.support:design:28.0.0"
+    implementation project(':libcocos2dx')
+    implementation project(':leto.core.base')
+}
