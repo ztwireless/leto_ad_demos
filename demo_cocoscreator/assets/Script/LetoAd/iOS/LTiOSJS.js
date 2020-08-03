@@ -15,6 +15,26 @@ var LTiOSJS = LTiOSJS || {
         if (undefined != msg && msg != null) {
             jsb.reflection.callStaticMethod(OC_BIRDGE_CLASS, "log:", msg);
         }
+    },
+    
+    getUserCoin : function() {
+        jsb.reflection.callStaticMethod(OC_BIRDGE_CLASS, "getUserCoin");
+    },
+    
+    addCoin : function(coin) {
+        jsb.reflection.callStaticMethod(OC_BIRDGE_CLASS, "addCoin:", coin);
+    },
+    
+    showWithdraw : function(coin) {
+        jsb.reflection.callStaticMethod(OC_BIRDGE_CLASS, "showWithdraw");
+    },
+
+    showWithdrawIcon: function(styleId, left, top, dock) {
+        jsb.reflection.callStaticMethod(OC_BIRDGE_CLASS, "showWithdrawIcon:left:top:dock:", styleId, left, top, dock);
+    },
+
+    hideWithdrawIcon: function() {
+        jsb.reflection.callStaticMethod(OC_BIRDGE_CLASS, "hideWithdrawIcon");
     }
 };
 

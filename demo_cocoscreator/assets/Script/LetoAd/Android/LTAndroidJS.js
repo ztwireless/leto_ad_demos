@@ -12,6 +12,26 @@ var LTAndroidJS = LTAndroidJS || {
 
     setLogDebug : function (debug) {
         jsb.reflection.callStaticMethod(classJavaName, "setLogDebug", "(Z)V", debug);
+    },
+
+    getUserCoin: function() {
+        jsb.reflection.callStaticMethod(classJavaName, "getUserCoin", "()V");
+    },
+
+    addCoin: function(coin) {
+        jsb.reflection.callStaticMethod(classJavaName, "addCoin", "(I)V", coin);
+    },
+
+    showWithdraw: function(coin) {
+        jsb.reflection.callStaticMethod(classJavaName, "showWithdraw", "()V");
+    },
+
+    showWithdrawIcon: function(styleId, left, top, dock) {
+        jsb.reflection.callStaticMethod(classJavaName, "showWithdrawIcon", "(IIIZ)V", styleId, left, top, dock);
+    },
+
+    hideWithdrawIcon: function() {
+        jsb.reflection.callStaticMethod(classJavaName, "hideWithdrawIcon", "()V");
     }
 };
 

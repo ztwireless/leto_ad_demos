@@ -8,9 +8,14 @@ import com.mgc.leto.game.base.LetoAdApi;
 import com.mgc.leto.game.base.LetoCore;
 import com.mgc.leto.game.base.utils.BaseAppUtil;
 
+import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class LTJSBridge {
 	private static Activity _act = JSPluginUtil.getActivity();
 	private static LetoAdApi _api;
+	private static LetoAdApi.WithdrawIcon _withdrawIcon;
 
 	public static void initSDK() {
 		LTLog.d("initSDK:" + BaseAppUtil.getChannelID(_act));
@@ -25,5 +30,82 @@ public class LTJSBridge {
 
 	public static LetoAdApi getApi() {
 		return _api;
+	}
+
+	public static void getUserCoin() {
+		_api.getUserCoin(new LetoAdApi.ILetoAdApiCallback() {
+			@Override
+			public void onApiEvent(final JSONObject res) {
+				JSPluginUtil.runOnGLThread(new Runnable() {
+					@Override
+					public void run() {
+						JSPluginUtil.runOnGLThread(new Runnable() {
+							@Override
+							public void run() {
+								String js = "";
+								if(res.optInt("errCode", 0) != 0) {
+									js = String.format("LTJSSDK.LTApiSharedListener.onGetUserCoinFail(%s);", res.toString());
+								} else {
+									js = String.format("LTJSSDK.LTApiSharedListener.onGetUserCoinSuccess(%s);", res.toString());
+								}
+								Cocos2dxJavascriptJavaBridge.evalString(js);
+							}
+						});
+					}
+				});
+			}
+		});
+	}
+
+	public static void addCoin(int coin) {
+		_api.addCoin(coin, new LetoAdApi.ILetoAdApiCallback() {
+			@Override
+			public void onApiEvent(final JSONObject res) {
+				JSPluginUtil.runOnGLThread(new Runnable() {
+					@Override
+					public void run() {
+						String js = "";
+						if(res.optInt("errCode", 0) != 0) {
+							js = String.format("LTJSSDK.LTApiSharedListener.onAddCoinFail(%s);", res.toString());
+						} else {
+							js = String.format("LTJSSDK.LTApiSharedListener.onAddCoinSuccess(%s);", res.toString());
+						}
+						Cocos2dxJavascriptJavaBridge.evalString(js);
+					}
+				});
+			}
+		});
+	}
+
+	public static void showWithdraw() {
+		_api.showWithdraw();
+	}
+
+	public static void showWithdrawIcon(final int styleId, final int left, final int top, final boolean dock) {
+		JSPluginUtil.runOnGLThread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					_withdrawIcon = _api.createWithdrawIcon(styleId);
+					JSONObject params = new JSONObject();
+					params.put("left", left);
+					params.put("top", top);
+					params.put("dock", dock);
+					_withdrawIcon.show(params);
+				} catch(JSONException e) {
+				}
+			}
+		});
+	}
+
+	public static void hideWithdrawIcon() {
+		JSPluginUtil.runOnGLThread(new Runnable() {
+			@Override
+			public void run() {
+				if(_withdrawIcon != null) {
+					_withdrawIcon.hide();
+				}
+			}
+		});
 	}
 }

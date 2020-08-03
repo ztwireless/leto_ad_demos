@@ -14,6 +14,30 @@ var initPlatformBridge = function() {
 var platformBridge = initPlatformBridge();
 
 var LTSDK = LTSDK || {
+    // shared listener for other api, DON'T RENAME
+    LTApiSharedListener: {
+        getUserCoinOkCb: null,
+        getUserCoinFailCb: null,
+        addCoinOkCb: null,
+        addCoinFailCb: null,
+        onGetUserCoinSuccess: function(res) {
+            this.getUserCoinOkCb && this.getUserCoinOkCb(res);
+            this.getUserCoinOkCb = null;
+        },
+        onGetUserCoinFail: function(res) {
+            this.getUserCoinFailCb && this.getUserCoinFailCb(res);
+            this.getUserCoinFailCb = null;
+        },
+        onAddCoinSuccess: function(res) {
+            this.addCoinOkCb && this.addCoinOkCb(res)
+            this.addCoinOkCb = null
+        },
+        onAddCoinFail: function(res) {
+            this.addCoinFailCb && this.addCoinFailCb(res)
+            this.addCoinFailCb = null
+        }
+    },
+
     initSDK: function() {
         if (undefined != platformBridge && platformBridge != null) {
             platformBridge.initSDK();
@@ -38,6 +62,50 @@ var LTSDK = LTSDK || {
             } else {
                 cc.log("You must run on Android or iOS.");
             }
+        }
+    },
+
+    getUserCoin: function(okCb, failCb) {
+        if (undefined != platformBridge && platformBridge != null) {
+            this.LTApiSharedListener.getUserCoinOkCb = okCb;
+            this.LTApiSharedListener.getUserCoinFailCb = failCb;
+            platformBridge.getUserCoin(); 
+        } else {
+            cc.log("You must run on Android or iOS.");
+        }
+    },
+
+    addCoin: function(coin, okCb, failCb) {
+        if (undefined != platformBridge && platformBridge != null) {
+            this.LTApiSharedListener.addCoinOkCb = okCb;
+            this.LTApiSharedListener.addCoinFailCb = failCb;
+            platformBridge.addCoin(coin); 
+        } else {
+            cc.log("You must run on Android or iOS.");
+        }
+    },
+
+    showWithdraw: function() {
+        if (undefined != platformBridge && platformBridge != null) {
+            platformBridge.showWithdraw(); 
+        } else {
+            cc.log("You must run on Android or iOS.");
+        }
+    },
+
+    showWithdrawIcon: function(styleId, left, top, dock) {
+        if (undefined != platformBridge && platformBridge != null) {
+            platformBridge.showWithdrawIcon(styleId, left, top, dock); 
+        } else {
+            cc.log("You must run on Android or iOS.");
+        }
+    },
+
+    hideWithdrawIcon: function() {
+        if (undefined != platformBridge && platformBridge != null) {
+            platformBridge.hideWithdrawIcon(); 
+        } else {
+            cc.log("You must run on Android or iOS.");
         }
     }
 };
