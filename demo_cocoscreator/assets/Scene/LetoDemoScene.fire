@@ -189,7 +189,7 @@
       "array": [
         0,
         0,
-        725.1609592001261,
+        791.547219058977,
         0,
         0,
         0,
@@ -1250,7 +1250,7 @@
         "__id__": 27
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 32
@@ -1451,8 +1451,8 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "NativeAd",
-    "_N$string": "NativeAd",
+    "_string": "Feed",
+    "_N$string": "Feed",
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": false,
@@ -1621,7 +1621,7 @@
     },
     "component": "",
     "_componentId": "52917BC8+VGgrdrkX7yjnNz",
-    "handler": "gotoNativeScene",
+    "handler": "gotoFeedScene",
     "customEventData": ""
   },
   {

@@ -25,13 +25,13 @@ cc.Class({
     gotoRewardedVideoScene: function () {
         cc.director.loadScene("RewardedVideoDemoScene");
     },
-    gotoNativeScene: function () {
-       cc.director.loadScene("NativeAdDemoScene");
-    },
     gotoBannerScene: function () {
        cc.director.loadScene("BannerDemoScene");
     },
     gotoInterstitialScene: function () {
        cc.director.loadScene("InterstitialDemoScene");
+    },
+    gotoFeedScene: function () {
+       cc.director.loadScene("FeedDemoScene");
     }
 });

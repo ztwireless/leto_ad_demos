@@ -25,7 +25,7 @@ var LTFeedSDK = LTFeedSDK || {
         },
         onFeedAdFailed : function(adId, errorInfo) {
             LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdFailed(" + adId + ", " + errorInfo + ")");
-          if(this.developerCallback != null && this.developerCallback.onFeedAdFailed != null && undefined != this.developerCallback.onFeedAdFailed) {
+            if(this.developerCallback != null && this.developerCallback.onFeedAdFailed != null && undefined != this.developerCallback.onFeedAdFailed) {
                 this.developerCallback.onFeedAdFailed(adId, errorInfo);
             }
         }

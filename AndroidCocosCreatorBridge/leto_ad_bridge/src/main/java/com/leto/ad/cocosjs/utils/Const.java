@@ -19,4 +19,9 @@ public class Const {
         public static final String LoadedCallbackKey = "BannerLoaded";
         public static final String LoadFailCallbackKey = "BannerLoadFail";
     }
+
+    public static class FeedCallback {
+        public static final String LoadedCallbackKey = "FeedLoaded";
+        public static final String FailedCallbackKey = "FeedFailed";
+    }
 }
