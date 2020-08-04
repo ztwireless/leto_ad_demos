@@ -20,6 +20,7 @@ var LTSDK = LTSDK || {
         getUserCoinFailCb: null,
         addCoinOkCb: null,
         addCoinFailCb: null,
+        redPackCloseCb: null,
         onGetUserCoinSuccess: function(res) {
             this.getUserCoinOkCb && this.getUserCoinOkCb(res);
             this.getUserCoinOkCb = null;
@@ -35,6 +36,10 @@ var LTSDK = LTSDK || {
         onAddCoinFail: function(res) {
             this.addCoinFailCb && this.addCoinFailCb(res)
             this.addCoinFailCb = null
+        },
+        onRedPackClose: function(res) {
+            this.redPackCloseCb && this.redPackCloseCb(res)
+            this.redPackCloseCb = null
         }
     },
 
@@ -104,6 +109,15 @@ var LTSDK = LTSDK || {
     hideWithdrawIcon: function() {
         if (undefined != platformBridge && platformBridge != null) {
             platformBridge.hideWithdrawIcon(); 
+        } else {
+            cc.log("You must run on Android or iOS.");
+        }
+    },
+
+    showRedPack: function(params, closeCb) {
+        if (undefined != platformBridge && platformBridge != null) {
+            this.LTApiSharedListener.redPackCloseCb = closeCb
+            platformBridge.showRedPack(params); 
         } else {
             cc.log("You must run on Android or iOS.");
         }

@@ -1,6 +1,7 @@
 package com.leto.ad.cocosjs;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.leto.ad.cocosjs.utils.JSPluginUtil;
 import com.leto.ad.cocosjs.utils.LTLog;
@@ -104,6 +105,32 @@ public class LTJSBridge {
 			public void run() {
 				if(_withdrawIcon != null) {
 					_withdrawIcon.hide();
+				}
+			}
+		});
+	}
+
+	public static void showSceneRedPack(final String params) {
+		JSPluginUtil.runOnGLThread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					JSONObject j = new JSONObject(params);
+					LetoAdApi.RedPack redPack = _api.showSceneRedPack(j);
+					redPack.onClose(new LetoAdApi.ILetoAdApiCallback() {
+						@Override
+						public void onApiEvent(final JSONObject res) {
+							JSPluginUtil.runOnGLThread(new Runnable() {
+								@Override
+								public void run() {
+									String js = String.format("LTJSSDK.LTApiSharedListener.onRedPackClose(%s);", res.toString());
+									Cocos2dxJavascriptJavaBridge.evalString(js);
+								}
+							});
+						}
+					});
+				} catch(Throwable e) {
+					Log.d("test", "ff");
 				}
 			}
 		});

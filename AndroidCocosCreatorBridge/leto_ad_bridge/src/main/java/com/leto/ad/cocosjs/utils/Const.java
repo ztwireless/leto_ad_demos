@@ -24,4 +24,13 @@ public class Const {
         public static final String LoadedCallbackKey = "FeedLoaded";
         public static final String FailedCallbackKey = "FeedFailed";
     }
+
+    public static class ExtendedCallback {
+        public static final String LoadedCallbackKey = "ExtendedLoaded";
+        public static final String FailedCallbackKey = "ExtendedFailed";
+        public static final String CloseCallbackKey = "ExtendedClose";
+        public static final String CustomCloseCallbackKey = "ExtendedCustomClose";
+        public static final String VideoCloseCallbackKey = "ExtendedVideoClose";
+        public static final String NormalClaimCallbackKey = "ExtendedNormalClaim";
+    }
 }

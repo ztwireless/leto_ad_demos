@@ -35,6 +35,11 @@ var LTiOSJS = LTiOSJS || {
 
     hideWithdrawIcon: function() {
         jsb.reflection.callStaticMethod(OC_BIRDGE_CLASS, "hideWithdrawIcon");
+    },
+
+    showRedPack: function(params) {
+        params = params || {}
+        jsb.reflection.callStaticMethod(OC_BIRDGE_CLASS, "showSceneRedPack:", JSON.stringify(params));
     }
 };
 

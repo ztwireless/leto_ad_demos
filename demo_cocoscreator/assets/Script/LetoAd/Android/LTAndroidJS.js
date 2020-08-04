@@ -32,6 +32,11 @@ var LTAndroidJS = LTAndroidJS || {
 
     hideWithdrawIcon: function() {
         jsb.reflection.callStaticMethod(classJavaName, "hideWithdrawIcon", "()V");
+    },
+
+    showRedPack: function(params) {
+        params = params || {}
+        jsb.reflection.callStaticMethod(classJavaName, "showSceneRedPack", "(Ljava/lang/String;)V", JSON.stringify(params));
     }
 };
 
