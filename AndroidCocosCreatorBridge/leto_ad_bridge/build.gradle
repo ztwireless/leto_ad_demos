@@ -33,7 +33,7 @@ android {
             variant.outputs.all { output ->
                 def f = output.outputFileName
                 if (f != null && f.endsWith('.aar')) {
-                    def fileName = "leto_ad_cocosjs_bridge.aar"
+                    def fileName = "leto_ad_js_bridge.aar"
                     output.outputFileName = fileName
                 }
             }
@@ -45,6 +45,5 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation "com.android.support:design:28.0.0"
-    implementation project(':libcocos2dx')
     implementation project(':leto.core.base')
 }

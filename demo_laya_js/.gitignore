@@ -1,0 +1,5 @@
+.vscode
+build
+.laya
+bin/js/bundle.js
+*.meta

@@ -1,4 +1,4 @@
--keep public class com.leto.ad.cocosjs.**
--keepclassmembers class com.leto.ad.cocosjs.** {
+-keep public class com.leto.ad.js.**
+-keepclassmembers class com.leto.ad.js.** {
    public *;
 }

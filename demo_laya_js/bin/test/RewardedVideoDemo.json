@@ -1,0 +1,1 @@
+{"type":"Scene","props":{"width":640,"runtime":"ui/LetoRewardedVideoDemo.js","height":1136,"autoDestroyAtClosed":true},"compId":2,"child":[{"type":"Button","props":{"y":166,"x":107,"var":"btnBack","skin":"comp/button.png","name":"btnBack","labelSize":30,"label":"Back"},"compId":3}],"loadList":["comp/button.png"],"loadList3D":[]}

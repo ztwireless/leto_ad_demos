@@ -1,4 +1,4 @@
-var classJavaName = "com/leto/ad/cocosjs/LTRewardedVideoJSBridge";
+var classJavaName = "com/leto/ad/js/LTRewardedVideoJSBridge";
 var LTAndroidRewardedVideoJS = LTAndroidRewardedVideoJS || {
   
     loadRewardedVideo : function (adId) {
