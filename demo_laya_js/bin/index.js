@@ -10,6 +10,6 @@ window.screenOrientation = "sensor_portrait";
 //-----libs-begin-----
 loadLib("libs/laya.core.js")
 loadLib("libs/laya.ui.js")
-loadLib("libs/laya.d3.js")
+loadLib("libs/LTJSSDK.js")
 //-----libs-end-------
 loadLib("js/bundle.js");

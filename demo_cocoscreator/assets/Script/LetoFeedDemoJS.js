@@ -1,4 +1,3 @@
-require("./LetoAd/LTFeedJSSDK");
 require("./LetoAd/LTJSSDK");
 
 cc.Class({

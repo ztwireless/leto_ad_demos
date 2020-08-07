@@ -1,4 +1,4 @@
-require("./LetoAd/LTInterstitialJSSDK")
+require("./LetoAd/LTJSSDK")
 
 
 cc.Class({

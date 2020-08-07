@@ -1,4 +1,4 @@
-require("./LetoAd/LTBannerJSSDK")
+require("./LetoAd/LTJSSDK")
 
 cc.Class({
     extends: cc.Component,

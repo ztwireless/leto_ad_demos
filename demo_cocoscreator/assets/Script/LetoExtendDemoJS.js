@@ -1,5 +1,4 @@
 require("./LetoAd/LTJSSDK");
-require("./LetoAd/LTExtendedJSSDK");
 
 cc.Class({
     extends: cc.Component,

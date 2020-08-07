@@ -1,4 +1,3 @@
-require("./LetoAd/LTRewardedVideoJSSDK");
 require("./LetoAd/LTJSSDK");
 
 cc.Class({
@@ -18,7 +17,7 @@ cc.Class({
 
     },
 
-     back: function () {
+    back: function () {
         cc.director.loadScene("LetoDemoScene");
     },
 

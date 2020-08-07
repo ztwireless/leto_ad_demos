@@ -15,6 +15,12 @@ export default class LetoMainDemo extends Laya.Scene {
         this.btnRedPack.on(Laya.Event.CLICK, this, this.onRedPackClicked)
     }
 
+    onAwake() {
+        console.log(`LetoMainDemo onAwake!!!!!!!`)
+        LTJSSDK.setLogDebug(true)
+        console.log(`LetoMainDemo onAwake 2222!!!!!!!`)
+    }
+
     onRewardedVideoClicked() {
         Laya.Scene.open('test/LetoRewardedVideoDemo.scene')
     }

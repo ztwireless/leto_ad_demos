@@ -1,6 +1,3 @@
-require("../LetoAd/LTRewardedVideoJSSDK");
-require("../LetoAd/LTJSSDK");
-
 export default class LetoRewardedVideoDemo extends Laya.Scene {
     constructor() {
         super();
