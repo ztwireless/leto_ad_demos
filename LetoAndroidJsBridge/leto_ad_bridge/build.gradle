@@ -4,9 +4,8 @@ android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
 
-
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -23,26 +22,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
         }
     }
-    android.libraryVariants.all { variant ->
-        if(variant.name.equalsIgnoreCase("release")) {
-            variant.outputs.all { output ->
-                def f = output.outputFileName
-                if (f != null && f.endsWith('.aar')) {
-                    def fileName = "leto_ad_js_bridge.aar"
-                    output.outputFileName = fileName
-                }
-            }
+    repositories {
+        flatDir {
+            dirs 'libs'
         }
     }
-
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    compileOnly fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation "com.android.support:design:28.0.0"
 }
