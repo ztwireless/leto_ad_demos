@@ -16,9 +16,7 @@ export default class LetoMainDemo extends Laya.Scene {
     }
 
     onAwake() {
-        console.log(`LetoMainDemo onAwake!!!!!!!`)
         LTJSSDK.setLogDebug(true)
-        console.log(`LetoMainDemo onAwake 2222!!!!!!!`)
     }
 
     onRewardedVideoClicked() {

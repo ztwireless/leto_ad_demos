@@ -7,9 +7,48 @@ export default class LetoInterstitialDemo extends Laya.Scene {
 
         // event
         this.btnBack.on(Laya.Event.CLICK, this, this.onBackClicked)
+        this.btnLoad.on(Laya.Event.CLICK, this, this.onLoadClicked)
+        this.btnShow.on(Laya.Event.CLICK, this, this.onShowClicked)
+        this.btnReady.on(Laya.Event.CLICK, this, this.onReadyStatusClicked)
+    }
+
+    onAwake() {
+        LTInterstitialJSSDK.setAdListener(this);
+    }
+
+    adId() {
+        return 1;
     }
 
     onBackClicked() {
         Laya.Scene.open('test/LetoMainDemo.scene')
+    }
+
+    onLoadClicked() {
+        LTInterstitialJSSDK.loadInterstitial(this.adId());
+    }
+
+    onShowClicked() {
+        LTInterstitialJSSDK.showAd(this.adId());
+    }
+
+    onReadyStatusClicked() {
+        var isReady = LTInterstitialJSSDK.hasAdReady(this.adId());
+    }
+
+    onInterstitialAdLoaded(adId) {
+        LTJSSDK.printLog("LetoInterstitialDemo::onInterstitialAdLoaded(" + adId + ")");
+    }
+
+    onInterstitialAdLoadFail(adId, errorInfo) {
+         LTJSSDK.printLog("LetoInterstitialDemo::onInterstitialAdLoadFail(" + adId + ", " + errorInfo + ")");   
+    }
+
+    onInterstitialAdShow(adId, callbackInfo) {
+        LTJSSDK.printLog("LetoInterstitialDemo::onInterstitialAdShow("  + adId + ", " + callbackInfo + ")");
+    }
+
+    onInterstitialAdClose(adId, callbackInfo) {
+        LTJSSDK.printLog("LetoInterstitialDemo::onInterstitialAdClose("  + adId + ", " + callbackInfo + ")");
     }
 }

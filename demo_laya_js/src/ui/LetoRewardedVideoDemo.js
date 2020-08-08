@@ -12,6 +12,10 @@ export default class LetoRewardedVideoDemo extends Laya.Scene {
         this.btnReady.on(Laya.Event.CLICK, this, this.onReadyStatusClicked)
     }
 
+    onAwake() {
+        LTRewardedVideoJSSDK.setAdListener(this);
+    }
+
     adId() {
         return 1
     }
@@ -30,5 +34,22 @@ export default class LetoRewardedVideoDemo extends Laya.Scene {
 
     onReadyStatusClicked() {
         LTJSSDK.printLog("LetoRewardedVideoDemo::checkReady()   " + (LTRewardedVideoJSSDK.hasAdReady(this.adId()) ? "Ready" : "No"));
+    }
+
+    //Callbacks
+    onRewardedVideoAdLoaded(adId) {
+        LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdLoaded(" + adId + ")");
+    }
+
+    onRewardedVideoAdFailed(adId, errorInfo) {
+      LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdFailed(" + adId + ", " + errorInfo + ")");
+    }
+
+    onRewardedVideoAdClosed(adId, callbackInfo) {
+        LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdClosed(" + adId + ", " + callbackInfo + ")");
+    }
+
+    onReward(adId, callbackInfo) {
+        LTJSSDK.printLog("LetoRewardedVideoDemo::onReward(" + adId + ", " + callbackInfo + ")");
     }
 }
