@@ -43,9 +43,16 @@ public class RewardVideoHelper extends BaseHelper {
             _ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
                 public void onApiEvent(final JSONObject jsonObject) {
+                    if(jsonObject.optBoolean("isEnded")) {
+                        if (hasCallbackName(Const.RewardVideoCallback.RewardCallbackKey)) {
+                            String js = getCallbackName(Const.RewardVideoCallback.RewardCallbackKey)
+                                + "(" + _adId + ");";
+                            JSPluginUtil.runJs(js);
+                        }
+                    }
                     if (hasCallbackName(Const.RewardVideoCallback.CloseCallbackKey)) {
-                        String js = getCallbackName(Const.RewardVideoCallback.RewardCallbackKey)
-                            + "(" + _adId + ");";
+                        String js = getCallbackName(Const.RewardVideoCallback.CloseCallbackKey)
+                            + "(" + _adId + "," + jsonObject.toString() + ");";
                         JSPluginUtil.runJs(js);
                     }
                 }
