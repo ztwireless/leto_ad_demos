@@ -86,11 +86,11 @@ public class LTJSBridge {
 	/**
 	 * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
 	 */
-	public static void showWithdrawIcon(double styleId, double left, double top, boolean dock) {
-		showWithdrawIcon((int)styleId, (int)left, (int)top, dock);
+	public static void showWithdrawIcon(double styleId, double left, double top, boolean pinned, boolean dock) {
+		showWithdrawIcon((int)styleId, (int)left, (int)top, pinned, dock);
 	}
 
-	public static void showWithdrawIcon(final int styleId, final int left, final int top, final boolean dock) {
+	public static void showWithdrawIcon(final int styleId, final int left, final int top, final boolean pinned, final boolean dock) {
 		JSPluginUtil.runOnGLThread(new Runnable() {
 			@Override
 			public void run() {
@@ -99,6 +99,7 @@ public class LTJSBridge {
 					JSONObject params = new JSONObject();
 					params.put("left", left);
 					params.put("top", top);
+					params.put("pinned", pinned);
 					params.put("dock", dock);
 					_withdrawIcon.show(params);
 				} catch(JSONException e) {

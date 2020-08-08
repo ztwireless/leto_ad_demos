@@ -38,11 +38,11 @@ export default class LetoCoinDemo extends Laya.Scene {
     }
 
     onFloat1Clicked() {
-        LTJSSDK.showWithdrawIcon(1, 10, 10, true);
+        LTJSSDK.showWithdrawIcon(1, 10, 10, false, true);
     }
 
     onFloat2Clicked() {
-        LTJSSDK.showWithdrawIcon(2, 10, 10, true);
+        LTJSSDK.showWithdrawIcon(2, 10, 10, false, true);
     }
 
     onHideFloatClicked() {

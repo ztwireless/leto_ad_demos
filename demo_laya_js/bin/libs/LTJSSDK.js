@@ -68,8 +68,8 @@
                 callJavaStaticMethod(classJavaName, "showWithdraw", "()V");
             },
 
-            showWithdrawIcon: function(styleId, left, top, dock) {
-                callJavaStaticMethod(classJavaName, "showWithdrawIcon", "(IIIZ)V", styleId, left, top, dock);
+            showWithdrawIcon: function(styleId, left, top, pinned, dock) {
+                callJavaStaticMethod(classJavaName, "showWithdrawIcon", "(IIIZZ)V", styleId, left, top, pinned, dock);
             },
 
             hideWithdrawIcon: function() {

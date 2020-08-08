@@ -42,11 +42,11 @@ cc.Class({
     },
 
     showWithdrawIcon1: function() {
-        LTJSSDK.showWithdrawIcon(1, 10, 10, true);
+        LTJSSDK.showWithdrawIcon(1, 10, 10, false, true);
     },
 
     showWithdrawIcon2: function() {
-        LTJSSDK.showWithdrawIcon(2, 10, 10, true);
+        LTJSSDK.showWithdrawIcon(2, 10, 10, false, true);
     },
 
     hideWithdrawIcon: function() {
