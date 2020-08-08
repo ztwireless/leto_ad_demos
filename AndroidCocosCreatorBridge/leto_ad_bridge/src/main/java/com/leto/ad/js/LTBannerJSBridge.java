@@ -15,6 +15,55 @@ public class LTBannerJSBridge {
         listenerJson = listener;
     }
 
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void load(double adId) {
+        load((int)adId);
+    }
+
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void show(double adId) {
+        show((int)adId);
+    }
+
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void hide(double adId) {
+        hide((int)adId);
+    }
+
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void reshow(double adId) {
+        reshow((int)adId);
+    }
+
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void remove(double adId) {
+        remove((int)adId);
+    }
+
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void destroy(double adId) {
+        destroy((int)adId);
+    }
+
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void isAdReady(double adId) {
+        isAdReady((int)adId);
+    }
+
     public static void load(int adId) {
         BannerHelper helper = getHelper(adId);
         if (helper != null) {

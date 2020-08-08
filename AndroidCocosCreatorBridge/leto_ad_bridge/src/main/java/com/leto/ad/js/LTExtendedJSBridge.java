@@ -14,6 +14,55 @@ public class LTExtendedJSBridge {
 		listenerJson = listener;
 	}
 
+	/**
+	 * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+	 */
+	public static void load(double adId, String params) {
+		load((int)adId, params);
+	}
+
+	/**
+	 * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+	 */
+	public static void show(double adId, String params) {
+		show((int)adId, params);
+	}
+
+	/**
+	 * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+	 */
+	public static void updateMyCoin(double adId) {
+		updateMyCoin((int)adId);
+	}
+
+	/**
+	 * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+	 */
+	public static void updateTitle(double adId, String title) {
+		updateTitle((int)adId, title);
+	}
+
+	/**
+	 * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+	 */
+	public static void updateVideoButtonTitle(double adId, String title) {
+		updateVideoButtonTitle((int)adId, title);
+	}
+
+	/**
+	 * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+	 */
+	public static void notify(double adId, double action) {
+		notify((int)adId, (int)action);
+	}
+
+	/**
+	 * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+	 */
+	public static void destroy(double adId) {
+		destroy((int)adId);
+	}
+
 	public static void load(int adId, String params) {
 		LTLog.d("LTExtendedJSBridge load >>> " + params);
 		ExtendedHelper helper = getHelper(adId);

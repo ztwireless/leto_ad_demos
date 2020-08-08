@@ -57,6 +57,13 @@ public class LTJSBridge {
 		});
 	}
 
+	/**
+	 * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+	 */
+	public static void addCoin(double coin) {
+		addCoin((int)coin);
+	}
+
 	public static void addCoin(int coin) {
 		_api.addCoin(coin, new LetoAdApi.ILetoAdApiCallback() {
 			@Override
@@ -74,6 +81,13 @@ public class LTJSBridge {
 
 	public static void showWithdraw() {
 		_api.showWithdraw();
+	}
+
+	/**
+	 * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+	 */
+	public static void showWithdrawIcon(double styleId, double left, double top, boolean dock) {
+		showWithdrawIcon((int)styleId, (int)left, (int)top, dock);
 	}
 
 	public static void showWithdrawIcon(final int styleId, final int left, final int top, final boolean dock) {

@@ -15,6 +15,34 @@ public class LTInterstitialJSBridge {
         listenerJson = listener;
     }
 
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void load(double adId) {
+        load((int)adId);
+    }
+
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void show(double adId) {
+        show((int)adId);
+    }
+
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void destroy(double adId) {
+        destroy((int)adId);
+    }
+
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void isAdReady(double adId) {
+        isAdReady((int)adId);
+    }
+
     public static void load(int adId) {
         InterstitialHelper helper = getHelper(adId);
         if (helper != null) {
