@@ -703,7 +703,7 @@
                 this.platformBridge = isIOS() ? window.LTiOSFeedJS : (isAndroid() ? window.LTAndroidFeedJS : null)
             },
             
-            loadFeed : function(adId, params) {
+            load : function(adId, params) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                     this.platformBridge.loadFeed(adId, params || "{}");

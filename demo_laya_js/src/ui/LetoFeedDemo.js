@@ -26,7 +26,7 @@ export default class LetoFeedDemo extends Laya.Scene {
     }
 
     onLoadClicked() {
-        LTFeedJSSDK.loadFeed(this.adId());
+        LTFeedJSSDK.load(this.adId());
     }
 
     onShowClicked() {

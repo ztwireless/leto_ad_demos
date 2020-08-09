@@ -22,7 +22,7 @@ cc.Class({
     },
 
     loadAd: function () {
-        LTFeedJSSDK.loadFeed(this.adId());
+        LTFeedJSSDK.load(this.adId());
     },
 
     showAd: function () {
