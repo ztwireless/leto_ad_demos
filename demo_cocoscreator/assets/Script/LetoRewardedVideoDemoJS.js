@@ -22,11 +22,11 @@ cc.Class({
     },
 
     loadAd: function () {
-        LTRewardedVideoJSSDK.loadRewardedVideo(this.adId());
+        LTRewardedVideoJSSDK.load(this.adId());
     },
 
     showAd: function () {
-        LTRewardedVideoJSSDK.showAd(this.adId());
+        LTRewardedVideoJSSDK.show(this.adId());
     },
 
     checkReady : function () {

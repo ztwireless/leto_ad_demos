@@ -25,11 +25,11 @@ export default class LetoInterstitialDemo extends Laya.Scene {
     }
 
     onLoadClicked() {
-        LTInterstitialJSSDK.loadInterstitial(this.adId());
+        LTInterstitialJSSDK.load(this.adId());
     }
 
     onShowClicked() {
-        LTInterstitialJSSDK.showAd(this.adId());
+        LTInterstitialJSSDK.show(this.adId());
     }
 
     onReadyStatusClicked() {

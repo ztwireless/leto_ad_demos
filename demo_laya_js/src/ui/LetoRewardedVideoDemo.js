@@ -25,11 +25,11 @@ export default class LetoRewardedVideoDemo extends Laya.Scene {
     }
 
     onLoadClicked() {
-        LTRewardedVideoJSSDK.loadRewardedVideo(this.adId())
+        LTRewardedVideoJSSDK.load(this.adId())
     }
 
     onShowClicked() {
-        LTRewardedVideoJSSDK.showAd(this.adId());
+        LTRewardedVideoJSSDK.show(this.adId());
     }
 
     onReadyStatusClicked() {

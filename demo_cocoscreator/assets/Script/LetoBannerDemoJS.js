@@ -23,23 +23,23 @@ cc.Class({
 
     loadAd : function () {
         LTJSSDK.printLog("LetoAdBannerDemo::loadAd(" + this.adId() + ")");
-        LTBannerJSSDK.loadBanner(this.adId());
+        LTBannerJSSDK.load(this.adId());
     },
 
     showAd : function () {
-         LTBannerJSSDK.showAd(this.adId());
+         LTBannerJSSDK.show(this.adId());
     },
 
     removeAd : function () {
-        LTBannerJSSDK.removeAd(this.adId());
+        LTBannerJSSDK.remove(this.adId());
     },
 
     reShowAd : function () {
-        LTBannerJSSDK.reShowAd(this.adId());
+        LTBannerJSSDK.reShow(this.adId());
     },
 
     hideAd : function() {
-        LTBannerJSSDK.hideAd(this.adId());
+        LTBannerJSSDK.hide(this.adId());
     },
 
     checkReady : function () {

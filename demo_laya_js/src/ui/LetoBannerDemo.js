@@ -24,7 +24,7 @@ export default class LetoBannerDemo extends Laya.Scene {
     }
 
     onLoadClicked() {
-        LTBannerJSSDK.loadBanner(this.adId());
+        LTBannerJSSDK.load(this.adId());
     }
 
     onReadyClicked() {
@@ -33,19 +33,19 @@ export default class LetoBannerDemo extends Laya.Scene {
     }
 
     onShowClicked() {
-        LTBannerJSSDK.showAd(this.adId());
+        LTBannerJSSDK.show(this.adId());
     }
 
     onRemoveClicked() {
-        LTBannerJSSDK.removeAd(this.adId());
+        LTBannerJSSDK.remove(this.adId());
     }
 
     onReshowClicked() {
-        LTBannerJSSDK.reShowAd(this.adId());
+        LTBannerJSSDK.reShow(this.adId());
     }
 
     onHideClicked() {
-        LTBannerJSSDK.hideAd(this.adId());
+        LTBannerJSSDK.hide(this.adId());
     }
 
     onBannerAdLoaded(adId) {

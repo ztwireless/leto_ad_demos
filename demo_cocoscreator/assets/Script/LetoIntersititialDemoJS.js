@@ -24,11 +24,11 @@ cc.Class({
     },
 
     loadAd : function () {
-        LTInterstitialJSSDK.loadInterstitial(this.adId());
+        LTInterstitialJSSDK.load(this.adId());
     },
 
     showAd : function () {
-        LTInterstitialJSSDK.showAd(this.adId());
+        LTInterstitialJSSDK.show(this.adId());
     },
 
     checkReady : function () {

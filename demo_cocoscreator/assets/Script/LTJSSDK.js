@@ -371,7 +371,7 @@
                 this.platformBridge = isIOS() ? window.LTiOSRewardedVideoJS : (isAndroid() ? window.LTAndroidRewardedVideoJS : null)
             },
             
-            loadRewardedVideo : function(adId) {
+            load : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                     this.platformBridge.loadRewardedVideo(adId);
@@ -407,7 +407,7 @@
                 return false;
             },
 
-            showAd : function(adId) {
+            show : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                    this.platformBridge.showAd(adId);
@@ -539,7 +539,7 @@
                 this.platformBridge = isIOS() ? window.LTiOSInterstitialJS : (isAndroid() ? window.LTAndroidInterstitialJS : null)
             },
             
-            loadInterstitial : function(adId) {
+            load : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                     this.platformBridge.loadInterstitial(adId);
@@ -575,7 +575,7 @@
                 return false;
             },
 
-            showAd : function(adId) {
+            show : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                    this.platformBridge.showAd(adId);
@@ -1135,7 +1135,7 @@
                 this.platformBridge = isIOS() ? window.LTiOSBannerJS : (isAndroid() ? window.LTAndroidBannerJS : null)
             },
             
-            loadBanner : function(adId) {
+            load : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                     this.platformBridge.loadBanner(adId);
@@ -1169,7 +1169,7 @@
                 return false;
             },
 
-            showAd: function(adId) {
+            show: function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                    this.platformBridge.showAd(adId);
@@ -1178,7 +1178,7 @@
                 }
             },
 
-            removeAd : function(adId) {
+            remove : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                    this.platformBridge.removeAd(adId);
@@ -1187,7 +1187,7 @@
                 }
             },
 
-            reShowAd : function(adId) {
+            reShow : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                    this.platformBridge.reShowAd(adId);
@@ -1196,7 +1196,7 @@
                 }
             },
 
-            hideAd : function(adId) {
+            hide : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                    this.platformBridge.hideAd(adId);
