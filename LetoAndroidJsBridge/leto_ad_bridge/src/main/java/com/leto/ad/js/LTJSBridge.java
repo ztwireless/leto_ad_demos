@@ -18,19 +18,25 @@ public class LTJSBridge {
 	private static LetoAdApi.WithdrawIcon _withdrawIcon;
 
 	public static void initSDK() {
-		JSPluginUtil.init();
-		_act = JSPluginUtil.getActivity();
-		LetoCore.init(_act.getApplicationContext());
-		_api = new LetoAdApi(_act);
-		LTLog.d("initSDK:" + BaseAppUtil.getChannelID(_act));
+		if(_act == null) {
+			JSPluginUtil.init();
+			_act = JSPluginUtil.getActivity();
+			LetoCore.init(_act.getApplicationContext());
+			_api = new LetoAdApi(_act);
+			LTLog.d("initSDK:" + BaseAppUtil.getChannelID(_act));
+		}
 	}
 
 	public static void initSDK(Activity act) {
-		_act = act;
-		LetoCore.init(_act.getApplicationContext());
-		_api = new LetoAdApi(_act);
-		LTLog.d("initSDK:" + BaseAppUtil.getChannelID(_act));
-		JSPluginUtil.init();
+		if(_act == null) {
+			_act = act;
+			LetoCore.init(_act.getApplicationContext());
+			_api = new LetoAdApi(_act);
+			LTLog.d("initSDK:" + BaseAppUtil.getChannelID(_act));
+			JSPluginUtil.init();
+		} else {
+			_act = act;
+		}
 	}
 
 	public static void setLogDebug(boolean isDebug) {
