@@ -32,7 +32,7 @@ public class BannerHelper extends BaseHelper {
             _ad.onLoad(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
                 public void onApiEvent(JSONObject jsonObject) {
-                    if (hasCallbackName(Const.InterstitialCallback.LoadedCallbackKey)) {
+                    if (hasCallbackName(Const.BannerCallback.LoadedCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.LoadedCallbackKey)
                             + "(" + _adId + ");";
                         JSPluginUtil.runJs(js);
