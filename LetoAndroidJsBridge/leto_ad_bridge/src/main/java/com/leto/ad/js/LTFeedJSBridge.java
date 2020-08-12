@@ -1,17 +1,23 @@
 package com.leto.ad.js;
 
 import com.leto.ad.js.helper.FeedHelper;
+import com.leto.ad.js.helper.IFeedListener;
 import com.leto.ad.js.utils.LTLog;
 
 import java.util.HashMap;
 
 public class LTFeedJSBridge {
 	private static String listenerJson;
+	private static IFeedListener _cb; // for unity
 	private static final HashMap<Integer, FeedHelper> sHelperMap = new HashMap<>();
 
 	public static void setAdListener(String listener) {
 		LTLog.d("LTFeedJSBridge setAdListener >>> " + listener);
 		listenerJson = listener;
+	}
+
+	public static void setAdListener(IFeedListener cb) {
+		_cb = cb;
 	}
 
 	/**
@@ -54,6 +60,7 @@ public class LTFeedJSBridge {
 		FeedHelper helper = getHelper(adId);
 		if (helper != null) {
 			helper.setAdListener(listenerJson);
+			helper.setAdListener(_cb);
 			helper.load(adId, params);
 		}
 	}

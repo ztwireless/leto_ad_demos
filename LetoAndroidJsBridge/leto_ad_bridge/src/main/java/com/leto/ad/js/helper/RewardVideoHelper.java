@@ -15,6 +15,9 @@ public class RewardVideoHelper extends BaseHelper {
     private int _adId;
     private boolean _ready = false;
 
+    // for unity
+    private IRewardedVideoListener _cb;
+
     public RewardVideoHelper() {
         LTLog.d(TAG + " >>> " + this);
     }
@@ -22,6 +25,10 @@ public class RewardVideoHelper extends BaseHelper {
     @Override
     public void setAdListener(final String callbackNameJson) {
         super.setAdListener(callbackNameJson);
+    }
+
+    public void setAdListener(IRewardedVideoListener cb) {
+        _cb = cb;
     }
 
     private void initVideo(final int adId) {
@@ -38,6 +45,9 @@ public class RewardVideoHelper extends BaseHelper {
                             + "(" + _adId + ");";
                         JSPluginUtil.runJs(js);
                     }
+                    if(_cb != null) {
+                        _cb.onRewardedVideoLoaded(_adId);
+                    }
                 }
             });
             _ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
@@ -49,11 +59,17 @@ public class RewardVideoHelper extends BaseHelper {
                                 + "(" + _adId + ");";
                             JSPluginUtil.runJs(js);
                         }
+                        if(_cb != null) {
+                            _cb.onRewardedVideoReward(_adId);
+                        }
                     }
                     if (hasCallbackName(Const.RewardVideoCallback.CloseCallbackKey)) {
                         String js = getCallbackName(Const.RewardVideoCallback.CloseCallbackKey)
                             + "(" + _adId + "," + jsonObject.toString() + ");";
                         JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onRewardedVideoClose(_adId, jsonObject.toString());
                     }
                 }
             });
@@ -64,6 +80,9 @@ public class RewardVideoHelper extends BaseHelper {
                         String js = getCallbackName(Const.RewardVideoCallback.LoadFailCallbackKey)
                             + "(" + _adId + ");";
                         JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onRewardedVideoLoadFail(_adId);
                     }
                 }
             });

@@ -14,6 +14,9 @@ public class InterstitialHelper extends BaseHelper {
 	private LetoAdApi.InterstitialAd _ad;
 	private int _adId;
 
+	// for unity
+	private IInterstitialListener _cb;
+
 	public InterstitialHelper() {
 		LTLog.d(TAG + " >>> " + this);
 	}
@@ -21,6 +24,10 @@ public class InterstitialHelper extends BaseHelper {
 	@Override
 	public void setAdListener(final String callbackNameJson) {
 		super.setAdListener(callbackNameJson);
+	}
+
+	public void setAdListener(IInterstitialListener cb) {
+		_cb = cb;
 	}
 
 	private void initInterstitial(final int adId) {
@@ -38,6 +45,9 @@ public class InterstitialHelper extends BaseHelper {
 							+ "(" + _adId + ");";
                     	JSPluginUtil.runJs(js);
                     }
+                    if(_cb != null) {
+                    	_cb.onInterstitialLoaded(_adId);
+					}
 				}
 			});
 			_ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
@@ -48,6 +58,9 @@ public class InterstitialHelper extends BaseHelper {
 							+ "(" + _adId + ");";
                     	JSPluginUtil.runJs(js);
                     }
+                    if(_cb != null) {
+                    	_cb.onInterstitialClose(_adId);
+					}
 				}
 			});
 			_ad.onError(new LetoAdApi.ILetoAdApiCallback() {
@@ -58,6 +71,9 @@ public class InterstitialHelper extends BaseHelper {
 							+ "(" + _adId + ");";
                     	JSPluginUtil.runJs(js);
                     }
+                    if(_cb != null) {
+                    	_cb.onInterstitialLoadFail(_adId);
+					}
 				}
 			});
 			_ad.onShow(new LetoAdApi.ILetoAdApiCallback() {
@@ -67,6 +83,9 @@ public class InterstitialHelper extends BaseHelper {
 						String js = getCallbackName(Const.InterstitialCallback.ShowCallbackKey)
 							+ "(" + _adId + ");";
 						JSPluginUtil.runJs(js);
+					}
+					if(_cb != null) {
+						_cb.onInterstitialAdShow(_adId);
 					}
 				}
 			});

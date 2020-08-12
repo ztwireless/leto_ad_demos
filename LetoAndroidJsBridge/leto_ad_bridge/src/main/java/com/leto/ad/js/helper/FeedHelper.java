@@ -15,6 +15,9 @@ public class FeedHelper extends BaseHelper {
     private LetoAdApi.FeedAd _ad;
     private int _adId;
 
+    // for unity
+    private IFeedListener _cb;
+
     public FeedHelper() {
         LTLog.d(TAG + " >>> " + this);
     }
@@ -22,6 +25,10 @@ public class FeedHelper extends BaseHelper {
     @Override
     public void setAdListener(final String callbackNameJson) {
         super.setAdListener(callbackNameJson);
+    }
+
+    public void setAdListener(IFeedListener cb) {
+        _cb = cb;
     }
 
     private void init(final int adId, String params) {
@@ -40,6 +47,9 @@ public class FeedHelper extends BaseHelper {
                             + "(" + _adId + ");";
                         JSPluginUtil.runJs(js);
                     }
+                    if(_cb != null) {
+                        _cb.onFeedLoaded(_adId);
+                    }
                 }
             });
             _ad.onError(new LetoAdApi.ILetoAdApiCallback() {
@@ -49,6 +59,9 @@ public class FeedHelper extends BaseHelper {
                         String js = getCallbackName(Const.FeedCallback.FailedCallbackKey)
                             + "(" + _adId + ");";
                         JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onFeedFailed(_adId);
                     }
                 }
             });

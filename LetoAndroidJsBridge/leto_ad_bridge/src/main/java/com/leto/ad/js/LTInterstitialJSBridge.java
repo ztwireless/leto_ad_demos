@@ -1,5 +1,6 @@
 package com.leto.ad.js;
 
+import com.leto.ad.js.helper.IInterstitialListener;
 import com.leto.ad.js.helper.InterstitialHelper;
 import com.leto.ad.js.utils.LTLog;
 
@@ -9,10 +10,15 @@ public class LTInterstitialJSBridge {
     private static final HashMap<Integer, InterstitialHelper> sHelperMap = new HashMap<>();
 
     private static String listenerJson;
+    private static IInterstitialListener _cb; // for unity
 
     public static void setAdListener(String listener) {
         LTLog.d("interstitial setAdListener >>> " + listener);
         listenerJson = listener;
+    }
+
+    public static void setAdListener(IInterstitialListener cb) {
+        _cb = cb;
     }
 
     /**
@@ -47,6 +53,7 @@ public class LTInterstitialJSBridge {
         InterstitialHelper helper = getHelper(adId);
         if (helper != null) {
             helper.setAdListener(listenerJson);
+            helper.setAdListener(_cb);
             helper.loadInterstitial(adId);
         }
     }

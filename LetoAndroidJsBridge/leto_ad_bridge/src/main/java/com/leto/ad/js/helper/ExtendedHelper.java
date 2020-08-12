@@ -15,6 +15,9 @@ public class ExtendedHelper extends BaseHelper {
     private LetoAdApi.ExtendedAd _ad;
     private int _adId;
 
+    // for unity
+    private IExtendedListener _cb;
+
     public ExtendedHelper() {
         LTLog.d(TAG + " >>> " + this);
     }
@@ -22,6 +25,10 @@ public class ExtendedHelper extends BaseHelper {
     @Override
     public void setAdListener(final String callbackNameJson) {
         super.setAdListener(callbackNameJson);
+    }
+
+    public void setAdListener(IExtendedListener cb) {
+        _cb = cb;
     }
 
     private void init(int adId, final String params) {
@@ -40,6 +47,9 @@ public class ExtendedHelper extends BaseHelper {
                             + "(" + _adId + ");";
                         JSPluginUtil.runJs(js);
                     }
+                    if(_cb != null) {
+                        _cb.onExtendedLoaded(_adId);
+                    }
                 }
             });
             _ad.onError(new LetoAdApi.ILetoAdApiCallback() {
@@ -49,6 +59,9 @@ public class ExtendedHelper extends BaseHelper {
                         String js = getCallbackName(Const.ExtendedCallback.FailedCallbackKey)
                             + "(" + _adId + ",\"" + res.optString("errMsg", "") +  "\");";
                         JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onExtendedFailed(_adId, res.optString("errMsg", ""));
                     }
                 }
             });
@@ -60,6 +73,9 @@ public class ExtendedHelper extends BaseHelper {
                             + "(" + _adId + "," + res.toString() + ");";
                         JSPluginUtil.runJs(js);
                     }
+                    if(_cb != null) {
+                        _cb.onExtendedClose(_adId, res.toString());
+                    }
                 }
             });
             _ad.onCustomClose(new LetoAdApi.ILetoAdApiCallback() {
@@ -69,6 +85,9 @@ public class ExtendedHelper extends BaseHelper {
                         String js = getCallbackName(Const.ExtendedCallback.CustomCloseCallbackKey)
                             + "(" + _adId + "," + res.toString() + ");";
                         JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onExtendedCustomClose(_adId, res.toString());
                     }
                 }
             });
@@ -80,6 +99,9 @@ public class ExtendedHelper extends BaseHelper {
                             + "(" + _adId + "," + res.toString() + ");";
                         JSPluginUtil.runJs(js);
                     }
+                    if(_cb != null) {
+                        _cb.onExtendedVideoClose(_adId, res.toString());
+                    }
                 }
             });
             _ad.onNormalClaim(new LetoAdApi.ILetoAdApiCallback() {
@@ -89,6 +111,9 @@ public class ExtendedHelper extends BaseHelper {
                         String js = getCallbackName(Const.ExtendedCallback.NormalClaimCallbackKey)
                             + "(" + _adId + ");";
                         JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onExtendedNormalClaim(_adId);
                     }
                 }
             });

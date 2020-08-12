@@ -1,5 +1,6 @@
 package com.leto.ad.js;
 
+import com.leto.ad.js.helper.IRewardedVideoListener;
 import com.leto.ad.js.helper.RewardVideoHelper;
 import com.leto.ad.js.utils.LTLog;
 
@@ -7,11 +8,20 @@ import java.util.HashMap;
 
 public class LTRewardedVideoJSBridge {
 	private static String listenerJson;
+	private static IRewardedVideoListener _cb; // for Unity
 	private static final HashMap<Integer, RewardVideoHelper> sHelperMap = new HashMap<>();
 
 	public static void setAdListener(String listener) {
 		LTLog.d("LTRewardedVideoJSBridge setAdListener >>> " + listener);
 		listenerJson = listener;
+	}
+
+	/**
+	 * 用于unity端设置一个事件回调
+	 */
+	public static void setAdListener(IRewardedVideoListener cb) {
+		LTLog.d("LTRewardedVideoJSBridge setAdListener IRewardedVideoCallback");
+		_cb = cb;
 	}
 
 	/**
@@ -47,6 +57,7 @@ public class LTRewardedVideoJSBridge {
 		RewardVideoHelper helper = getHelper(adId);
 		if (helper != null) {
 			helper.setAdListener(listenerJson);
+			helper.setAdListener(_cb);
 			helper.loadRewardedVideo(adId);
 		}
 	}

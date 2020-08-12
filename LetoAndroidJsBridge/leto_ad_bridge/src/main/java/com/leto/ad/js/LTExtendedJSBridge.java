@@ -1,6 +1,7 @@
 package com.leto.ad.js;
 
 import com.leto.ad.js.helper.ExtendedHelper;
+import com.leto.ad.js.helper.IExtendedListener;
 import com.leto.ad.js.utils.LTLog;
 
 import java.util.HashMap;
@@ -8,10 +9,15 @@ import java.util.HashMap;
 public class LTExtendedJSBridge {
 	private static String listenerJson;
 	private static final HashMap<Integer, ExtendedHelper> sHelperMap = new HashMap<>();
+	private static IExtendedListener _cb; // for unity
 
 	public static void setAdListener(String listener) {
 		LTLog.d("LTExtendedJSBridge setAdListener >>> " + listener);
 		listenerJson = listener;
+	}
+
+	public static void setAdListener(IExtendedListener cb) {
+		_cb = cb;
 	}
 
 	/**
@@ -68,6 +74,7 @@ public class LTExtendedJSBridge {
 		ExtendedHelper helper = getHelper(adId);
 		if (helper != null) {
 			helper.setAdListener(listenerJson);
+			helper.setAdListener(_cb);
 			helper.load(adId, params);
 		}
 	}

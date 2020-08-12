@@ -13,6 +13,9 @@ public class BannerHelper extends BaseHelper {
     private int _adId;
     private LetoAdApi.BannerAd _ad;
 
+    // for unity
+    private IBannerListener _cb;
+
     public BannerHelper() {
         LTLog.d(TAG + " >>> " + this);
     }
@@ -20,6 +23,10 @@ public class BannerHelper extends BaseHelper {
     @Override
     public void setAdListener(final String callbackNameJson) {
         super.setAdListener(callbackNameJson);
+    }
+
+    public void setAdListener(IBannerListener cb) {
+        _cb = cb;
     }
 
     public void initBanner(int adId) {
@@ -37,6 +44,9 @@ public class BannerHelper extends BaseHelper {
                             + "(" + _adId + ");";
                         JSPluginUtil.runJs(js);
                     }
+                    if(_cb != null) {
+                        _cb.onBannerLoaded(_adId);
+                    }
                 }
             });
             _ad.onError(new LetoAdApi.ILetoAdApiCallback() {
@@ -46,6 +56,9 @@ public class BannerHelper extends BaseHelper {
                         String js = getCallbackName(Const.BannerCallback.LoadFailCallbackKey)
                             + "(" + _adId + ");";
                         JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onBannerLoadFail(_adId);
                     }
                 }
             });
