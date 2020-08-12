@@ -93,7 +93,7 @@ public class LTBannerJSBridge {
         }
     }
 
-    public static void reshow(int adId) {
+    public static void reShow(int adId) {
         BannerHelper helper = getHelper(adId);
         if (helper != null) {
             helper.reShow();
