@@ -1028,7 +1028,7 @@
     {
         let classJavaName = "com/leto/ad/js/LTBannerJSBridge";
         let LTAndroidBannerJS = {
-            loadBanner : function (adId) {
+            load : function (adId) {
                 LTJSSDK.printLog("Android-loadBanner");
                 callJavaStaticMethod(classJavaName, "load", "(I)V", adId);
             },
@@ -1043,22 +1043,22 @@
                 return callJavaStaticMethod(classJavaName, "isAdReady", "(I)Z", adId);;
             },
 
-            showAd : function(adId) {
+            show : function(adId) {
                 LTJSSDK.printLog("Android-showAdInPosistion");
                 callJavaStaticMethod(classJavaName, "show", "(I)V", adId);
             },
 
-            removeAd : function(adId) {
+            remove : function(adId) {
                  LTJSSDK.printLog("Android-removeAd");
                  callJavaStaticMethod(classJavaName, "remove", "(I)V", adId);
             },
 
-            reShowAd : function(adId) {
+            reShow : function(adId) {
                 LTJSSDK.printLog("Android-reShowAd");
-                callJavaStaticMethod(classJavaName, "reshow", "(I)V", adId);
+                callJavaStaticMethod(classJavaName, "reShow", "(I)V", adId);
             },
 
-            hideAd : function(adId) {
+            hide : function(adId) {
                  LTJSSDK.printLog("Android-hideAd");
                  callJavaStaticMethod(classJavaName, "hide", "(I)V", adId);
             }
@@ -1072,9 +1072,9 @@
     {
         let OC_WRAPPER_CLASS = "LTBannerAdWrapper";
         let LTiOSBannerJS = {
-            loadBanner: function(adId) {
+            load: function(adId) {
                 LTJSSDK.printLog("LTiOSBannerJS::loadBanner(" + adId);
-                callJavaStaticMethod(OC_WRAPPER_CLASS, "loadBanner:", adId);
+                callJavaStaticMethod(OC_WRAPPER_CLASS, "load:", adId);
             },
 
             setAdListener : function (listener) {
@@ -1087,24 +1087,24 @@
                 return callJavaStaticMethod(OC_WRAPPER_CLASS, "bannerReady:", adId);
             },
 
-            showAd : function(adId) { 
+            show : function(adId) { 
                 LTJSSDK.printLog("LTiOSBannerJS::showAd(" + adId + ", " + position + ")");
                 callJavaStaticMethod(OC_WRAPPER_CLASS, "show:", adId);
             },
 
-            removeAd : function(adId) {
+            remove : function(adId) {
                 LTJSSDK.printLog("LTiOSBannerJS::removeAd(" + adId + ")");
-                callJavaStaticMethod(OC_WRAPPER_CLASS, "removeAd:", adId);
+                callJavaStaticMethod(OC_WRAPPER_CLASS, "remove:", adId);
             },
 
-            reShowAd : function(adId) {
+            reShow : function(adId) {
                 LTJSSDK.printLog("LTiOSBannerJS::reShowAd(" + adId + ")");
-                callJavaStaticMethod(OC_WRAPPER_CLASS, "reShowAd:", adId);
+                callJavaStaticMethod(OC_WRAPPER_CLASS, "reShow:", adId);
             },
 
-            hideAd : function(adId) {
+            hide : function(adId) {
                 LTJSSDK.printLog("LTiOSBannerJS::hideAd(" + adId + ")");
-                callJavaStaticMethod(OC_WRAPPER_CLASS, "hideAd:", adId);
+                callJavaStaticMethod(OC_WRAPPER_CLASS, "hide:", adId);
             }
         };
 
@@ -1138,7 +1138,7 @@
             load : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
-                    this.platformBridge.loadBanner(adId);
+                    this.platformBridge.load(adId);
                 } else {
                     LTJSSDK.printLog("You must run on Android or iOS.");
                 }
@@ -1172,7 +1172,7 @@
             show: function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
-                   this.platformBridge.showAd(adId);
+                   this.platformBridge.show(adId);
                 } else {
                     LTJSSDK.printLog("You must run on Android or iOS.");
                 }
@@ -1181,7 +1181,7 @@
             remove : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
-                   this.platformBridge.removeAd(adId);
+                   this.platformBridge.remove(adId);
                 } else {
                     LTJSSDK.printLog("You must run on Android or iOS.");
                 }
@@ -1190,7 +1190,7 @@
             reShow : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
-                   this.platformBridge.reShowAd(adId);
+                   this.platformBridge.reShow(adId);
                 } else {
                     LTJSSDK.printLog("You must run on Android or iOS.");
                 }
@@ -1199,7 +1199,7 @@
             hide : function(adId) {
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
-                   this.platformBridge.hideAd(adId);
+                   this.platformBridge.hide(adId);
                 } else {
                     LTJSSDK.printLog("You must run on Android or iOS.");
                 }

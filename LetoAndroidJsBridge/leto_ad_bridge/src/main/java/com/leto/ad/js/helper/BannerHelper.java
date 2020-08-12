@@ -65,7 +65,7 @@ public class BannerHelper extends BaseHelper {
         }
     }
 
-    public void loadBanner(final int adId) {
+    public void load(final int adId) {
         LTLog.d("loadBanner >>> " + adId);
         JSPluginUtil.runOnUiThread(new Runnable() {
             @Override
@@ -89,7 +89,7 @@ public class BannerHelper extends BaseHelper {
         });
     }
 
-    public void reshowBanner() {
+    public void reShow() {
         LTLog.d("reshowBanner >>> " + _adId);
         JSPluginUtil.runOnUiThread(new Runnable() {
             @Override
@@ -103,7 +103,7 @@ public class BannerHelper extends BaseHelper {
         });
     }
 
-    public void hideBanner() {
+    public void hide() {
         LTLog.d("hideBanner >>> " + _adId);
         JSPluginUtil.runOnUiThread(new Runnable() {
             @Override
@@ -118,7 +118,7 @@ public class BannerHelper extends BaseHelper {
         });
     }
 
-    public void removeBanner() {
+    public void remove() {
         LTLog.d("removeBanner >>> " + _adId);
         JSPluginUtil.runOnUiThread(new Runnable() {
             @Override
