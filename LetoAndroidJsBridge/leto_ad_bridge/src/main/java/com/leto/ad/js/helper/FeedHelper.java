@@ -84,7 +84,7 @@ public class FeedHelper extends BaseHelper {
 
     public void hide() {
         LTLog.d("hide >>> " + _adId);
-        JSPluginUtil.runOnGLThread(new Runnable() {
+        JSPluginUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if(_ad != null) {

@@ -97,7 +97,7 @@ public class LTJSBridge {
 	}
 
 	public static void showWithdrawIcon(final int styleId, final int left, final int top, final boolean pinned, final boolean dock) {
-		JSPluginUtil.runOnGLThread(new Runnable() {
+		JSPluginUtil.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				try {
@@ -115,7 +115,7 @@ public class LTJSBridge {
 	}
 
 	public static void hideWithdrawIcon() {
-		JSPluginUtil.runOnGLThread(new Runnable() {
+		JSPluginUtil.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				if(_withdrawIcon != null) {
@@ -126,7 +126,7 @@ public class LTJSBridge {
 	}
 
 	public static void showSceneRedPack(final String params) {
-		JSPluginUtil.runOnGLThread(new Runnable() {
+		JSPluginUtil.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				try {
