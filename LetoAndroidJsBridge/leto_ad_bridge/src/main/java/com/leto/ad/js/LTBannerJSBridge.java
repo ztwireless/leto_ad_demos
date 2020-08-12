@@ -75,7 +75,7 @@ public class LTBannerJSBridge {
         if (helper != null) {
             helper.setAdListener(listenerJson);
             helper.setAdListener(_cb);
-            helper.loadBanner(adId);
+            helper.load(adId);
         }
     }
 
@@ -89,21 +89,21 @@ public class LTBannerJSBridge {
     public static void hide(int adId) {
         BannerHelper helper = getHelper(adId);
         if (helper != null) {
-            helper.hideBanner();
+            helper.hide();
         }
     }
 
     public static void reshow(int adId) {
         BannerHelper helper = getHelper(adId);
         if (helper != null) {
-            helper.reshowBanner();
+            helper.reShow();
         }
     }
 
     public static void remove(int adId) {
         BannerHelper helper = getHelper(adId);
         if (helper != null) {
-            helper.removeBanner();
+            helper.remove();
             sHelperMap.remove(adId);
         }
     }
