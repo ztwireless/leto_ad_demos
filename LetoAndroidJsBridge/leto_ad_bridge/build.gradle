@@ -39,6 +39,6 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    compileOnly fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation "com.android.support:design:28.0.0"
 }
