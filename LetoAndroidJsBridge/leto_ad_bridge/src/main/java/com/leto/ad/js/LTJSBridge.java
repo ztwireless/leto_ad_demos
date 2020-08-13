@@ -3,6 +3,9 @@ package com.leto.ad.js;
 import android.app.Activity;
 import android.util.Log;
 
+import com.leto.ad.js.helper.IAddCoinListener;
+import com.leto.ad.js.helper.IGetUserCoinListener;
+import com.leto.ad.js.helper.IRedPackListener;
 import com.leto.ad.js.utils.JSPluginUtil;
 import com.leto.ad.js.utils.LTLog;
 import com.mgc.leto.game.base.LetoAdApi;
@@ -48,6 +51,26 @@ public class LTJSBridge {
 		return _api;
 	}
 
+	/**
+	 * 针对unity提供的带一个回调接口的方法
+	 */
+	public static void getUserCoin(final IGetUserCoinListener listener) {
+		_api.getUserCoin(new LetoAdApi.ILetoAdApiCallback() {
+			@Override
+			public void onApiEvent(JSONObject res) {
+				if(res.optInt("errCode", 0) != 0) {
+					if(listener != null) {
+						listener.onGetUserCoinFail(res.toString());
+					}
+				} else {
+					if(listener != null) {
+						listener.onGetUserCoinSuccess(res.toString());
+					}
+				}
+			}
+		});
+	}
+
 	public static void getUserCoin() {
 		_api.getUserCoin(new LetoAdApi.ILetoAdApiCallback() {
 			@Override
@@ -68,6 +91,26 @@ public class LTJSBridge {
 	 */
 	public static void addCoin(double coin) {
 		addCoin((int)coin);
+	}
+
+	/**
+	 * 针对unity提供的addCoin实现
+	 */
+	public static void addCoin(int coin, final IAddCoinListener listener) {
+		_api.addCoin(coin, new LetoAdApi.ILetoAdApiCallback() {
+			@Override
+			public void onApiEvent(JSONObject res) {
+				if(res.optInt("errCode", 0) != 0) {
+					if(listener != null) {
+						listener.onAddCoinFail(res.toString());
+					}
+				} else {
+					if(listener != null) {
+						listener.onAddCoinSuccess(res.toString());
+					}
+				}
+			}
+		});
 	}
 
 	public static void addCoin(int coin) {
@@ -120,6 +163,31 @@ public class LTJSBridge {
 			public void run() {
 				if(_withdrawIcon != null) {
 					_withdrawIcon.hide();
+				}
+			}
+		});
+	}
+
+	/**
+	 * 针对unity提供带listener的版本
+	 */
+	public static void showSceneRedPack(final String params, final IRedPackListener listener) {
+		JSPluginUtil.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					JSONObject j = new JSONObject(params);
+					LetoAdApi.RedPack redPack = _api.showSceneRedPack(j);
+					redPack.onClose(new LetoAdApi.ILetoAdApiCallback() {
+						@Override
+						public void onApiEvent(final JSONObject res) {
+							if(listener != null) {
+								listener.onRedPackClose(res.toString());
+							}
+						}
+					});
+				} catch(Throwable e) {
+					Log.d("test", "ff");
 				}
 			}
 		});

@@ -12,6 +12,30 @@ namespace LetoAd.IOS {
         public void initSDK() {
             // TODO
         }
+
+        public void getUserCoin(ILTGetUserCoinListener listener) {
+
+        }
+
+        public void addCoin(int coin, ILTAddCoinListener listener) {
+
+        }
+
+        public void showWithdraw() {
+
+        }
+
+        public void showWithdrawIcon(int styleId, int left, int top, bool pinned, bool dock) {
+
+        }
+
+        public void hideWithdrawIcon() {
+
+        }
+        
+        public void showRedPack(LTRedPackRequest req, ILTRedPackListener listener) {
+
+        }
     }
 
     public class LTRewardedVideoCSSDK_ios : ILTRewardedVideoCSSDK {
@@ -120,6 +144,39 @@ namespace LetoAd.IOS {
 
         public void setAdListener(ILTFeedListener listener) {
             
+        }
+    }
+
+    public class LTExtendedCSSDK_ios : ILTExtendedCSSDK {
+        public void load(int adId, string param) {
+
+        }
+
+        public void show(int adId, string param) {
+
+        }
+
+        public void destroy(int adId) {
+
+        }
+
+        public void updateMyCoin(int adId) {
+
+        }
+
+        public void updateTitle(int adId, string title) {
+
+        }
+
+        public void updateVideoButtonTitle(int adId, string title) {
+
+        }
+
+        public void notify(int adId, int action) {
+            
+        }
+
+        public void setAdListener(ILTExtendedListener listener) {
         }
     }
 }

@@ -5,8 +5,86 @@ using LetoAd.Android;
 using LetoAd.IOS;
 
 namespace LetoAd {
+    [System.Serializable]
+    public class LTCommonResult {
+        public int errCode;
+        public string errMsg;
+    }
+
+    [System.Serializable]
+    public class LTGetCoinResult : LTCommonResult {
+        public int coin;
+    }
+
+    [System.Serializable]
+    public class LTAddCoinResult : LTCommonResult {
+        public int coin;
+    }
+
+    [System.Serializable]
+    public class LTLocalLimit {
+        public int limit; // 累计值
+        public int max_award; // 最大奖励
+        public int min_award; // 最小奖励
+        public int video_ratio; // 视频翻倍系数
+
+        public LTLocalLimit(int limit, int max_award, int min_award, int video_ratio) {
+            this.limit = limit;
+            this.max_award = max_award;
+            this.min_award = min_award;
+            this.video_ratio = video_ratio;
+        }
+    }
+
+    [System.Serializable]
+    public class LTRedPackRequest {
+        public int workflow;
+        public LTLocalLimit[] local_limits;
+    }
+
+    [System.Serializable]
+    public class LTRedPackResult {
+        public bool success;
+        public bool abort;
+        public int add_coin;
+    }
+
+    public interface ILTRedPackListenerInternal {
+        void onRedPackClose(string res);
+    }
+
+    public interface ILTRedPackListener {
+        void onRedPackClose(LTRedPackResult result);
+    }
+
+    public interface ILTGetUserCoinListenerInternal {
+	    void onGetUserCoinFail(string res);
+	    void onGetUserCoinSuccess(string res);
+    }
+
+    public interface ILTGetUserCoinListener {
+	    void onGetUserCoinFail(string errMsg);
+	    void onGetUserCoinSuccess(LTGetCoinResult result);
+    }
+
+    public interface ILTAddCoinListenerInternal {
+        void onAddCoinFail(string res);
+	    void onAddCoinSuccess(string res);
+    }
+
+    public interface ILTAddCoinListener {
+        void onAddCoinFail(string errMsg);
+	    void onAddCoinSuccess(LTAddCoinResult result);
+    }
+
     public interface ILTCSSDK {
         void initSDK();
+        void getUserCoin(ILTGetUserCoinListener listener);
+        void addCoin(int coin, ILTAddCoinListener listener);
+        void showWithdraw();
+        void showWithdrawIcon(int styleId, int left, int top, bool pinned, bool dock);
+        void hideWithdrawIcon();
+        void showRedPack(LTRedPackRequest req, ILTRedPackListener listener);
     }
 
     public class LTCSSDK : ILTCSSDK {
@@ -22,6 +100,30 @@ namespace LetoAd {
 
         public void initSDK() {
             _pltSdk.initSDK();
+        }
+
+        public void getUserCoin(ILTGetUserCoinListener listener) {
+            _pltSdk.getUserCoin(listener);
+        }
+
+        public void addCoin(int coin, ILTAddCoinListener listener) {
+            _pltSdk.addCoin(coin, listener);
+        }
+
+        public void showWithdraw() {
+            _pltSdk.showWithdraw();
+        }
+
+        public void showWithdrawIcon(int styleId, int left, int top, bool pinned, bool dock) {
+            _pltSdk.showWithdrawIcon(styleId, left, top, pinned, dock);
+        }
+
+        public void hideWithdrawIcon() {
+            _pltSdk.hideWithdrawIcon();
+        }
+
+        public void showRedPack(LTRedPackRequest req, ILTRedPackListener listener) {
+            _pltSdk.showRedPack(req, listener);
         }
     }
 
@@ -241,9 +343,50 @@ namespace LetoAd {
         void updateTitle(int adId, string title);
         void updateVideoButtonTitle(int adId, string title);
         void notify(int adId, int action);
+        void setAdListener(ILTExtendedListener listener);
     }
 
     public class LTExtendedCSSDK : ILTExtendedCSSDK {
-        
+        private ILTExtendedCSSDK _pltSdk;
+
+        public LTExtendedCSSDK() {
+            #if UNITY_ANDROID
+                _pltSdk = new LTExtendedCSSDK_android();
+            #elif UNITY_IOS
+                _pltSdk = new LTExtendedCSSDK_ios();
+            #endif
+        }
+
+        public void load(int adId, string param) {
+            _pltSdk.load(adId, param);
+        }
+
+        public void show(int adId, string param) {
+            _pltSdk.show(adId, param);
+        }
+
+        public void destroy(int adId) {
+            _pltSdk.destroy(adId);
+        }
+
+        public void updateMyCoin(int adId) {
+            _pltSdk.updateMyCoin(adId);
+        }
+
+        public void updateTitle(int adId, string title) {
+            _pltSdk.updateTitle(adId, title);
+        }
+
+        public void updateVideoButtonTitle(int adId, string title) {
+            _pltSdk.updateVideoButtonTitle(adId, title);
+        }
+
+        public void notify(int adId, int action) {
+            _pltSdk.notify(adId, action);
+        }
+
+        public void setAdListener(ILTExtendedListener listener) {
+            _pltSdk.setAdListener(listener);
+        }
     }
 }

@@ -6,6 +6,67 @@ using LetoAd;
 #if UNITY_ANDROID
 
 namespace LetoAd.Android {
+    class LTGetUserCoinListenerWrapper : AndroidJavaProxy, ILTGetUserCoinListenerInternal {
+        private ILTGetUserCoinListener _listener;
+
+        public LTGetUserCoinListenerWrapper(ILTGetUserCoinListener listener) : base("com.leto.ad.js.helper.IGetUserCoinListener") {
+            _listener = listener;
+        }
+
+        public void onGetUserCoinFail(string res) {
+            if(_listener != null) {
+                LTGetCoinResult result = JsonUtility.FromJson<LTGetCoinResult>(res);
+                _listener.onGetUserCoinFail(result.errMsg);
+            }
+        }
+
+	    public void onGetUserCoinSuccess(string res) {
+            if(_listener != null) {
+                LTGetCoinResult result = JsonUtility.FromJson<LTGetCoinResult>(res);
+                _listener.onGetUserCoinSuccess(result);
+            }
+        }
+    }
+
+    class LTAddCoinListenerWrapper : AndroidJavaProxy, ILTAddCoinListenerInternal {
+        private ILTAddCoinListener _listener;
+
+        public LTAddCoinListenerWrapper(ILTAddCoinListener listener) : base("com.leto.ad.js.helper.IAddCoinListener") {
+            _listener = listener;
+        }
+
+        public void onAddCoinFail(string res) {
+            if(_listener != null) {
+                LTAddCoinResult result = JsonUtility.FromJson<LTAddCoinResult>(res);
+                _listener.onAddCoinFail(result.errMsg);
+            }
+        }
+
+	    public void onAddCoinSuccess(string res) {
+            if(_listener != null) {
+                LTAddCoinResult result = JsonUtility.FromJson<LTAddCoinResult>(res);
+                _listener.onAddCoinSuccess(result);
+            }
+        }
+    }
+
+    class LTRedPackListenerWrapper : AndroidJavaProxy, ILTRedPackListenerInternal {
+        private ILTRedPackListener _listener;
+
+        public LTRedPackListenerWrapper(ILTRedPackListener listener) : base("com.leto.ad.js.helper.IRedPackListener") {
+            _listener = listener;
+        }
+
+        public void onRedPackClose(string res) {
+            if(_listener != null) {
+                Debug.Log("onRedPackClose: " + res);
+                LTRedPackResult result = JsonUtility.FromJson<LTRedPackResult>(res);
+                Debug.Log("after from json, result is " + result);
+                _listener.onRedPackClose(result);
+            }
+        }
+    }
+
     public class LTCSSDK_android : ILTCSSDK {
         private AndroidJavaClass _javaSDKClass;
 
@@ -17,6 +78,31 @@ namespace LetoAd.Android {
             AndroidJavaClass player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject actObj = player.GetStatic<AndroidJavaObject>("currentActivity");
             _javaSDKClass.CallStatic("initSDK", actObj);
+        }
+
+        public void getUserCoin(ILTGetUserCoinListener listener) {
+            _javaSDKClass.CallStatic("getUserCoin", new LTGetUserCoinListenerWrapper(listener));
+        }
+
+        public void addCoin(int coin, ILTAddCoinListener listener) {
+            _javaSDKClass.CallStatic("addCoin", coin, new LTAddCoinListenerWrapper(listener));
+        }
+
+        public void showWithdraw() {
+            _javaSDKClass.CallStatic("showWithdraw");
+        }
+
+        public void showWithdrawIcon(int styleId, int left, int top, bool pinned, bool dock) {
+            _javaSDKClass.CallStatic("showWithdrawIcon", styleId, left, top, pinned, dock);
+        }
+
+        public void hideWithdrawIcon() {
+            _javaSDKClass.CallStatic("hideWithdrawIcon");
+        }
+        
+        public void showRedPack(LTRedPackRequest req, ILTRedPackListener listener) {
+            string param = JsonUtility.ToJson(req);
+            _javaSDKClass.CallStatic("showSceneRedPack", param, new LTRedPackListenerWrapper(listener));
         }
     }
 
@@ -245,6 +331,90 @@ namespace LetoAd.Android {
 
         public void setAdListener(ILTFeedListener listener) {
             _javaSDKClass.CallStatic("setAdListener", new LTFeedListenerWrapper(listener));
+        }
+    }
+
+    class LTExtendedListenerWrapper : AndroidJavaProxy, ILTExtendedListener {
+        private ILTExtendedListener _listener;
+
+        public LTExtendedListenerWrapper(ILTExtendedListener listener) : base("com.leto.ad.js.helper.IExtendedListener") {
+            _listener = listener;
+        }
+
+        public void onExtendedLoaded(int adId) {
+            if(_listener != null) {
+                _listener.onExtendedLoaded(adId);
+            }
+        }
+
+        public void onExtendedFailed(int adId, string errMsg) {
+            if(_listener != null) {
+                _listener.onExtendedFailed(adId, errMsg);
+            }
+        }
+
+        public void onExtendedClose(int adId, string res) {
+            if(_listener != null) {
+                _listener.onExtendedClose(adId, res);
+            }
+        }
+
+        public void onExtendedCustomClose(int adId, string res) {
+            if(_listener != null) {
+                _listener.onExtendedCustomClose(adId, res);
+            }
+        }
+
+        public void onExtendedVideoClose(int adId, string res) {
+            if(_listener != null) {
+                _listener.onExtendedVideoClose(adId, res);
+            }
+        }
+
+        public void onExtendedNormalClaim(int adId) {
+            if(_listener != null) {
+                _listener.onExtendedNormalClaim(adId);
+            }
+        }
+    }
+
+    public class LTExtendedCSSDK_android : ILTExtendedCSSDK {
+        private AndroidJavaClass _javaSDKClass;
+
+        public LTExtendedCSSDK_android() {
+            _javaSDKClass = new AndroidJavaClass("com.leto.ad.js.LTExtendedJSBridge");
+        }
+
+        public void load(int adId, string param) {
+            _javaSDKClass.CallStatic("load", adId, param);
+        }
+
+        public void show(int adId, string param) {
+            _javaSDKClass.CallStatic("show", adId, param);
+        }
+
+        public void destroy(int adId) {
+            _javaSDKClass.CallStatic("destroy", adId);
+        }
+
+        public void updateMyCoin(int adId) {
+            _javaSDKClass.CallStatic("updateMyCoin", adId);
+        }
+
+        public void updateTitle(int adId, string title) {
+            _javaSDKClass.CallStatic("updateTitle", adId, title);
+        }
+
+        public void updateVideoButtonTitle(int adId, string title) {
+            _javaSDKClass.CallStatic("updateVideoButtonTitle", adId, title);
+        }
+
+        public void notify(int adId, int action) {
+            _javaSDKClass.CallStatic("notify", adId, action);
+        }
+
+        public void setAdListener(ILTExtendedListener listener) {
+            _javaSDKClass.CallStatic("setAdListener", new LTExtendedListenerWrapper(listener));
         }
     }
 }

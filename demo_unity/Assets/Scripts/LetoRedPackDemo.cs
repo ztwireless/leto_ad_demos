@@ -6,16 +6,10 @@ using LetoAd;
 
 public class LetoRedPackDemo : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private ILTCSSDK _letoSdk;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Awake() {
+        _letoSdk = new LTCSSDK();
     }
 
     public void OnBackClicked() {
@@ -23,10 +17,30 @@ public class LetoRedPackDemo : MonoBehaviour
     }
 
     public void OnRedPack1Clicked() {
-
+        LTRedPackRequest req = new LTRedPackRequest();
+        req.workflow = 1;
+        req.local_limits = new LTLocalLimit[] {
+            new LTLocalLimit(1000, 5, 1, 2),
+            new LTLocalLimit(2000, 4, 1, 3),
+            new LTLocalLimit(3000, 2, 1, 4)
+        };
+        _letoSdk.showRedPack(req, new EventListener());
     }
 
     public void OnRedPack2Clicked() {
-        
+        LTRedPackRequest req = new LTRedPackRequest();
+        req.workflow = 2;
+        req.local_limits = new LTLocalLimit[] {
+            new LTLocalLimit(1000, 5, 1, 2),
+            new LTLocalLimit(2000, 4, 1, 3),
+            new LTLocalLimit(3000, 2, 1, 4)
+        };
+        _letoSdk.showRedPack(req, new EventListener());
+    }
+
+    class EventListener : ILTRedPackListener {
+        public void onRedPackClose(LTRedPackResult result) {
+            Debug.Log("onRedPackClose, success: " + result.success + ", abort: " + result.abort + ", add_coin: " + result.add_coin);
+        }
     }
 }
