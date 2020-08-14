@@ -6,7 +6,7 @@ using LetoAd;
 
 public class LetoBannerDemo : MonoBehaviour
 {
-    private LTBannerCSSDK _letoSdk;
+    private ILTBannerCSSDK _letoSdk;
     private int _adId = 1;
 
     void Awake() {

@@ -6,7 +6,7 @@ using LetoAd;
 
 public class LetoRewardedVideoDemo : MonoBehaviour
 {
-    private LTRewardedVideoCSSDK _letoSdk;
+    private ILTRewardedVideoCSSDK _letoSdk;
     private int _adId = 1;
 
     void Awake() {

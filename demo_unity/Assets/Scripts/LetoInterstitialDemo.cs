@@ -6,7 +6,7 @@ using LetoAd;
 
 public class LetoInterstitialDemo : MonoBehaviour
 {
-    private LTInterstitialCSSDK _letoSdk;
+    private ILTInterstitialCSSDK _letoSdk;
     private int _adId = 1;
 
     void Awake() {

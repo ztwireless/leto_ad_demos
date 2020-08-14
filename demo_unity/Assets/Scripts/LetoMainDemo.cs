@@ -5,7 +5,7 @@ using LetoAd;
 using UnityEngine.SceneManagement;
 
 public class LetoMainDemo : MonoBehaviour {
-    private LTCSSDK _letoSdk;
+    private ILTCSSDK _letoSdk;
 
     void Awake() {
         _letoSdk = new LTCSSDK();
