@@ -27,11 +27,12 @@ public class LetoExtendedDemo : MonoBehaviour
     }
 
     public void OnShowCustomLogicClicked() {
-        _letoSdk.load(_adId, @"{
-            ""title"": ""自定义标题"",
-            ""video_button_title"": ""自定义按钮文字"",
-            ""icon"": ""http://download.mgc-games.com/access/upload/20190319/5c909dc73468a.png""
-        }");
+        LTExtendedLoadParams lp = new LTExtendedLoadParams();
+        lp.style = new LTExtendedStyle();
+        lp.style.title = "自定义标题";
+        lp.style.video_button_title = "自定义按钮文字";
+        lp.style.icon = "http://download.mgc-games.com/access/upload/20190319/5c909dc73468a.png";
+        _letoSdk.load(_adId, lp);
         LTExtendedShowParams p = new LTExtendedShowParams();
         p.coin = 1;
         p.ratio = 2;
@@ -40,11 +41,12 @@ public class LetoExtendedDemo : MonoBehaviour
     }
 
     public void OnShowNormalClaimClicked() {
-        _letoSdk.load(_adId, @"{
-            ""title"": ""带普通领取按钮"",
-            ""show_my_coin"": true,
-            ""show_normal_button"": true
-        }");
+        LTExtendedLoadParams lp = new LTExtendedLoadParams();
+        lp.style = new LTExtendedStyle();
+        lp.style.title = "带普通领取按钮";
+        lp.style.show_my_coin = true;
+        lp.style.show_normal_button = true;
+        _letoSdk.load(_adId, lp);
         LTExtendedShowParams p = new LTExtendedShowParams();
         p.coin = 1;
         p.ratio = 2;
@@ -52,10 +54,11 @@ public class LetoExtendedDemo : MonoBehaviour
     }
 
     public void OnShowNoVideoClicked() {
-        _letoSdk.load(_adId, @"{
-            ""title"": ""比例<=1则无视频, 只能普通领取"",
-            ""show_my_coin"": true
-        }");
+        LTExtendedLoadParams lp = new LTExtendedLoadParams();
+        lp.style = new LTExtendedStyle();
+        lp.style.title = "比例<=1则无视频, 只能普通领取";
+        lp.style.show_my_coin = true;
+        _letoSdk.load(_adId, lp);
         LTExtendedShowParams p = new LTExtendedShowParams();
         p.coin = 1;
         p.ratio = 1;

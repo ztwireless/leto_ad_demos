@@ -385,8 +385,9 @@ namespace LetoAd.Android {
             _javaSDKClass = new AndroidJavaClass("com.leto.ad.js.LTExtendedJSBridge");
         }
 
-        public void load(int adId, string param) {
-            _javaSDKClass.CallStatic("load", adId, param);
+        public void load(int adId, LTExtendedLoadParams param) {
+            string s = JsonUtility.ToJson(param);
+            _javaSDKClass.CallStatic("load", adId, s);
         }
 
         public void show(int adId, LTExtendedShowParams param) {

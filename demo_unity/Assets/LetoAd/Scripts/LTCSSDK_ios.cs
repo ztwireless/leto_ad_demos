@@ -148,7 +148,7 @@ namespace LetoAd.IOS {
     }
 
     public class LTExtendedCSSDK_ios : ILTExtendedCSSDK {
-        public void load(int adId, string param) {
+        public void load(int adId, LTExtendedLoadParams param) {
 
         }
 

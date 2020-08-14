@@ -334,6 +334,21 @@ namespace LetoAd {
         public bool custom_logic = false;
     }
 
+    [System.Serializable]
+    public class LTExtendedStyle {
+        public string icon;
+        public string title = "";
+        public string video_button_title = "";
+        public bool show_my_coin = false;
+        public bool show_normal_button = false;
+        public string normal_button_title = "";
+    }
+
+    [System.Serializable]
+    public class LTExtendedLoadParams {
+        public LTExtendedStyle style;
+    }
+
     public interface ILTExtendedListener {
         void onExtendedLoaded(int adId);
         void onExtendedFailed(int adId, string errMsg);
@@ -344,8 +359,8 @@ namespace LetoAd {
     }
 
     public interface ILTExtendedCSSDK {
-        void load(int adId, string param = "{}");
-        void show(int adId, LTExtendedShowParams param);
+        void load(int adId, LTExtendedLoadParams param = null);
+        void show(int adId, LTExtendedShowParams param = null);
         void destroy(int adId);
         void updateMyCoin(int adId);
         void updateTitle(int adId, string title);
@@ -365,11 +380,17 @@ namespace LetoAd {
             #endif
         }
 
-        public void load(int adId, string param) {
+        public void load(int adId, LTExtendedLoadParams param) {
+            if(param == null) {
+                param = new LTExtendedLoadParams();
+            }
             _pltSdk.load(adId, param);
         }
 
         public void show(int adId, LTExtendedShowParams param) {
+            if(param == null) {
+                param = new LTExtendedShowParams();
+            }
             _pltSdk.show(adId, param);
         }
 
