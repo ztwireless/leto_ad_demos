@@ -276,13 +276,23 @@ namespace LetoAd {
         }
     }
 
+    [System.Serializable]
+    public class LTFeedStyle {
+        public int maxHeight;
+    }
+
+    [System.Serializable]
+    public class LTFeedLoadParams {
+        public LTFeedStyle style = new LTFeedStyle();
+    }
+
     public interface ILTFeedListener {
         void onFeedLoaded(int adId);
         void onFeedFailed(int adId);
     }
 
     public interface ILTFeedCSSDK {
-        void load(int adId, string param = "{}");
+        void load(int adId, LTFeedLoadParams param = null);
         void show(int adId);
         void hide(int adId);
         void destroy(int adId);
@@ -301,7 +311,10 @@ namespace LetoAd {
             #endif
         }
 
-        public void load(int adId, string param) {
+        public void load(int adId, LTFeedLoadParams param) {
+            if(param == null) {
+                param = new LTFeedLoadParams();
+            }
             _pltSdk.load(adId, param);
         }
 
@@ -346,7 +359,7 @@ namespace LetoAd {
 
     [System.Serializable]
     public class LTExtendedLoadParams {
-        public LTExtendedStyle style;
+        public LTExtendedStyle style = new LTExtendedStyle();
     }
 
     public interface ILTExtendedListener {

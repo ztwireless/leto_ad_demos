@@ -122,7 +122,7 @@ namespace LetoAd.IOS {
 
         }
 
-        public void load(int adId, string param) {
+        public void load(int adId, LTFeedLoadParams param) {
 
         }
 
