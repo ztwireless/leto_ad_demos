@@ -326,6 +326,14 @@ namespace LetoAd {
         }
     }
 
+    [System.Serializable]
+    public class LTExtendedShowParams {
+        public int coin = 1;
+        public int ratio = 1;
+        public string custom_close = "";
+        public bool custom_logic = false;
+    }
+
     public interface ILTExtendedListener {
         void onExtendedLoaded(int adId);
         void onExtendedFailed(int adId, string errMsg);
@@ -337,7 +345,7 @@ namespace LetoAd {
 
     public interface ILTExtendedCSSDK {
         void load(int adId, string param = "{}");
-        void show(int adId, string param = "{}");
+        void show(int adId, LTExtendedShowParams param);
         void destroy(int adId);
         void updateMyCoin(int adId);
         void updateTitle(int adId, string title);
@@ -361,7 +369,7 @@ namespace LetoAd {
             _pltSdk.load(adId, param);
         }
 
-        public void show(int adId, string param) {
+        public void show(int adId, LTExtendedShowParams param) {
             _pltSdk.show(adId, param);
         }
 

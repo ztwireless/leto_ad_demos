@@ -152,7 +152,7 @@ namespace LetoAd.IOS {
 
         }
 
-        public void show(int adId, string param) {
+        public void show(int adId, LTExtendedShowParams param) {
 
         }
 

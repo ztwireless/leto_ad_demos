@@ -389,8 +389,9 @@ namespace LetoAd.Android {
             _javaSDKClass.CallStatic("load", adId, param);
         }
 
-        public void show(int adId, string param) {
-            _javaSDKClass.CallStatic("show", adId, param);
+        public void show(int adId, LTExtendedShowParams param) {
+            string s = JsonUtility.ToJson(param);
+            _javaSDKClass.CallStatic("show", adId, s);
         }
 
         public void destroy(int adId) {
