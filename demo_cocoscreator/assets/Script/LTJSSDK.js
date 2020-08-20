@@ -1125,10 +1125,34 @@
                 },
 
                 onBannerAdLoadFail : function(adId, errorInfo) {
-                  if(this.developerCallback != null && this.developerCallback.onBannerAdLoadFail != null && undefined != this.developerCallback.onBannerAdLoadFail) {
+                    if(this.developerCallback != null && this.developerCallback.onBannerAdLoadFail != null && undefined != this.developerCallback.onBannerAdLoadFail) {
                         this.developerCallback.onBannerAdLoadFail(adId, errorInfo);
                     }
                 },
+
+                onBannerAdClick : function (adId) {
+                    if(this.developerCallback != null && this.developerCallback.onBannerAdClick != null && undefined != this.developerCallback.onBannerAdClick) {
+                        this.developerCallback.onBannerAdClick(adId);
+                    }
+                },
+
+                onBannerAdShow : function (adId) {
+                    if(this.developerCallback != null && this.developerCallback.onBannerAdShow != null && undefined != this.developerCallback.onBannerAdShow) {
+                        this.developerCallback.onBannerAdShow(adId);
+                    }
+                },
+
+                onBannerAdHide : function (adId) {
+                    if(this.developerCallback != null && this.developerCallback.onBannerAdHide != null && undefined != this.developerCallback.onBannerAdHide) {
+                        this.developerCallback.onBannerAdHide(adId);
+                    }
+                },
+
+                onBannerAdClose : function (adId) {
+                    if(this.developerCallback != null && this.developerCallback.onBannerAdClose != null && undefined != this.developerCallback.onBannerAdClose) {
+                        this.developerCallback.onBannerAdClose(adId);
+                    }
+                }
             },
 
             ensureBridge: function() {
@@ -1148,6 +1172,10 @@
                 let eventJSON = {};
                 eventJSON[LoadedCallbackKey]= "LTBannerJSSDK.LTBannerListener.onBannerAdLoaded",
                 eventJSON[LoadFailCallbackKey]=  "LTBannerJSSDK.LTBannerListener.onBannerAdLoadFail"
+                eventJSON[ClickCallbackKey]=  "LTBannerJSSDK.LTBannerListener.onBannerAdClick"
+                eventJSON[ShowCallbackKey]=  "LTBannerJSSDK.LTBannerListener.onBannerAdShow"
+                eventJSON[HideCallbackKey]=  "LTBannerJSSDK.LTBannerListener.onBannerAdHide"
+                eventJSON[CloseCallbackKey]=  "LTBannerJSSDK.LTBannerListener.onBannerAdClose"
 
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
@@ -1208,6 +1236,10 @@
 
         let LoadedCallbackKey = "BannerLoaded";
         let LoadFailCallbackKey = "BannerLoadFail";
+        let ClickCallbackKey = "BannerClick";
+        let ShowCallbackKey = "BannerShow";
+        let HideCallbackKey = "BannerHide";
+        let CloseCallbackKey = "BannerClose";
 
         window.LTBannerJSSDK = LTBannerSDK;
     }

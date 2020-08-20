@@ -51,14 +51,66 @@ public class BannerHelper extends BaseHelper {
             });
             _ad.onError(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.LoadFailCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.LoadFailCallbackKey)
+                            + "(" + _adId + ",\"" + res.optString("errMsg", "") + "\");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onBannerLoadFail(_adId, res.optString("errMsg", ""));
+                    }
+                }
+            });
+            _ad.onClick(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.BannerCallback.ClickCallbackKey)) {
+                        String js = getCallbackName(Const.BannerCallback.ClickCallbackKey)
                             + "(" + _adId + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onBannerLoadFail(_adId);
+                        _cb.onBannerClick(_adId);
+                    }
+                }
+            });
+            _ad.onShow(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.BannerCallback.ShowCallbackKey)) {
+                        String js = getCallbackName(Const.BannerCallback.ShowCallbackKey)
+                            + "(" + _adId + ");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onBannerShow(_adId);
+                    }
+                }
+            });
+            _ad.onHide(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.BannerCallback.HideCallbackKey)) {
+                        String js = getCallbackName(Const.BannerCallback.HideCallbackKey)
+                            + "(" + _adId + ");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onBannerHide(_adId);
+                    }
+                }
+            });
+            _ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.BannerCallback.CloseCallbackKey)) {
+                        String js = getCallbackName(Const.BannerCallback.CloseCallbackKey)
+                            + "(" + _adId + ");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onBannerClose(_adId);
                     }
                 }
             });

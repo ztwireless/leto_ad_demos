@@ -54,5 +54,21 @@ export default class LetoBannerDemo extends Laya.Scene {
 
     onBannerAdLoadFail(adId, errorInfo) {
         LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdLoadFail(" + adId + ", " + errorInfo + ")");   
+    },
+
+    onBannerAdClick(adId) {
+        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdClick(" + adId + ")");
+    },
+
+    onBannerAdShow(adId) {
+        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdShow(" + adId + ")");
+    },
+
+    onBannerAdHide(adId) {
+        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdHide(" + adId + ")");
+    },
+
+    onBannerAdClose(adId) {
+        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdClose(" + adId + ")");
     }
 }

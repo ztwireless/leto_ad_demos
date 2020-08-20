@@ -223,7 +223,11 @@ namespace LetoAd {
 
     public interface ILTBannerListener {
         void onBannerLoaded(int adId);
-        void onBannerLoadFail(int adId);
+        void onBannerLoadFail(int adId, string errMsg);
+        void onBannerClick(int adId);
+        void onBannerShow(int adId);
+        void onBannerHide(int adId);
+        void onBannerClose(int adId);
     }
 
     public interface ILTBannerCSSDK {

@@ -18,6 +18,10 @@ public class Const {
     public static class BannerCallback {
         public static final String LoadedCallbackKey = "BannerLoaded";
         public static final String LoadFailCallbackKey = "BannerLoadFail";
+        public static final String ClickCallbackKey = "BannerClick";
+        public static final String ShowCallbackKey = "BannerShow";
+        public static final String HideCallbackKey = "BannerHide";
+        public static final String CloseCallbackKey = "BannerClose";
     }
 
     public static class FeedCallback {

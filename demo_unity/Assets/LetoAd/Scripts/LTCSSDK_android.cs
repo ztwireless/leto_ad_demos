@@ -239,9 +239,33 @@ namespace LetoAd.Android {
             }
         }
 
-        public void onBannerLoadFail(int adId) {
+        public void onBannerLoadFail(int adId, string errMsg) {
             if(_listener != null) {
-                _listener.onBannerLoadFail(adId);
+                _listener.onBannerLoadFail(adId, errMsg);
+            }
+        }
+
+        public void onBannerClick(int adId) {
+            if(_listener != null) {
+                _listener.onBannerClick(adId);
+            }
+        }
+
+        public void onBannerShow(int adId) {
+            if(_listener != null) {
+                _listener.onBannerShow(adId);
+            }
+        }
+
+        public void onBannerHide(int adId) {
+            if(_listener != null) {
+                _listener.onBannerHide(adId);
+            }
+        }
+
+        public void onBannerClose(int adId) {
+            if(_listener != null) {
+                _listener.onBannerClose(adId);
             }
         }
     }

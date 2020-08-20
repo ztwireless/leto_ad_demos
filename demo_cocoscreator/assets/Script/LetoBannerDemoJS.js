@@ -53,5 +53,21 @@ cc.Class({
 
     onBannerAdLoadFail : function(adId, errorInfo) {
         LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdLoadFail(" + adId + ", " + errorInfo + ")");   
+    },
+
+    onBannerAdClick : function (adId) {
+        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdClick(" + adId + ")");
+    },
+
+    onBannerAdShow : function (adId) {
+        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdShow(" + adId + ")");
+    },
+
+    onBannerAdHide : function (adId) {
+        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdHide(" + adId + ")");
+    },
+
+    onBannerAdClose : function (adId) {
+        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdClose(" + adId + ")");
     }
 });
