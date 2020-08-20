@@ -50,4 +50,8 @@ cc.Class({
     onInterstitialAdClose : function(adId, callbackInfo) {
         LTJSSDK.printLog("LetoInterstitialDemo::onInterstitialAdClose("  + adId + ", " + callbackInfo + ")");
     },
+
+    onInterstitialAdClick: function(adId) {
+        LTJSSDK.printLog("LetoInterstitialDemo::onInterstitialAdClick(" + adId + ")");
+    }
 });

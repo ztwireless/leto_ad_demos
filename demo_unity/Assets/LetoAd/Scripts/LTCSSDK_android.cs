@@ -203,9 +203,15 @@ namespace LetoAd.Android {
             }
         }
 
-        public void onInterstitialAdShow(int adId) {
+        public void onInterstitialShow(int adId) {
             if(_listener != null) {
-                _listener.onInterstitialAdShow(adId);
+                _listener.onInterstitialShow(adId);
+            }
+        }
+
+        public void onInterstitialClick(int adId) {
+            if(_listener != null) {
+                _listener.onInterstitialClick(adId);
             }
         }
     }

@@ -15,6 +15,7 @@ public class Const {
         public static final String LoadFailCallbackKey = "InterstitialLoadFail";
         public static final String CloseCallbackKey = "InterstitialClose";
         public static final String ShowCallbackKey = "InterstitialAdShow";
+        public static final String ClickCallbackKey = "InterstitialAdClick";
     }
 
     public static class BannerCallback {

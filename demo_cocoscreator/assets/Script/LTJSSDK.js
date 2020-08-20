@@ -548,6 +548,12 @@
                     }
                     LTJSSDK.printLog(`onInterstitialAdClose, auto destroy for ${adId}`)
                     LTInterstitialJSSDK.destroy(adId)
+                },
+
+                onInterstitialAdClick : function (adId) {
+                    if(this.developerCallback != null && this.developerCallback.onInterstitialAdClick != null && undefined != this.developerCallback.onInterstitialAdClick) {
+                        this.developerCallback.onInterstitialAdClick(adId);
+                    }
                 }
             },
 
@@ -570,6 +576,7 @@
                 eventJSON[LoadFailCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdLoadFail",
                 eventJSON[CloseCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdClose",
                 eventJSON[ShowCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdShow"
+                eventJSON[ClickCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdClick"
 
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
@@ -614,6 +621,7 @@
         let LoadFailCallbackKey = "InterstitialLoadFail";
         let CloseCallbackKey = "InterstitialClose";
         let ShowCallbackKey = "InterstitialAdShow";
+        let ClickCallbackKey = "InterstitialAdClick";
 
         window.LTInterstitialJSSDK = LTInterstitialSDK;
     }

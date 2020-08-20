@@ -44,8 +44,12 @@ public class LetoInterstitialDemo : MonoBehaviour
             Debug.Log("onInterstitialLoadFail: " + adId);
         }
 
-        public void onInterstitialAdShow(int adId) {
-            Debug.Log("onInterstitialAdShow: " + adId);
+        public void onInterstitialShow(int adId) {
+            Debug.Log("onInterstitialShow: " + adId);
+        }
+
+        public void onInterstitialClick(int adId) {
+            Debug.Log("onInterstitialClick: " + adId);
         }
     }
 }

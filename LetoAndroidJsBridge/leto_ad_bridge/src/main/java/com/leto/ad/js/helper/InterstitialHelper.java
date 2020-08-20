@@ -85,7 +85,20 @@ public class InterstitialHelper extends BaseHelper {
 						JSPluginUtil.runJs(js);
 					}
 					if(_cb != null) {
-						_cb.onInterstitialAdShow(_adId);
+						_cb.onInterstitialShow(_adId);
+					}
+				}
+			});
+			_ad.onClick(new LetoAdApi.ILetoAdApiCallback() {
+				@Override
+				public void onApiEvent(JSONObject jsonObject) {
+					if (hasCallbackName(Const.InterstitialCallback.ClickCallbackKey)) {
+						String js = getCallbackName(Const.InterstitialCallback.ClickCallbackKey)
+							+ "(" + _adId + ");";
+						JSPluginUtil.runJs(js);
+					}
+					if(_cb != null) {
+						_cb.onInterstitialClick(_adId);
 					}
 				}
 			});
