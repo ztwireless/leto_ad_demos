@@ -83,6 +83,10 @@ export default class LetoExtendedDemo extends Laya.Scene {
         LTJSSDK.printLog("LetoExtendDemo::onExtendedAdFailed(" + adId + ", " + errorInfo + ")");
     }
 
+    onExtendedAdShow(adId) {
+        LTJSSDK.printLog("LetoExtendDemo::onExtendedAdShow(" + adId + ")");
+    }
+
     onExtendedAdClose(adId, res) {
         LTJSSDK.printLog("LetoExtendDemo::onExtendedAdClose(" + adId + ", " + JSON.stringify(res) + ")");
     }

@@ -7,4 +7,5 @@ public interface IExtendedListener {
 	void onExtendedCustomClose(int adId, String res);
 	void onExtendedVideoClose(int adId, String res);
 	void onExtendedNormalClaim(int adId);
+	void onExtendedShow(int adId);
 }

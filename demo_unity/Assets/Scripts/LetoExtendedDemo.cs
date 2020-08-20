@@ -77,6 +77,10 @@ public class LetoExtendedDemo : MonoBehaviour
             Debug.Log("onExtendedFailed: " + adId + ", errmsg: " + errMsg);
         }
 
+        public void onExtendedShow(int adId) {
+            Debug.Log("onExtendedShow: " + adId);
+        }
+
         public void onExtendedClose(int adId, string res) {
             Debug.Log("onExtendedClose: " + adId + ", res: " + res);
             _letoSdk.destroy(adId);

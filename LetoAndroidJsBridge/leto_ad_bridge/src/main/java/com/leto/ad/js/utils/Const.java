@@ -43,5 +43,6 @@ public class Const {
         public static final String CustomCloseCallbackKey = "ExtendedCustomClose";
         public static final String VideoCloseCallbackKey = "ExtendedVideoClose";
         public static final String NormalClaimCallbackKey = "ExtendedNormalClaim";
+        public static final String ShowCallbackKey = "ExtendedShow";
     }
 }

@@ -48,19 +48,19 @@ export default class LetoFeedDemo extends Laya.Scene {
 
     onFeedAdFailed(adId, errorInfo) {
       LTJSSDK.printLog("LetoFeedDemo::onFeedAdFailed(" + adId + ", " + errorInfo + ")");
-    },
+    }
 
     onFeedAdShow(adId) {
         LTJSSDK.printLog("LetoFeedDemo::onFeedAdShow(" + adId + ")");
-    },
+    }
 
     onFeedAdHide(adId) {
         LTJSSDK.printLog("LetoFeedDemo::onFeedAdHide(" + adId + ")");
-    },
+    }
 
     onFeedAdClick(adId) {
         LTJSSDK.printLog("LetoFeedDemo::onFeedAdClick(" + adId + ")");
-    },
+    }
 
     onFeedAdClose(adId) {
         LTJSSDK.printLog("LetoFeedDemo::onFeedAdClose(" + adId + ")");

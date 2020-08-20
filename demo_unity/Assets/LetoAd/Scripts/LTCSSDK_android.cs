@@ -420,6 +420,12 @@ namespace LetoAd.Android {
             }
         }
 
+        public void onExtendedShow(int adId) {
+            if(_listener != null) {
+                _listener.onExtendedShow(adId);
+            }
+        }
+
         public void onExtendedClose(int adId, string res) {
             if(_listener != null) {
                 _listener.onExtendedClose(adId, res);

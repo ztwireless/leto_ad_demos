@@ -77,6 +77,9 @@ cc.Class({
     onExtendedAdFailed : function(adId, errorInfo) {
         LTJSSDK.printLog("LetoExtendDemo::onExtendedAdFailed(" + adId + ", " + errorInfo + ")");
     },
+    onExtendedAdShow: function(adId) {
+        LTJSSDK.printLog("LetoExtendDemo::onExtendedAdShow(" + adId + ")");
+    },
     onExtendedAdClose : function(adId, res) {
         LTJSSDK.printLog("LetoExtendDemo::onExtendedAdClose(" + adId + ", " + JSON.stringify(res) + ")");
     },

@@ -954,6 +954,12 @@
                         this.developerCallback.onExtendedAdFailed(adId, errorInfo);
                     }
                 },
+                onExtendedAdShow : function (adId) {
+                    LTJSSDK.printLog("LTExtendedJSSDK.LTExtendedListener.onExtendedAdShow(" + adId + ")");
+                    if(this.developerCallback != null && this.developerCallback.onExtendedAdShow != null && undefined != this.developerCallback.onExtendedAdShow) {
+                        this.developerCallback.onExtendedAdShow(adId);
+                    }
+                },
                 onExtendedAdClose : function(adId, res) {
                     LTJSSDK.printLog("LTExtendedJSSDK.LTExtendedListener.onExtendedAdClose(" + adId + ", " + JSON.stringify(res) + ")");
                     if(this.developerCallback != null && this.developerCallback.onExtendedAdClose != null && undefined != this.developerCallback.onExtendedAdClose) {
@@ -989,6 +995,7 @@
                 let eventJSON = {};
                 eventJSON[LoadedCallbackKey]= "LTExtendedJSSDK.LTExtendedListener.onExtendedAdLoaded"
                 eventJSON[FailedCallbackKey]= "LTExtendedJSSDK.LTExtendedListener.onExtendedAdFailed"
+                eventJSON[ShowCallbackKey]= "LTExtendedJSSDK.LTExtendedListener.onExtendedAdShow"
                 eventJSON[CloseCallbackKey]= "LTExtendedJSSDK.LTExtendedListener.onExtendedAdClose"
                 eventJSON[CustomCloseCallbackKey]= "LTExtendedJSSDK.LTExtendedListener.onExtendedAdCustomClose"
                 eventJSON[VideoCloseCallbackKey]= "LTExtendedJSSDK.LTExtendedListener.onExtendedAdVideoClose"
@@ -1072,6 +1079,7 @@
 
         let LoadedCallbackKey = "ExtendedLoaded";
         let FailedCallbackKey = "ExtendedFailed";
+        let ShowCallbackKey = "ExtendedShow";
         let CloseCallbackKey = "ExtendedClose";
         let CustomCloseCallbackKey = "ExtendedCustomClose";
         let VideoCloseCallbackKey = "ExtendedVideoClose";

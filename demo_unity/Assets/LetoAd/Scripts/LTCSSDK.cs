@@ -376,6 +376,7 @@ namespace LetoAd {
     public interface ILTExtendedListener {
         void onExtendedLoaded(int adId);
         void onExtendedFailed(int adId, string errMsg);
+        void onExtendedShow(int adId);
         void onExtendedClose(int adId, string res);
         void onExtendedCustomClose(int adId, string res);
         void onExtendedVideoClose(int adId, string res);

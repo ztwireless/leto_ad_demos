@@ -117,6 +117,19 @@ public class ExtendedHelper extends BaseHelper {
                     }
                 }
             });
+            _ad.onShow(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.ExtendedCallback.ShowCallbackKey)) {
+                        String js = getCallbackName(Const.ExtendedCallback.ShowCallbackKey)
+                            + "(" + _adId + ");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onExtendedShow(_adId);
+                    }
+                }
+            });
         } catch(Exception e) {
             e.printStackTrace();
         }
