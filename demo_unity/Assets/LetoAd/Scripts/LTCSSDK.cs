@@ -296,6 +296,10 @@ namespace LetoAd {
     public interface ILTFeedListener {
         void onFeedLoaded(int adId);
         void onFeedFailed(int adId);
+        void onFeedShow(int adId);
+        void onFeedHide(int adId);
+        void onFeedClick(int adId);
+        void onFeedClose(int adId);
     }
 
     public interface ILTFeedCSSDK {

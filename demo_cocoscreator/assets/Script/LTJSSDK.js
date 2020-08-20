@@ -720,6 +720,30 @@
                     if(this.developerCallback != null && this.developerCallback.onFeedAdFailed != null && undefined != this.developerCallback.onFeedAdFailed) {
                         this.developerCallback.onFeedAdFailed(adId, errorInfo);
                     }
+                },
+                onFeedAdShow : function (adId) {
+                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdShow(" + adId + ")");
+                    if(this.developerCallback != null && this.developerCallback.onFeedAdShow != null && undefined != this.developerCallback.onFeedAdShow) {
+                        this.developerCallback.onFeedAdShow(adId);
+                    }
+                },
+                onFeedAdHide : function (adId) {
+                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdHide(" + adId + ")");
+                    if(this.developerCallback != null && this.developerCallback.onFeedAdHide != null && undefined != this.developerCallback.onFeedAdHide) {
+                        this.developerCallback.onFeedAdHide(adId);
+                    }
+                },
+                onFeedAdClick : function (adId) {
+                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdClick(" + adId + ")");
+                    if(this.developerCallback != null && this.developerCallback.onFeedAdClick != null && undefined != this.developerCallback.onFeedAdClick) {
+                        this.developerCallback.onFeedAdClick(adId);
+                    }
+                },
+                onFeedAdClose : function (adId) {
+                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdClose(" + adId + ")");
+                    if(this.developerCallback != null && this.developerCallback.onFeedAdClose != null && undefined != this.developerCallback.onFeedAdClose) {
+                        this.developerCallback.onFeedAdClose(adId);
+                    }
                 }
             },
 
@@ -740,6 +764,10 @@
                 let eventJSON = {};
                 eventJSON[LoadedCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdLoaded",
                 eventJSON[FailedCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdFailed"
+                eventJSON[ShowCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdShow"
+                eventJSON[HideCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdHide"
+                eventJSON[CloseCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdClose"
+                eventJSON[ClickCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdClick"
 
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
@@ -791,6 +819,10 @@
 
         let LoadedCallbackKey = "FeedLoaded";
         let FailedCallbackKey = "FeedFailed";
+        let ShowCallbackKey = "FeedShow";
+        let HideCallbackKey = "FeedHide";
+        let ClickCallbackKey = "FeedClick";
+        let CloseCallbackKey = "FeedClose";
 
         window.LTFeedJSSDK = LTFeedSDK;
     }

@@ -30,6 +30,10 @@ public class Const {
     public static class FeedCallback {
         public static final String LoadedCallbackKey = "FeedLoaded";
         public static final String FailedCallbackKey = "FeedFailed";
+        public static final String ShowCallbackKey = "FeedShow";
+        public static final String HideCallbackKey = "FeedHide";
+        public static final String ClickCallbackKey = "FeedClick";
+        public static final String CloseCallbackKey = "FeedClose";
     }
 
     public static class ExtendedCallback {

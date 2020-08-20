@@ -49,4 +49,20 @@ cc.Class({
     onFeedAdFailed : function(adId, errorInfo) {
       LTJSSDK.printLog("LetoFeedDemo::onFeedAdFailed(" + adId + ", " + errorInfo + ")");
     },
+
+    onFeedAdShow:function(adId) {
+        LTJSSDK.printLog("LetoFeedDemo::onFeedAdShow(" + adId + ")");
+    },
+
+    onFeedAdHide:function(adId) {
+        LTJSSDK.printLog("LetoFeedDemo::onFeedAdHide(" + adId + ")");
+    },
+
+    onFeedAdClick:function(adId) {
+        LTJSSDK.printLog("LetoFeedDemo::onFeedAdClick(" + adId + ")");
+    },
+
+    onFeedAdClose:function(adId) {
+        LTJSSDK.printLog("LetoFeedDemo::onFeedAdClose(" + adId + ")");
+    }
 });

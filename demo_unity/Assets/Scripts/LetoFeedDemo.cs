@@ -42,5 +42,21 @@ public class LetoFeedDemo : MonoBehaviour
         public void onFeedFailed(int adId) {
             Debug.Log("onFeedFailed: " + adId);
         }
+
+        public void onFeedShow(int adId) {
+            Debug.Log("onFeedShow: " + adId);
+        }
+
+        public void onFeedHide(int adId) {
+            Debug.Log("onFeedHide: " + adId);
+        }
+
+        public void onFeedClick(int adId) {
+            Debug.Log("onFeedClick: " + adId);
+        }
+
+        public void onFeedClose(int adId) {
+            Debug.Log("onFeedClose: " + adId);
+        }
     }
 }

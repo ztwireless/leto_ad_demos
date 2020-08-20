@@ -342,6 +342,30 @@ namespace LetoAd.Android {
                 _listener.onFeedFailed(adId);
             }
         }
+
+        public void onFeedShow(int adId) {
+            if(_listener != null) {
+                _listener.onFeedShow(adId);
+            }
+        }
+
+        public void onFeedHide(int adId) {
+            if(_listener != null) {
+                _listener.onFeedHide(adId);
+            }
+        }
+
+        public void onFeedClick(int adId) {
+            if(_listener != null) {
+                _listener.onFeedClick(adId);
+            }
+        }
+
+        public void onFeedClose(int adId) {
+            if(_listener != null) {
+                _listener.onFeedClose(adId);
+            }
+        }
     }
 
     public class LTFeedCSSDK_android : ILTFeedCSSDK {

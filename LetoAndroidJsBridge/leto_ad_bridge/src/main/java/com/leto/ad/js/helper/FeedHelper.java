@@ -65,6 +65,58 @@ public class FeedHelper extends BaseHelper {
                     }
                 }
             });
+            _ad.onShow(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.FeedCallback.ShowCallbackKey)) {
+                        String js = getCallbackName(Const.FeedCallback.ShowCallbackKey)
+                            + "(" + _adId + ");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onFeedShow(_adId);
+                    }
+                }
+            });
+            _ad.onHide(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.FeedCallback.HideCallbackKey)) {
+                        String js = getCallbackName(Const.FeedCallback.HideCallbackKey)
+                            + "(" + _adId + ");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onFeedHide(_adId);
+                    }
+                }
+            });
+            _ad.onClick(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.FeedCallback.ClickCallbackKey)) {
+                        String js = getCallbackName(Const.FeedCallback.ClickCallbackKey)
+                            + "(" + _adId + ");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onFeedClick(_adId);
+                    }
+                }
+            });
+            _ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.FeedCallback.CloseCallbackKey)) {
+                        String js = getCallbackName(Const.FeedCallback.CloseCallbackKey)
+                            + "(" + _adId + ");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onFeedClose(_adId);
+                    }
+                }
+            });
         } catch(JSONException e) {
         }
     }
