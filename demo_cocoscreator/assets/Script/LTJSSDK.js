@@ -348,7 +348,7 @@
                 },
                 onRewardedVideoAdFailed : function(adId, errorInfo) {
                     LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdFailed(" + adId + ", " + errorInfo + ")");
-                  if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdFailed != null && undefined != this.developerCallback.onRewardedVideoAdFailed) {
+                    if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdFailed != null && undefined != this.developerCallback.onRewardedVideoAdFailed) {
                         this.developerCallback.onRewardedVideoAdFailed(adId, errorInfo);
                     }
                 },
@@ -363,6 +363,18 @@
                     LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onReward(" + adId + ", " + callbackInfo + ")");
                     if(this.developerCallback != null && this.developerCallback.onReward != null && undefined != this.developerCallback.onReward) {
                         this.developerCallback.onReward(adId, callbackInfo);
+                    }
+                },
+                onRewardedVideoAdShow : function(adId) {
+                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdShow(" + adId + ")");
+                    if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdShow != null && undefined != this.developerCallback.onRewardedVideoAdShow) {
+                        this.developerCallback.onRewardedVideoAdShow(adId);
+                    }
+                },
+                onRewardedVideoAdClick : function(adId) {
+                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClick(" + adId + ")");
+                    if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdClick != null && undefined != this.developerCallback.onRewardedVideoAdClick) {
+                        this.developerCallback.onRewardedVideoAdClick(adId);
                     }
                 }
             },
@@ -386,6 +398,8 @@
                 eventJSON[LoadFailCallbackKey]= "LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdFailed",
                 eventJSON[CloseCallbackKey]= "LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClosed",
                 eventJSON[RewardCallbackKey]= "LTRewardedVideoJSSDK.LTRewardedVideoListener.onReward"
+                eventJSON[ShowCallbackKey]= "LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdShow",
+                eventJSON[ClickCallbackKey]= "LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClick",
 
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
@@ -430,6 +444,8 @@
         let LoadFailCallbackKey = "RewardedVideoLoadFail";
         let CloseCallbackKey = "RewardedVideoClose";
         let RewardCallbackKey = "RewardedVideoReward";
+        let ShowCallbackKey = "RewardedVideoShow";
+        let ClickCallbackKey = "RewardedVideoClick";
 
         window.LTRewardedVideoJSSDK = LTRewardedVideoSDK;
     }

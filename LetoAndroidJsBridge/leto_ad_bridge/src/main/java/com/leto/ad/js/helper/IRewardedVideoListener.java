@@ -5,4 +5,6 @@ public interface IRewardedVideoListener {
 	void onRewardedVideoReward(int adId);
 	void onRewardedVideoClose(int adId, String res);
 	void onRewardedVideoLoadFail(int adId);
+	void onRewardedVideoShow(int adId);
+	void onRewardedVideoClick(int adId);
 }

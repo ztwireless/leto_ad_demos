@@ -86,6 +86,32 @@ public class RewardVideoHelper extends BaseHelper {
                     }
                 }
             });
+            _ad.onShow(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.RewardVideoCallback.ShowCallbackKey)) {
+                        String js = getCallbackName(Const.RewardVideoCallback.ShowCallbackKey)
+                            + "(" + _adId + ");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onRewardedVideoShow(_adId);
+                    }
+                }
+            });
+            _ad.onClick(new LetoAdApi.ILetoAdApiCallback() {
+                @Override
+                public void onApiEvent(JSONObject jsonObject) {
+                    if (hasCallbackName(Const.RewardVideoCallback.ClickCallbackKey)) {
+                        String js = getCallbackName(Const.RewardVideoCallback.ClickCallbackKey)
+                            + "(" + _adId + ");";
+                        JSPluginUtil.runJs(js);
+                    }
+                    if(_cb != null) {
+                        _cb.onRewardedVideoClick(_adId);
+                    }
+                }
+            });
         }
     }
 

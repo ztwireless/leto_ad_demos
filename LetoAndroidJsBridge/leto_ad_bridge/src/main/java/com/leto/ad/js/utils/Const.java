@@ -6,6 +6,8 @@ public class Const {
         public static final String LoadFailCallbackKey = "RewardedVideoLoadFail";
         public static final String CloseCallbackKey = "RewardedVideoClose";
         public static final String RewardCallbackKey = "RewardedVideoReward";
+        public static final String ShowCallbackKey = "RewardedVideoShow";
+        public static final String ClickCallbackKey = "RewardedVideoClick";
     }
 
     public static class InterstitialCallback {

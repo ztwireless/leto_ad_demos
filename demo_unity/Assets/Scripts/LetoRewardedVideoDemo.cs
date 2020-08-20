@@ -47,5 +47,13 @@ public class LetoRewardedVideoDemo : MonoBehaviour
 	    public void onRewardedVideoLoadFail(int adId) {
             Debug.Log("onRewardedVideoLoadFail: " + adId);
         }
+
+        public void onRewardedVideoShow(int adId) {
+            Debug.Log("onRewardedVideoShow: " + adId);
+        }
+
+	    public void onRewardedVideoClick(int adId) {
+            Debug.Log("onRewardedVideoClick: " + adId);
+        }
     }
 }

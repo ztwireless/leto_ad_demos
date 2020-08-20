@@ -51,5 +51,13 @@ export default class LetoRewardedVideoDemo extends Laya.Scene {
 
     onReward(adId, callbackInfo) {
         LTJSSDK.printLog("LetoRewardedVideoDemo::onReward(" + adId + ", " + callbackInfo + ")");
+    },
+
+    onRewardedVideoAdShow(adId) {
+        LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdShow(" + adId + ")");
+    },
+
+    onRewardedVideoAdClick(adId) {
+        LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdClick(" + adId + ")");
     }
 }

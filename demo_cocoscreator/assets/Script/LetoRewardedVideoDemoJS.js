@@ -48,5 +48,13 @@ cc.Class({
 
     onReward : function(adId, callbackInfo) {
         LTJSSDK.printLog("LetoRewardedVideoDemo::onReward(" + adId + ", " + callbackInfo + ")");
+    },
+
+    onRewardedVideoAdShow:function(adId) {
+        LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdShow(" + adId + ")");
+    },
+
+    onRewardedVideoAdClick:function(adId) {
+        LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdClick(" + adId + ")");
     }
 });

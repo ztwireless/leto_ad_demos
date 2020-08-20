@@ -132,6 +132,8 @@ namespace LetoAd {
 	    void onRewardedVideoReward(int adId);
 	    void onRewardedVideoClose(int adId, string res);
 	    void onRewardedVideoLoadFail(int adId);
+        void onRewardedVideoShow(int adId);
+	    void onRewardedVideoClick(int adId);
     }
 
     public interface ILTRewardedVideoCSSDK {

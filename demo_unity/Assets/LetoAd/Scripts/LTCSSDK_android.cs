@@ -136,6 +136,18 @@ namespace LetoAd.Android {
                 _listener.onRewardedVideoLoadFail(adId);
             }
         }
+
+        public void onRewardedVideoShow(int adId) {
+            if(_listener != null) {
+                _listener.onRewardedVideoShow(adId);
+            }
+        }
+
+	    public void onRewardedVideoClick(int adId) {
+            if(_listener != null) {
+                _listener.onRewardedVideoClick(adId);
+            }
+        }
     }
 
     public class LTRewardedVideoCSSDK_android : ILTRewardedVideoCSSDK {
