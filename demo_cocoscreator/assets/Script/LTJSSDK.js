@@ -626,6 +626,182 @@
         window.LTInterstitialJSSDK = LTInterstitialSDK;
     }
 
+    // LTAndroidFullVideoJS
+    {
+        let classJavaName = "com/leto/ad/js/LTFullVideoJSBridge";
+        let LTAndroidFullVideoJS = {
+            loadFullVideo : function (adId) {
+                LTJSSDK.printLog("Android-loadFullVideo");
+                callJavaStaticMethod(classJavaName, "load", "(I)V", adId);
+            },
+
+            setAdListener: function (listener) {
+                LTJSSDK.printLog("Android-setAdListener");
+                callJavaStaticMethod(classJavaName, "setAdListener", "(Ljava/lang/String;)V", listener);
+            },
+
+            hasAdReady: function (adId) {
+                 LTJSSDK.printLog("Android-hasAdReady");
+                return callJavaStaticMethod(classJavaName, "isAdReady", "(I)Z", adId);
+            },
+
+            showAd: function(adId) {
+                LTJSSDK.printLog("Android-showAd:" + adId);
+                callJavaStaticMethod(classJavaName, "show", "(I)V", adId);
+            },
+
+            destroy: function(adId) {
+                LTJSSDK.printLog("Android-destroy:" + adId);
+                callJavaStaticMethod(classJavaName, "destroy", "(I)V", adId);
+            }
+        };
+
+        window.LTAndroidFullVideoJS = LTAndroidFullVideoJS;
+    }
+
+    // LTiOSFullVideoJS
+    {
+        let OC_WRAPPER_CLASS = "LTFullVideoAdWrapper";
+        let LTiOSFullVideoJS = {
+            loadFullVideo : function (adId) {
+                LTJSSDK.printLog("LTiOSFullVideoJS::loadFullVideo(" + adId + ")");
+                callJavaStaticMethod(OC_WRAPPER_CLASS, "loadFullVideo:", adId);
+            },
+
+            setAdListener : function (listener) {
+                LTJSSDK.printLog("LTiOSFullVideoJS::setAdListener(" + listener + ")");
+                callJavaStaticMethod(OC_WRAPPER_CLASS, "setDelegates:", listener);
+            },
+
+            hasAdReady : function (adId) {
+                LTJSSDK.printLog("LTiOSFullVideoJS::hasAdReady(" + adId + ")");
+                return callJavaStaticMethod(OC_WRAPPER_CLASS, "fullVideoReady:", adId);
+            },
+
+            showAd : function(adId) {
+                LTJSSDK.printLog("LTiOSFullVideoJS::showAd(" + adId + ")");
+                return callJavaStaticMethod(OC_WRAPPER_CLASS, "show:", adId);
+            },
+
+            destroy: function(adId) {
+                LTJSSDK.printLog("LTiOSFullVideoJS::destroy(" + adId + ")");
+                return callJavaStaticMethod(OC_WRAPPER_CLASS, "destroy:", adId);
+            }  
+        };
+
+        window.LTiOSFullVideoJS = LTiOSFullVideoJS;
+    }
+
+    // LTFullVideoJSSDK
+    {
+        let LTFullVideoSDK = {
+            platformBridge: isIOS() ? window.LTiOSFullVideoJS : (isAndroid() ? window.LTAndroidFullVideoJS : null),
+
+            LTFullVideoListener : {
+                developerCallback : null,
+
+                onFullVideoAdLoaded : function (adId) {
+                    if(this.developerCallback != null && this.developerCallback.onFullVideoAdLoaded != null && undefined != this.developerCallback.onFullVideoAdLoaded) {
+                        this.developerCallback.onFullVideoAdLoaded(adId);
+                    }
+                },
+
+                onFullVideoAdLoadFail : function(adId, errorInfo) {
+                  if(this.developerCallback != null && this.developerCallback.onFullVideoAdFail != null && undefined != this.developerCallback.onFullVideoAdFail) {
+                        this.developerCallback.onFullVideoAdFail(adId, errorInfo);
+                    }
+                },
+
+                onFullVideoAdShow : function(adId) {
+                   if(this.developerCallback != null && this.developerCallback.onFullVideoAdShow != null && undefined != this.developerCallback.onFullVideoAdShow) {
+                        this.developerCallback.onFullVideoAdShow(adId);
+                    }
+                },
+
+                onFullVideoAdClose : function(adId) {
+                    if(this.developerCallback != null && this.developerCallback.onFullVideoAdClose != null && undefined != this.developerCallback.onFullVideoAdClose) {
+                        this.developerCallback.onFullVideoAdClose(adId);
+                    }
+                    LTJSSDK.printLog(`onFullVideoAdClose, auto destroy for ${adId}`)
+                    LTFullVideoJSSDK.destroy(adId)
+                },
+
+                onFullVideoAdClick : function (adId) {
+                    if(this.developerCallback != null && this.developerCallback.onFullVideoAdClick != null && undefined != this.developerCallback.onFullVideoAdClick) {
+                        this.developerCallback.onFullVideoAdClick(adId);
+                    }
+                }
+            },
+
+            ensureBridge: function() {
+                this.platformBridge = isIOS() ? window.LTiOSFullVideoJS : (isAndroid() ? window.LTAndroidFullVideoJS : null)
+            },
+            
+            load : function(adId) {
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                    this.platformBridge.loadFullVideo(adId);
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+            },
+
+            setAdListener : function(listener) {
+                let eventJSON = {};
+                eventJSON[LoadedCallbackKey]="LTFullVideoJSSDK.LTFullVideoListener.onFullVideoAdLoaded",
+                eventJSON[FailCallbackKey]= "LTFullVideoJSSDK.LTFullVideoListener.onFullVideoAdFail",
+                eventJSON[CloseCallbackKey]= "LTFullVideoJSSDK.LTFullVideoListener.onFullVideoAdClose",
+                eventJSON[ShowCallbackKey]= "LTFullVideoJSSDK.LTFullVideoListener.onFullVideoAdShow"
+                eventJSON[ClickCallbackKey]= "LTFullVideoJSSDK.LTFullVideoListener.onFullVideoAdClick"
+
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                     this.platformBridge.setAdListener(JSON.stringify(eventJSON));
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+
+                this.LTFullVideoListener.developerCallback = listener;
+            },
+
+            hasAdReady : function(adId) {
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                    return this.platformBridge.hasAdReady(adId);
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+                return false;
+            },
+
+            show : function(adId) {
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                   this.platformBridge.showAd(adId);
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+            },
+
+            destroy: function(adId) {
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                   this.platformBridge.destroy(adId);
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+            },
+        };
+
+        let LoadedCallbackKey = "FullVideoLoaded";
+        let FailCallbackKey = "FullVideoFail";
+        let CloseCallbackKey = "FullVideoClose";
+        let ShowCallbackKey = "FullVideoAdShow";
+        let ClickCallbackKey = "FullVideoAdClick";
+
+        window.LTFullVideoJSSDK = LTFullVideoSDK;
+    }
+
     // LTAndroidFeedJS
     {
         let classJavaName = "com/leto/ad/js/LTFeedJSBridge";

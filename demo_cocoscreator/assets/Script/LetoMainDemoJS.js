@@ -41,5 +41,8 @@ cc.Class({
     },
     gotoRedPackScene: function () {
        cc.director.loadScene("RedPackDemoScene");
+    },
+    gotoFullVideoScene: function () {
+       cc.director.loadScene("FullVideoDemoScene");
     }
 });

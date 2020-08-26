@@ -27,6 +27,14 @@ public class Const {
         public static final String CloseCallbackKey = "BannerClose";
     }
 
+    public static class FullVideoCallback {
+        public static final String LoadedCallbackKey = "FullVideoLoaded";
+        public static final String FailCallbackKey = "FullVideoFail";
+        public static final String ClickCallbackKey = "FullVideoClick";
+        public static final String ShowCallbackKey = "FullVideoShow";
+        public static final String CloseCallbackKey = "FullVideoClose";
+    }
+
     public static class FeedCallback {
         public static final String LoadedCallbackKey = "FeedLoaded";
         public static final String FailedCallbackKey = "FeedFailed";
