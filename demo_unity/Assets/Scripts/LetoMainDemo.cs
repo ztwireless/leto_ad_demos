@@ -51,4 +51,8 @@ public class LetoMainDemo : MonoBehaviour {
     public void OnExtendedClicked() {
         SceneManager.LoadScene("LetoExtendedDemo");
     }
+
+    public void OnFullVideoClicked() {
+        SceneManager.LoadScene("LetoFullVideoDemo");
+    }
 }
