@@ -443,4 +443,52 @@ namespace LetoAd {
             _pltSdk.setAdListener(listener);
         }
     }
+
+    public interface ILTFullVideoListener {
+        void onFullVideoLoaded(int adId);
+        void onFullVideoFail(int adId, string errMsg);
+        void onFullVideoClick(int adId);
+        void onFullVideoShow(int adId);
+        void onFullVideoClose(int adId);
+    }
+
+    public interface ILTFullVideoCSSDK {
+        void load(int adId);
+        void show(int adId);
+        void destroy(int adId);
+        bool isAdReady(int adId);
+        void setAdListener(ILTFullVideoListener listener);
+    }
+
+    public class LTFullVideoCSSDK: ILTFullVideoCSSDK {
+        private ILTFullVideoCSSDK _pltSdk;
+
+        public LTFullVideoCSSDK() {
+            #if UNITY_ANDROID
+                _pltSdk = new LTFullVideoCSSDK_android();
+            #elif UNITY_IOS
+                _pltSdk = new LTFullVideoCSSDK_ios();
+            #endif
+        }
+
+        public void load(int adId) {
+            _pltSdk.load(adId);
+        }
+
+        public void show(int adId) {
+            _pltSdk.show(adId);
+        }
+
+        public void destroy(int adId) {
+            _pltSdk.destroy(adId);
+        }
+
+        public bool isAdReady(int adId) {
+            return _pltSdk.isAdReady(adId);
+        }
+
+        public void setAdListener(ILTFullVideoListener listener) {
+            _pltSdk.setAdListener(listener);
+        }
+    }
 }

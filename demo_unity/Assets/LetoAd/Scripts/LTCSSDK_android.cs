@@ -244,6 +244,72 @@ namespace LetoAd.Android {
         }
     }
 
+    class LTFullVideoListenerWrapper : AndroidJavaProxy, ILTFullVideoListener {
+        private ILTFullVideoListener _listener;
+
+        public LTFullVideoListenerWrapper(ILTFullVideoListener listener) : base("com.leto.ad.js.helper.IFullVideoListener") {
+            _listener = listener;
+        }
+
+        public void onFullVideoLoaded(int adId) {
+            if(_listener != null) {
+                _listener.onFullVideoLoaded(adId);
+            }
+        }
+
+        public void onFullVideoClose(int adId) {
+            if(_listener != null) {
+                _listener.onFullVideoClose(adId);
+            }
+        }
+
+        public void onFullVideoFail(int adId, string errMsg) {
+            if(_listener != null) {
+                _listener.onFullVideoFail(adId, errMsg);
+            }
+        }
+
+        public void onFullVideoShow(int adId) {
+            if(_listener != null) {
+                _listener.onFullVideoShow(adId);
+            }
+        }
+
+        public void onFullVideoClick(int adId) {
+            if(_listener != null) {
+                _listener.onFullVideoClick(adId);
+            }
+        }
+    }
+
+    public class LTFullVideoCSSDK_android : ILTFullVideoCSSDK {
+        private AndroidJavaClass _javaSDKClass;
+
+        public LTFullVideoCSSDK_android() {
+            _javaSDKClass = new AndroidJavaClass("com.leto.ad.js.LTFullVideoJSBridge");
+        }
+
+        public void load(int adId) {
+            _javaSDKClass.CallStatic("load", adId);
+        }
+
+        public void show(int adId) {
+            _javaSDKClass.CallStatic("show", adId);
+        }
+
+        public void destroy(int adId) {
+            _javaSDKClass.CallStatic("destroy", adId);
+        }
+
+        public bool isAdReady(int adId) {
+            return _javaSDKClass.CallStatic<bool>("isAdReady", adId);
+        }
+
+        public void setAdListener(ILTFullVideoListener listener) {
+            _javaSDKClass.CallStatic("setAdListener", new LTFullVideoListenerWrapper(listener));
+        }
+    }
+
     class LTBannerListenerWrapper : AndroidJavaProxy, ILTBannerListener {
         private ILTBannerListener _listener;
 

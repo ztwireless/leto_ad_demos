@@ -87,6 +87,29 @@ namespace LetoAd.IOS {
         }
     }
 
+    public class LTFullVideoCSSDK_ios : ILTFullVideoCSSDK {
+        public void load(int adId) {
+            // TODO
+        }
+
+        public void show(int adId) {
+            // TODO
+        }
+
+        public void destroy(int adId) {
+            // TODO
+        }
+
+        public bool isAdReady(int adId) {
+            // TODO
+            return false;
+        }
+
+        public void setAdListener(ILTFullVideoListener listener) {
+            // TODO
+        }
+    }
+
     public class LTBannerCSSDK_ios : ILTBannerCSSDK {
         public void load(int adId) {
 
