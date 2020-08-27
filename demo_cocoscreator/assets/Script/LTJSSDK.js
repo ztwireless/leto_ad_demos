@@ -1358,39 +1358,39 @@
             LTBannerListener : {
                 developerCallback : null,
 
-                onBannerAdLoaded : function (adId) {
+                onBannerAdLoaded : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdLoaded != null && undefined != this.developerCallback.onBannerAdLoaded) {
-                        this.developerCallback.onBannerAdLoaded(adId);
+                        this.developerCallback.onBannerAdLoaded(adId, adInfo);
                     }
                 },
 
-                onBannerAdLoadFail : function(adId, errorInfo) {
+                onBannerAdLoadFail : function(adId, errMsg) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdLoadFail != null && undefined != this.developerCallback.onBannerAdLoadFail) {
-                        this.developerCallback.onBannerAdLoadFail(adId, errorInfo);
+                        this.developerCallback.onBannerAdLoadFail(adId, errMsg);
                     }
                 },
 
-                onBannerAdClick : function (adId) {
+                onBannerAdClick : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdClick != null && undefined != this.developerCallback.onBannerAdClick) {
-                        this.developerCallback.onBannerAdClick(adId);
+                        this.developerCallback.onBannerAdClick(adId, adInfo);
                     }
                 },
 
-                onBannerAdShow : function (adId) {
+                onBannerAdShow : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdShow != null && undefined != this.developerCallback.onBannerAdShow) {
-                        this.developerCallback.onBannerAdShow(adId);
+                        this.developerCallback.onBannerAdShow(adId, adInfo);
                     }
                 },
 
-                onBannerAdHide : function (adId) {
+                onBannerAdHide : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdHide != null && undefined != this.developerCallback.onBannerAdHide) {
                         this.developerCallback.onBannerAdHide(adId);
                     }
                 },
 
-                onBannerAdClose : function (adId) {
+                onBannerAdClose : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdClose != null && undefined != this.developerCallback.onBannerAdClose) {
-                        this.developerCallback.onBannerAdClose(adId);
+                        this.developerCallback.onBannerAdClose(adId, adInfo);
                     }
                 }
             },

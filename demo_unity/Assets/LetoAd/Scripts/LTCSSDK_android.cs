@@ -315,16 +315,17 @@ namespace LetoAd.Android {
         }
     }
 
-    class LTBannerListenerWrapper : AndroidJavaProxy, ILTBannerListener {
+    class LTBannerListenerWrapper : AndroidJavaProxy, ILTBannerListenerInternal {
         private ILTBannerListener _listener;
 
         public LTBannerListenerWrapper(ILTBannerListener listener) : base("com.leto.ad.js.helper.IBannerListener") {
             _listener = listener;
         }
 
-        public void onBannerLoaded(int adId) {
+        public void onBannerLoaded(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onBannerLoaded(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onBannerLoaded(adId, info);
             }
         }
 
@@ -334,27 +335,31 @@ namespace LetoAd.Android {
             }
         }
 
-        public void onBannerClick(int adId) {
+        public void onBannerClick(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onBannerClick(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onBannerClick(adId, info);
             }
         }
 
-        public void onBannerShow(int adId) {
+        public void onBannerShow(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onBannerShow(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onBannerShow(adId, info);
             }
         }
 
-        public void onBannerHide(int adId) {
+        public void onBannerHide(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onBannerHide(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onBannerHide(adId, info);
             }
         }
 
-        public void onBannerClose(int adId) {
+        public void onBannerClose(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onBannerClose(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onBannerClose(adId, info);
             }
         }
     }

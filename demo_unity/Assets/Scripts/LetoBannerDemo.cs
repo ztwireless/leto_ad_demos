@@ -44,7 +44,7 @@ public class LetoBannerDemo : MonoBehaviour
     }
 
     class EventListener : ILTBannerListener {
-        public void onBannerLoaded(int adId) {
+        public void onBannerLoaded(int adId, LTAdInfo adInfo) {
             Debug.Log("onBannerLoaded: " + adId);
         }
 
@@ -52,19 +52,19 @@ public class LetoBannerDemo : MonoBehaviour
             Debug.Log("onBannerLoadFail: " + adId + ", errMsg: " + errMsg);
         }
 
-        public void onBannerClick(int adId) {
+        public void onBannerClick(int adId, LTAdInfo adInfo) {
             Debug.Log("onBannerClick: " + adId);
         }
 
-        public void onBannerShow(int adId) {
+        public void onBannerShow(int adId, LTAdInfo adInfo) {
             Debug.Log("onBannerShow: " + adId);
         }
 
-        public void onBannerHide(int adId) {
+        public void onBannerHide(int adId, LTAdInfo adInfo) {
             Debug.Log("onBannerHide: " + adId);
         }
 
-        public void onBannerClose(int adId) {
+        public void onBannerClose(int adId, LTAdInfo adInfo) {
             Debug.Log("onBannerClose: " + adId);
         }
     }

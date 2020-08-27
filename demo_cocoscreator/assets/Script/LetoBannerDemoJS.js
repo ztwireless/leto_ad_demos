@@ -47,27 +47,27 @@ cc.Class({
         LTJSSDK.printLog("LetoAdBannerDemo::checkReady() " + (hasReady ? "Ready" : "NO"));
     },
 
-    onBannerAdLoaded : function (adId) {
-         LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdLoaded(" + adId + ")");
+    onBannerAdLoaded : function (adId, adInfo) {
+        LTJSSDK.printLog(`LetoAdBannerDemo::onBannerAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onBannerAdLoadFail : function(adId, errorInfo) {
-        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdLoadFail(" + adId + ", " + errorInfo + ")");   
+    onBannerAdLoadFail : function(adId, errMsg) {
+        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdLoadFail(" + adId + ", " + errMsg + ")");   
     },
 
-    onBannerAdClick : function (adId) {
-        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdClick(" + adId + ")");
+    onBannerAdClick : function (adId, adInfo) {
+        LTJSSDK.printLog(`LetoAdBannerDemo::onBannerAdClick(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onBannerAdShow : function (adId) {
-        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdShow(" + adId + ")");
+    onBannerAdShow : function (adId, adInfo) {
+        LTJSSDK.printLog(`LetoAdBannerDemo::onBannerAdShow(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onBannerAdHide : function (adId) {
-        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdHide(" + adId + ")");
+    onBannerAdHide : function (adId, adInfo) {
+        LTJSSDK.printLog(`LetoAdBannerDemo::onBannerAdHide(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onBannerAdClose : function (adId) {
-        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdClose(" + adId + ")");
+    onBannerAdClose : function (adId, adInfo) {
+        LTJSSDK.printLog(`LetoAdBannerDemo::onBannerAdClose(${adId}, ${JSON.stringify(adInfo)})`);
     }
 });

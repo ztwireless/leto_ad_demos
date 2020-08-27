@@ -249,13 +249,22 @@ namespace LetoAd {
         }
     }
 
-    public interface ILTBannerListener {
-        void onBannerLoaded(int adId);
+    public interface ILTBannerListenerInternal {
+        void onBannerLoaded(int adId, string adInfo);
         void onBannerLoadFail(int adId, string errMsg);
-        void onBannerClick(int adId);
-        void onBannerShow(int adId);
-        void onBannerHide(int adId);
-        void onBannerClose(int adId);
+        void onBannerClick(int adId, string adInfo);
+        void onBannerShow(int adId, string adInfo);
+        void onBannerHide(int adId, string adInfo);
+        void onBannerClose(int adId, string adInfo);
+    }
+
+    public interface ILTBannerListener {
+        void onBannerLoaded(int adId, LTAdInfo adInfo);
+        void onBannerLoadFail(int adId, string errMsg);
+        void onBannerClick(int adId, LTAdInfo adInfo);
+        void onBannerShow(int adId, LTAdInfo adInfo);
+        void onBannerHide(int adId, LTAdInfo adInfo);
+        void onBannerClose(int adId, LTAdInfo adInfo);
     }
 
     public interface ILTBannerCSSDK {

@@ -38,14 +38,14 @@ public class BannerHelper extends BaseHelper {
         if(_ad != null) {
             _ad.onLoad(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.LoadedCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.LoadedCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onBannerLoaded(_adId);
+                        _cb.onBannerLoaded(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
@@ -64,53 +64,53 @@ public class BannerHelper extends BaseHelper {
             });
             _ad.onClick(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.ClickCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.ClickCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onBannerClick(_adId);
+                        _cb.onBannerClick(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onShow(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.ShowCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.ShowCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onBannerShow(_adId);
+                        _cb.onBannerShow(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onHide(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.HideCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.HideCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onBannerHide(_adId);
+                        _cb.onBannerHide(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.CloseCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.CloseCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onBannerClose(_adId);
+                        _cb.onBannerClose(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });

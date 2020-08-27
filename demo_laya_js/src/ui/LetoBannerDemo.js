@@ -48,27 +48,27 @@ export default class LetoBannerDemo extends Laya.Scene {
         LTBannerJSSDK.hide(this.adId());
     }
 
-    onBannerAdLoaded(adId) {
-         LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdLoaded(" + adId + ")");
+    onBannerAdLoaded(adId, adInfo) {
+        LTJSSDK.printLog(`LetoAdBannerDemo::onBannerAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onBannerAdLoadFail(adId, errorInfo) {
-        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdLoadFail(" + adId + ", " + errorInfo + ")");   
+    onBannerAdLoadFail(adId, errMsg) {
+        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdLoadFail(" + adId + ", " + errMsg + ")");   
     }
 
-    onBannerAdClick(adId) {
-        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdClick(" + adId + ")");
+    onBannerAdClick(adId, adInfo) {
+        LTJSSDK.printLog(`LetoAdBannerDemo::onBannerAdClick(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onBannerAdShow(adId) {
-        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdShow(" + adId + ")");
+    onBannerAdShow(adId, adInfo) {
+        LTJSSDK.printLog(`LetoAdBannerDemo::onBannerAdShow(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onBannerAdHide(adId) {
-        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdHide(" + adId + ")");
+    onBannerAdHide(adId, adInfo) {
+        LTJSSDK.printLog(`LetoAdBannerDemo::onBannerAdHide(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onBannerAdClose(adId) {
-        LTJSSDK.printLog("LetoAdBannerDemo::onBannerAdClose(" + adId + ")");
+    onBannerAdClose(adId, adInfo) {
+        LTJSSDK.printLog(`LetoAdBannerDemo::onBannerAdClose(${adId}, ${JSON.stringify(adInfo)})`);
     }
 }
