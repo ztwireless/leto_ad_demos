@@ -340,41 +340,41 @@
             LTRewardedVideoListener : {
                 developerCallback : null,
 
-                onRewardedVideoAdLoaded : function (adId) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdLoaded(" + adId + ")");
+                onRewardedVideoAdLoaded : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdLoaded != null && undefined != this.developerCallback.onRewardedVideoAdLoaded) {
-                        this.developerCallback.onRewardedVideoAdLoaded(adId);
+                        this.developerCallback.onRewardedVideoAdLoaded(adId, adInfo);
                     }
                 },
-                onRewardedVideoAdFailed : function(adId, errorInfo) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdFailed(" + adId + ", " + errorInfo + ")");
+                onRewardedVideoAdFailed : function(adId, errMsg) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdFailed(${adId}, ${errMsg})`);
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdFailed != null && undefined != this.developerCallback.onRewardedVideoAdFailed) {
-                        this.developerCallback.onRewardedVideoAdFailed(adId, errorInfo);
+                        this.developerCallback.onRewardedVideoAdFailed(adId, errMsg);
                     }
                 },
-                onRewardedVideoAdClosed : function(adId, callbackInfo) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClosed(" + adId + ", " + callbackInfo + ")");
+                onRewardedVideoAdClosed : function(adId, adInfo) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClosed(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdClosed != null && undefined != this.developerCallback.onRewardedVideoAdClosed) {
-                        this.developerCallback.onRewardedVideoAdClosed(adId, callbackInfo);
+                        this.developerCallback.onRewardedVideoAdClosed(adId, adInfo);
                     }
                     LTRewardedVideoJSSDK.destroy(adId);
                 },
-                onReward : function(adId, callbackInfo) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onReward(" + adId + ", " + callbackInfo + ")");
+                onReward : function(adId, adInfo) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onReward(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onReward != null && undefined != this.developerCallback.onReward) {
-                        this.developerCallback.onReward(adId, callbackInfo);
+                        this.developerCallback.onReward(adId, adInfo);
                     }
                 },
-                onRewardedVideoAdShow : function(adId) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdShow(" + adId + ")");
+                onRewardedVideoAdShow : function(adId, adInfo) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdShow(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdShow != null && undefined != this.developerCallback.onRewardedVideoAdShow) {
-                        this.developerCallback.onRewardedVideoAdShow(adId);
+                        this.developerCallback.onRewardedVideoAdShow(adId, adInfo);
                     }
                 },
-                onRewardedVideoAdClick : function(adId) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClick(" + adId + ")");
+                onRewardedVideoAdClick : function(adId, adInfo) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClick(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdClick != null && undefined != this.developerCallback.onRewardedVideoAdClick) {
-                        this.developerCallback.onRewardedVideoAdClick(adId);
+                        this.developerCallback.onRewardedVideoAdClick(adId, adInfo);
                     }
                 }
             },
@@ -524,35 +524,35 @@
             LTInterstitialListener : {
                 developerCallback : null,
 
-                onInterstitialAdLoaded : function (adId) {
+                onInterstitialAdLoaded : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onInterstitialAdLoaded != null && undefined != this.developerCallback.onInterstitialAdLoaded) {
-                        this.developerCallback.onInterstitialAdLoaded(adId);
+                        this.developerCallback.onInterstitialAdLoaded(adId, adInfo);
                     }
                 },
 
-                onInterstitialAdLoadFail : function(adId, errorInfo) {
+                onInterstitialAdLoadFail : function(adId, errMsg) {
                   if(this.developerCallback != null && this.developerCallback.onInterstitialAdLoadFail != null && undefined != this.developerCallback.onInterstitialAdLoadFail) {
-                        this.developerCallback.onInterstitialAdLoadFail(adId, errorInfo);
+                        this.developerCallback.onInterstitialAdLoadFail(adId, errMsg);
                     }
                 },
 
-                onInterstitialAdShow : function(adId, callbackInfo) {
+                onInterstitialAdShow : function(adId, adInfo) {
                    if(this.developerCallback != null && this.developerCallback.onInterstitialAdShow != null && undefined != this.developerCallback.onInterstitialAdShow) {
-                        this.developerCallback.onInterstitialAdShow(adId, callbackInfo);
+                        this.developerCallback.onInterstitialAdShow(adId, adInfo);
                     }
                 },
 
-                onInterstitialAdClose : function(adId, callbackInfo) {
+                onInterstitialAdClose : function(adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onInterstitialAdClose != null && undefined != this.developerCallback.onInterstitialAdClose) {
-                        this.developerCallback.onInterstitialAdClose(adId, callbackInfo);
+                        this.developerCallback.onInterstitialAdClose(adId, adInfo);
                     }
                     LTJSSDK.printLog(`onInterstitialAdClose, auto destroy for ${adId}`)
                     LTInterstitialJSSDK.destroy(adId)
                 },
 
-                onInterstitialAdClick : function (adId) {
+                onInterstitialAdClick : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onInterstitialAdClick != null && undefined != this.developerCallback.onInterstitialAdClick) {
-                        this.developerCallback.onInterstitialAdClick(adId);
+                        this.developerCallback.onInterstitialAdClick(adId, adInfo);
                     }
                 }
             },
@@ -700,35 +700,35 @@
             LTFullVideoListener : {
                 developerCallback : null,
 
-                onFullVideoAdLoaded : function (adId) {
+                onFullVideoAdLoaded : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onFullVideoAdLoaded != null && undefined != this.developerCallback.onFullVideoAdLoaded) {
-                        this.developerCallback.onFullVideoAdLoaded(adId);
+                        this.developerCallback.onFullVideoAdLoaded(adId, adInfo);
                     }
                 },
 
-                onFullVideoAdLoadFail : function(adId, errorInfo) {
+                onFullVideoAdLoadFail : function(adId, errMsg) {
                   if(this.developerCallback != null && this.developerCallback.onFullVideoAdFail != null && undefined != this.developerCallback.onFullVideoAdFail) {
-                        this.developerCallback.onFullVideoAdFail(adId, errorInfo);
+                        this.developerCallback.onFullVideoAdFail(adId, errMsg);
                     }
                 },
 
-                onFullVideoAdShow : function(adId) {
+                onFullVideoAdShow : function(adId, adInfo) {
                    if(this.developerCallback != null && this.developerCallback.onFullVideoAdShow != null && undefined != this.developerCallback.onFullVideoAdShow) {
-                        this.developerCallback.onFullVideoAdShow(adId);
+                        this.developerCallback.onFullVideoAdShow(adId, adInfo);
                     }
                 },
 
-                onFullVideoAdClose : function(adId) {
+                onFullVideoAdClose : function(adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onFullVideoAdClose != null && undefined != this.developerCallback.onFullVideoAdClose) {
-                        this.developerCallback.onFullVideoAdClose(adId);
+                        this.developerCallback.onFullVideoAdClose(adId, adInfo);
                     }
                     LTJSSDK.printLog(`onFullVideoAdClose, auto destroy for ${adId}`)
                     LTFullVideoJSSDK.destroy(adId)
                 },
 
-                onFullVideoAdClick : function (adId) {
+                onFullVideoAdClick : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onFullVideoAdClick != null && undefined != this.developerCallback.onFullVideoAdClick) {
-                        this.developerCallback.onFullVideoAdClick(adId);
+                        this.developerCallback.onFullVideoAdClick(adId, adInfo);
                     }
                 }
             },
@@ -885,40 +885,40 @@
             LTFeedListener : {
                 developerCallback : null,
 
-                onFeedAdLoaded : function (adId) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdLoaded(" + adId + ")");
+                onFeedAdLoaded : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onFeedAdLoaded != null && undefined != this.developerCallback.onFeedAdLoaded) {
-                        this.developerCallback.onFeedAdLoaded(adId);
+                        this.developerCallback.onFeedAdLoaded(adId, adInfo);
                     }
                 },
-                onFeedAdFailed : function(adId, errorInfo) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdFailed(" + adId + ", " + errorInfo + ")");
+                onFeedAdFailed : function(adId, errMsg) {
+                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdFailed(" + adId + ", " + errMsg + ")");
                     if(this.developerCallback != null && this.developerCallback.onFeedAdFailed != null && undefined != this.developerCallback.onFeedAdFailed) {
-                        this.developerCallback.onFeedAdFailed(adId, errorInfo);
+                        this.developerCallback.onFeedAdFailed(adId, errMsg);
                     }
                 },
-                onFeedAdShow : function (adId) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdShow(" + adId + ")");
+                onFeedAdShow : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdShow(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onFeedAdShow != null && undefined != this.developerCallback.onFeedAdShow) {
-                        this.developerCallback.onFeedAdShow(adId);
+                        this.developerCallback.onFeedAdShow(adId, adInfo);
                     }
                 },
-                onFeedAdHide : function (adId) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdHide(" + adId + ")");
+                onFeedAdHide : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdHide(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onFeedAdHide != null && undefined != this.developerCallback.onFeedAdHide) {
-                        this.developerCallback.onFeedAdHide(adId);
+                        this.developerCallback.onFeedAdHide(adId, adInfo);
                     }
                 },
-                onFeedAdClick : function (adId) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdClick(" + adId + ")");
+                onFeedAdClick : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdClick(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onFeedAdClick != null && undefined != this.developerCallback.onFeedAdClick) {
-                        this.developerCallback.onFeedAdClick(adId);
+                        this.developerCallback.onFeedAdClick(adId, adInfo);
                     }
                 },
-                onFeedAdClose : function (adId) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdClose(" + adId + ")");
+                onFeedAdClose : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdClose(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onFeedAdClose != null && undefined != this.developerCallback.onFeedAdClose) {
-                        this.developerCallback.onFeedAdClose(adId);
+                        this.developerCallback.onFeedAdClose(adId, adInfo);
                     }
                 }
             },
@@ -1358,39 +1358,39 @@
             LTBannerListener : {
                 developerCallback : null,
 
-                onBannerAdLoaded : function (adId) {
+                onBannerAdLoaded : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdLoaded != null && undefined != this.developerCallback.onBannerAdLoaded) {
-                        this.developerCallback.onBannerAdLoaded(adId);
+                        this.developerCallback.onBannerAdLoaded(adId, adInfo);
                     }
                 },
 
-                onBannerAdLoadFail : function(adId, errorInfo) {
+                onBannerAdLoadFail : function(adId, errMsg) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdLoadFail != null && undefined != this.developerCallback.onBannerAdLoadFail) {
-                        this.developerCallback.onBannerAdLoadFail(adId, errorInfo);
+                        this.developerCallback.onBannerAdLoadFail(adId, errMsg);
                     }
                 },
 
-                onBannerAdClick : function (adId) {
+                onBannerAdClick : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdClick != null && undefined != this.developerCallback.onBannerAdClick) {
-                        this.developerCallback.onBannerAdClick(adId);
+                        this.developerCallback.onBannerAdClick(adId, adInfo);
                     }
                 },
 
-                onBannerAdShow : function (adId) {
+                onBannerAdShow : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdShow != null && undefined != this.developerCallback.onBannerAdShow) {
-                        this.developerCallback.onBannerAdShow(adId);
+                        this.developerCallback.onBannerAdShow(adId, adInfo);
                     }
                 },
 
-                onBannerAdHide : function (adId) {
+                onBannerAdHide : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdHide != null && undefined != this.developerCallback.onBannerAdHide) {
                         this.developerCallback.onBannerAdHide(adId);
                     }
                 },
 
-                onBannerAdClose : function (adId) {
+                onBannerAdClose : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onBannerAdClose != null && undefined != this.developerCallback.onBannerAdClose) {
-                        this.developerCallback.onBannerAdClose(adId);
+                        this.developerCallback.onBannerAdClose(adId, adInfo);
                     }
                 }
             },
