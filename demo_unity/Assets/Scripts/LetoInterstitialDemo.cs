@@ -32,23 +32,23 @@ public class LetoInterstitialDemo : MonoBehaviour
     }
 
     class EventListener : ILTInterstitialListener {
-        public void onInterstitialLoaded(int adId) {
+        public void onInterstitialLoaded(int adId, LTAdInfo adInfo) {
             Debug.Log("onInterstitialLoaded: " + adId);
         }
 
-        public void onInterstitialClose(int adId) {
+        public void onInterstitialClose(int adId, LTAdInfo adInfo) {
             Debug.Log("onInterstitialClose: " + adId);
         }
 
-        public void onInterstitialLoadFail(int adId) {
+        public void onInterstitialLoadFail(int adId, string errMsg) {
             Debug.Log("onInterstitialLoadFail: " + adId);
         }
 
-        public void onInterstitialShow(int adId) {
+        public void onInterstitialShow(int adId, LTAdInfo adInfo) {
             Debug.Log("onInterstitialShow: " + adId);
         }
 
-        public void onInterstitialClick(int adId) {
+        public void onInterstitialClick(int adId, LTAdInfo adInfo) {
             Debug.Log("onInterstitialClick: " + adId);
         }
     }

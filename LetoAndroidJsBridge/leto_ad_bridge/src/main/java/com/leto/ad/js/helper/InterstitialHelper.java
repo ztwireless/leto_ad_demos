@@ -39,40 +39,40 @@ public class InterstitialHelper extends BaseHelper {
 		if(_ad != null) {
 			_ad.onLoad(new LetoAdApi.ILetoAdApiCallback() {
 				@Override
-				public void onApiEvent(JSONObject jsonObject) {
+				public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.InterstitialCallback.LoadedCallbackKey)) {
                     	String js = getCallbackName(Const.InterstitialCallback.LoadedCallbackKey)
-							+ "(" + _adId + ");";
+							+ "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                     	JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                    	_cb.onInterstitialLoaded(_adId);
+                    	_cb.onInterstitialLoaded(_adId, res.optString("adInfo", "{}"));
 					}
 				}
 			});
 			_ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
 				@Override
-				public void onApiEvent(JSONObject jsonObject) {
+				public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.InterstitialCallback.CloseCallbackKey)) {
                     	String js = getCallbackName(Const.InterstitialCallback.CloseCallbackKey)
-							+ "(" + _adId + ");";
+							+ "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                     	JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                    	_cb.onInterstitialClose(_adId);
+                    	_cb.onInterstitialClose(_adId, res.optString("adInfo", "{}"));
 					}
 				}
 			});
 			_ad.onError(new LetoAdApi.ILetoAdApiCallback() {
 				@Override
-				public void onApiEvent(JSONObject jsonObject) {
+				public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.InterstitialCallback.LoadFailCallbackKey)) {
                     	String js = getCallbackName(Const.InterstitialCallback.LoadFailCallbackKey)
-							+ "(" + _adId + ");";
+							+ "(" + _adId + ",\"" + res.optString("errMsg", "") + "\");";
                     	JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                    	_cb.onInterstitialLoadFail(_adId);
+                    	_cb.onInterstitialLoadFail(_adId, res.optString("errMsg", ""));
 					}
 				}
 			});
@@ -81,24 +81,24 @@ public class InterstitialHelper extends BaseHelper {
 				public void onApiEvent(JSONObject res) {
 					if (hasCallbackName(Const.InterstitialCallback.ShowCallbackKey)) {
 						String js = getCallbackName(Const.InterstitialCallback.ShowCallbackKey)
-							+ "(" + _adId + ");";
+							+ "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
 						JSPluginUtil.runJs(js);
 					}
 					if(_cb != null) {
-						_cb.onInterstitialShow(_adId);
+						_cb.onInterstitialShow(_adId, res.optString("adInfo", "{}"));
 					}
 				}
 			});
 			_ad.onClick(new LetoAdApi.ILetoAdApiCallback() {
 				@Override
-				public void onApiEvent(JSONObject jsonObject) {
+				public void onApiEvent(JSONObject res) {
 					if (hasCallbackName(Const.InterstitialCallback.ClickCallbackKey)) {
 						String js = getCallbackName(Const.InterstitialCallback.ClickCallbackKey)
-							+ "(" + _adId + ");";
+							+ "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
 						JSPluginUtil.runJs(js);
 					}
 					if(_cb != null) {
-						_cb.onInterstitialClick(_adId);
+						_cb.onInterstitialClick(_adId, res.optString("adInfo", "{}"));
 					}
 				}
 			});

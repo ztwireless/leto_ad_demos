@@ -201,12 +201,20 @@ namespace LetoAd {
         }
     }
 
+    public interface ILTInterstitialListenerInternal {
+        void onInterstitialLoaded(int adId, string adInfo);
+        void onInterstitialClose(int adId, string adInfo);
+        void onInterstitialLoadFail(int adId, string errMsg);
+        void onInterstitialShow(int adId, string adInfo);
+        void onInterstitialClick(int adId, string adInfo);
+    }
+
     public interface ILTInterstitialListener {
-        void onInterstitialLoaded(int adId);
-        void onInterstitialClose(int adId);
-        void onInterstitialLoadFail(int adId);
-        void onInterstitialShow(int adId);
-        void onInterstitialClick(int adId);
+        void onInterstitialLoaded(int adId, LTAdInfo adInfo);
+        void onInterstitialClose(int adId, LTAdInfo adInfo);
+        void onInterstitialLoadFail(int adId, string errMsg);
+        void onInterstitialShow(int adId, LTAdInfo adInfo);
+        void onInterstitialClick(int adId, LTAdInfo adInfo);
     }
 
     public interface ILTInterstitialCSSDK {

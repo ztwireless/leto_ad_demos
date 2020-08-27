@@ -183,40 +183,44 @@ namespace LetoAd.Android {
         }
     }
 
-    class LTInterstitialListenerWrapper : AndroidJavaProxy, ILTInterstitialListener {
+    class LTInterstitialListenerWrapper : AndroidJavaProxy, ILTInterstitialListenerInternal {
         private ILTInterstitialListener _listener;
 
         public LTInterstitialListenerWrapper(ILTInterstitialListener listener) : base("com.leto.ad.js.helper.IInterstitialListener") {
             _listener = listener;
         }
 
-        public void onInterstitialLoaded(int adId) {
+        public void onInterstitialLoaded(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onInterstitialLoaded(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onInterstitialLoaded(adId, info);
             }
         }
 
-        public void onInterstitialClose(int adId) {
+        public void onInterstitialClose(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onInterstitialClose(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onInterstitialClose(adId, info);
             }
         }
 
-        public void onInterstitialLoadFail(int adId) {
+        public void onInterstitialLoadFail(int adId, string errMsg) {
             if(_listener != null) {
-                _listener.onInterstitialLoadFail(adId);
+                _listener.onInterstitialLoadFail(adId, errMsg);
             }
         }
 
-        public void onInterstitialShow(int adId) {
+        public void onInterstitialShow(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onInterstitialShow(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onInterstitialShow(adId, info);
             }
         }
 
-        public void onInterstitialClick(int adId) {
+        public void onInterstitialClick(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onInterstitialClick(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onInterstitialClick(adId, info);
             }
         }
     }

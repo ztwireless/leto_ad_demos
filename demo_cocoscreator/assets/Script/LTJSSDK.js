@@ -524,35 +524,35 @@
             LTInterstitialListener : {
                 developerCallback : null,
 
-                onInterstitialAdLoaded : function (adId) {
+                onInterstitialAdLoaded : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onInterstitialAdLoaded != null && undefined != this.developerCallback.onInterstitialAdLoaded) {
-                        this.developerCallback.onInterstitialAdLoaded(adId);
+                        this.developerCallback.onInterstitialAdLoaded(adId, adInfo);
                     }
                 },
 
-                onInterstitialAdLoadFail : function(adId, errorInfo) {
+                onInterstitialAdLoadFail : function(adId, errMsg) {
                   if(this.developerCallback != null && this.developerCallback.onInterstitialAdLoadFail != null && undefined != this.developerCallback.onInterstitialAdLoadFail) {
-                        this.developerCallback.onInterstitialAdLoadFail(adId, errorInfo);
+                        this.developerCallback.onInterstitialAdLoadFail(adId, errMsg);
                     }
                 },
 
-                onInterstitialAdShow : function(adId, callbackInfo) {
+                onInterstitialAdShow : function(adId, adInfo) {
                    if(this.developerCallback != null && this.developerCallback.onInterstitialAdShow != null && undefined != this.developerCallback.onInterstitialAdShow) {
-                        this.developerCallback.onInterstitialAdShow(adId, callbackInfo);
+                        this.developerCallback.onInterstitialAdShow(adId, adInfo);
                     }
                 },
 
-                onInterstitialAdClose : function(adId, callbackInfo) {
+                onInterstitialAdClose : function(adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onInterstitialAdClose != null && undefined != this.developerCallback.onInterstitialAdClose) {
-                        this.developerCallback.onInterstitialAdClose(adId, callbackInfo);
+                        this.developerCallback.onInterstitialAdClose(adId, adInfo);
                     }
                     LTJSSDK.printLog(`onInterstitialAdClose, auto destroy for ${adId}`)
                     LTInterstitialJSSDK.destroy(adId)
                 },
 
-                onInterstitialAdClick : function (adId) {
+                onInterstitialAdClick : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onInterstitialAdClick != null && undefined != this.developerCallback.onInterstitialAdClick) {
-                        this.developerCallback.onInterstitialAdClick(adId);
+                        this.developerCallback.onInterstitialAdClick(adId, adInfo);
                     }
                 }
             },
