@@ -13,6 +13,7 @@ export default class LetoMainDemo extends Laya.Scene {
         this.btnFeed.on(Laya.Event.CLICK, this, this.onFeedClicked)
         this.btnInterstitial.on(Laya.Event.CLICK, this, this.onInterstitialClicked)
         this.btnRedPack.on(Laya.Event.CLICK, this, this.onRedPackClicked)
+        this.btnFullVideo.on(Laya.Event.CLICK, this, this.onFullVideoClicked)
     }
 
     onAwake() {
@@ -45,5 +46,9 @@ export default class LetoMainDemo extends Laya.Scene {
 
     onRedPackClicked() {
         Laya.Scene.open('test/LetoRedPackDemo.scene')
+    }
+
+    onFullVideoClicked() {
+        Laya.Scene.open('test/LetoFullVideoDemo.scene')
     }
 }
