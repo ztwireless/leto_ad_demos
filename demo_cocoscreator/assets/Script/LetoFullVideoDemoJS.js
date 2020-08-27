@@ -35,23 +35,23 @@ cc.Class({
         var isReady = LTFullVideoJSSDK.hasAdReady(this.adId());
     },
 
-    onFullVideoAdLoaded : function (adId) {
-        LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdLoaded(" + adId + ")");
+    onFullVideoAdLoaded : function (adId, adInfo) {
+        LTJSSDK.printLog(`LetoFullVideoDemo::onFullVideoAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onFullVideoAdFail : function(adId, errorInfo) {
-         LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdFail(" + adId + ", " + errorInfo + ")");   
+    onFullVideoAdFail : function(adId, errMsg) {
+         LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdFail(" + adId + ", " + errMsg + ")");   
     },
 
-    onFullVideoAdShow : function(adId) {
-        LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdShow("  + adId + ", " + callbackInfo + ")");
+    onFullVideoAdShow : function(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFullVideoDemo::onFullVideoAdShow(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onFullVideoAdClose : function(adId) {
-        LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdClose("  + adId + ", " + callbackInfo + ")");
+    onFullVideoAdClose : function(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFullVideoDemo::onFullVideoAdClose(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onFullVideoAdClick: function(adId) {
-        LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdClick(" + adId + ")");
+    onFullVideoAdClick: function(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFullVideoDemo::onFullVideoAdClick(${adId}, ${JSON.stringify(adInfo)})`);
     }
 });

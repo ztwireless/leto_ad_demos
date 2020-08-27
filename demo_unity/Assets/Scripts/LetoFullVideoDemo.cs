@@ -32,11 +32,11 @@ public class LetoFullVideoDemo : MonoBehaviour
     }
 
     class EventListener : ILTFullVideoListener {
-        public void onFullVideoLoaded(int adId) {
+        public void onFullVideoLoaded(int adId, LTAdInfo adInfo) {
             Debug.Log("onFullVideoLoaded: " + adId);
         }
 
-        public void onFullVideoClose(int adId) {
+        public void onFullVideoClose(int adId, LTAdInfo adInfo) {
             Debug.Log("onFullVideoClose: " + adId);
         }
 
@@ -44,11 +44,11 @@ public class LetoFullVideoDemo : MonoBehaviour
             Debug.Log("onFullVideoFail: " + adId);
         }
 
-        public void onFullVideoShow(int adId) {
+        public void onFullVideoShow(int adId, LTAdInfo adInfo) {
             Debug.Log("onFullVideoShow: " + adId);
         }
 
-        public void onFullVideoClick(int adId) {
+        public void onFullVideoClick(int adId, LTAdInfo adInfo) {
             Debug.Log("onFullVideoClick: " + adId);
         }
     }

@@ -249,22 +249,24 @@ namespace LetoAd.Android {
         }
     }
 
-    class LTFullVideoListenerWrapper : AndroidJavaProxy, ILTFullVideoListener {
+    class LTFullVideoListenerWrapper : AndroidJavaProxy, ILTFullVideoListenerInternal {
         private ILTFullVideoListener _listener;
 
         public LTFullVideoListenerWrapper(ILTFullVideoListener listener) : base("com.leto.ad.js.helper.IFullVideoListener") {
             _listener = listener;
         }
 
-        public void onFullVideoLoaded(int adId) {
+        public void onFullVideoLoaded(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onFullVideoLoaded(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onFullVideoLoaded(adId, info);
             }
         }
 
-        public void onFullVideoClose(int adId) {
+        public void onFullVideoClose(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onFullVideoClose(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onFullVideoClose(adId, info);
             }
         }
 
@@ -274,15 +276,17 @@ namespace LetoAd.Android {
             }
         }
 
-        public void onFullVideoShow(int adId) {
+        public void onFullVideoShow(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onFullVideoShow(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onFullVideoShow(adId, info);
             }
         }
 
-        public void onFullVideoClick(int adId) {
+        public void onFullVideoClick(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onFullVideoClick(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onFullVideoClick(adId, info);
             }
         }
     }

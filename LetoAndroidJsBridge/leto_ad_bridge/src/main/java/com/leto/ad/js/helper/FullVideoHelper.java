@@ -38,14 +38,14 @@ public class FullVideoHelper extends BaseHelper {
         if(_ad != null) {
             _ad.onLoad(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.FullVideoCallback.LoadedCallbackKey)) {
                         String js = getCallbackName(Const.FullVideoCallback.LoadedCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onFullVideoLoaded(_adId);
+                        _cb.onFullVideoLoaded(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
@@ -64,40 +64,40 @@ public class FullVideoHelper extends BaseHelper {
             });
             _ad.onClick(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.FullVideoCallback.ClickCallbackKey)) {
                         String js = getCallbackName(Const.FullVideoCallback.ClickCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onFullVideoClick(_adId);
+                        _cb.onFullVideoClick(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onShow(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.FullVideoCallback.ShowCallbackKey)) {
                         String js = getCallbackName(Const.FullVideoCallback.ShowCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onFullVideoShow(_adId);
+                        _cb.onFullVideoShow(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.FullVideoCallback.CloseCallbackKey)) {
                         String js = getCallbackName(Const.FullVideoCallback.CloseCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onFullVideoClose(_adId);
+                        _cb.onFullVideoClose(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });

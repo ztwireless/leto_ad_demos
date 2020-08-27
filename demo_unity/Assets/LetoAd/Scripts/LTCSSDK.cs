@@ -487,12 +487,20 @@ namespace LetoAd {
         }
     }
 
-    public interface ILTFullVideoListener {
-        void onFullVideoLoaded(int adId);
+    public interface ILTFullVideoListenerInternal {
+        void onFullVideoLoaded(int adId, string adInfo);
         void onFullVideoFail(int adId, string errMsg);
-        void onFullVideoClick(int adId);
-        void onFullVideoShow(int adId);
-        void onFullVideoClose(int adId);
+        void onFullVideoClick(int adId, string adInfo);
+        void onFullVideoShow(int adId, string adInfo);
+        void onFullVideoClose(int adId, string adInfo);
+    }
+
+    public interface ILTFullVideoListener {
+        void onFullVideoLoaded(int adId, LTAdInfo adInfo);
+        void onFullVideoFail(int adId, string errMsg);
+        void onFullVideoClick(int adId, LTAdInfo adInfo);
+        void onFullVideoShow(int adId, LTAdInfo adInfo);
+        void onFullVideoClose(int adId, LTAdInfo adInfo);
     }
 
     public interface ILTFullVideoCSSDK {

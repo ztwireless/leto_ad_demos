@@ -36,23 +36,23 @@ export default class LetoFullVideoDemo extends Laya.Scene {
         var isReady = LTFullVideoJSSDK.hasAdReady(this.adId());
     }
 
-    onFullVideoAdLoaded(adId) {
-        LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdLoaded(" + adId + ")");
+    onFullVideoAdLoaded(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFullVideoDemo::onFullVideoAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onFullVideoAdFail(adId, errorInfo) {
-         LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdFail(" + adId + ", " + errorInfo + ")");   
+    onFullVideoAdFail(adId, errMsg) {
+         LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdFail(" + adId + ", " + errMsg + ")");   
     }
 
-    onFullVideoAdShow(adId) {
-        LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdShow("  + adId + ")");
+    onFullVideoAdShow(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFullVideoDemo::onFullVideoAdShow(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onFullVideoAdClose(adId) {
-        LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdClose("  + adId + ")");
+    onFullVideoAdClose(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFullVideoDemo::onFullVideoAdClose(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onFullVideoAdClick(adId) {
-        LTJSSDK.printLog("LetoFullVideoDemo::onFullVideoAdClick(" + adId + ")");
+    onFullVideoAdClick(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFullVideoDemo::onFullVideoAdClick(${adId}, ${JSON.stringify(adInfo)})`);
     }
 }

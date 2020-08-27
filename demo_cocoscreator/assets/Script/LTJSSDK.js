@@ -700,35 +700,35 @@
             LTFullVideoListener : {
                 developerCallback : null,
 
-                onFullVideoAdLoaded : function (adId) {
+                onFullVideoAdLoaded : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onFullVideoAdLoaded != null && undefined != this.developerCallback.onFullVideoAdLoaded) {
-                        this.developerCallback.onFullVideoAdLoaded(adId);
+                        this.developerCallback.onFullVideoAdLoaded(adId, adInfo);
                     }
                 },
 
-                onFullVideoAdLoadFail : function(adId, errorInfo) {
+                onFullVideoAdLoadFail : function(adId, errMsg) {
                   if(this.developerCallback != null && this.developerCallback.onFullVideoAdFail != null && undefined != this.developerCallback.onFullVideoAdFail) {
-                        this.developerCallback.onFullVideoAdFail(adId, errorInfo);
+                        this.developerCallback.onFullVideoAdFail(adId, errMsg);
                     }
                 },
 
-                onFullVideoAdShow : function(adId) {
+                onFullVideoAdShow : function(adId, adInfo) {
                    if(this.developerCallback != null && this.developerCallback.onFullVideoAdShow != null && undefined != this.developerCallback.onFullVideoAdShow) {
-                        this.developerCallback.onFullVideoAdShow(adId);
+                        this.developerCallback.onFullVideoAdShow(adId, adInfo);
                     }
                 },
 
-                onFullVideoAdClose : function(adId) {
+                onFullVideoAdClose : function(adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onFullVideoAdClose != null && undefined != this.developerCallback.onFullVideoAdClose) {
-                        this.developerCallback.onFullVideoAdClose(adId);
+                        this.developerCallback.onFullVideoAdClose(adId, adInfo);
                     }
                     LTJSSDK.printLog(`onFullVideoAdClose, auto destroy for ${adId}`)
                     LTFullVideoJSSDK.destroy(adId)
                 },
 
-                onFullVideoAdClick : function (adId) {
+                onFullVideoAdClick : function (adId, adInfo) {
                     if(this.developerCallback != null && this.developerCallback.onFullVideoAdClick != null && undefined != this.developerCallback.onFullVideoAdClick) {
-                        this.developerCallback.onFullVideoAdClick(adId);
+                        this.developerCallback.onFullVideoAdClick(adId, adInfo);
                     }
                 }
             },
