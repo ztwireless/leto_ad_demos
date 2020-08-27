@@ -400,46 +400,51 @@ namespace LetoAd.Android {
         }
     }
 
-    class LTFeedListenerWrapper : AndroidJavaProxy, ILTFeedListener {
+    class LTFeedListenerWrapper : AndroidJavaProxy, ILTFeedListenerInternal {
         private ILTFeedListener _listener;
 
         public LTFeedListenerWrapper(ILTFeedListener listener) : base("com.leto.ad.js.helper.IFeedListener") {
             _listener = listener;
         }
 
-        public void onFeedLoaded(int adId) {
+        public void onFeedLoaded(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onFeedLoaded(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onFeedLoaded(adId, info);
             }
         }
 
-        public void onFeedFailed(int adId) {
+        public void onFeedFailed(int adId, string errMsg) {
             if(_listener != null) {
-                _listener.onFeedFailed(adId);
+                _listener.onFeedFailed(adId, errMsg);
             }
         }
 
-        public void onFeedShow(int adId) {
+        public void onFeedShow(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onFeedShow(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onFeedShow(adId, info);
             }
         }
 
-        public void onFeedHide(int adId) {
+        public void onFeedHide(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onFeedHide(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onFeedHide(adId, info);
             }
         }
 
-        public void onFeedClick(int adId) {
+        public void onFeedClick(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onFeedClick(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onFeedClick(adId, info);
             }
         }
 
-        public void onFeedClose(int adId) {
+        public void onFeedClose(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onFeedClose(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onFeedClose(adId, info);
             }
         }
     }

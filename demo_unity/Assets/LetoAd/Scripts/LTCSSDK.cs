@@ -327,13 +327,22 @@ namespace LetoAd {
         public LTFeedStyle style = new LTFeedStyle();
     }
 
+    public interface ILTFeedListenerInternal {
+        void onFeedLoaded(int adId, string adInfo);
+        void onFeedFailed(int adId, string errMsg);
+        void onFeedShow(int adId, string adInfo);
+        void onFeedHide(int adId, string adInfo);
+        void onFeedClick(int adId, string adInfo);
+        void onFeedClose(int adId, string adInfo);
+    }
+
     public interface ILTFeedListener {
-        void onFeedLoaded(int adId);
-        void onFeedFailed(int adId);
-        void onFeedShow(int adId);
-        void onFeedHide(int adId);
-        void onFeedClick(int adId);
-        void onFeedClose(int adId);
+        void onFeedLoaded(int adId, LTAdInfo adInfo);
+        void onFeedFailed(int adId, string errMsg);
+        void onFeedShow(int adId, LTAdInfo adInfo);
+        void onFeedHide(int adId, LTAdInfo adInfo);
+        void onFeedClick(int adId, LTAdInfo adInfo);
+        void onFeedClose(int adId, LTAdInfo adInfo);
     }
 
     public interface ILTFeedCSSDK {

@@ -44,11 +44,11 @@ public class FeedHelper extends BaseHelper {
                 public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.FeedCallback.LoadedCallbackKey)) {
                         String js = getCallbackName(Const.FeedCallback.LoadedCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onFeedLoaded(_adId);
+                        _cb.onFeedLoaded(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
@@ -57,63 +57,63 @@ public class FeedHelper extends BaseHelper {
                 public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.FeedCallback.FailedCallbackKey)) {
                         String js = getCallbackName(Const.FeedCallback.FailedCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + ",\"" + res.optString("errMsg", "") + "\");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onFeedFailed(_adId);
+                        _cb.onFeedFailed(_adId, res.optString("errMsg", ""));
                     }
                 }
             });
             _ad.onShow(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.FeedCallback.ShowCallbackKey)) {
                         String js = getCallbackName(Const.FeedCallback.ShowCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onFeedShow(_adId);
+                        _cb.onFeedShow(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onHide(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.FeedCallback.HideCallbackKey)) {
                         String js = getCallbackName(Const.FeedCallback.HideCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onFeedHide(_adId);
+                        _cb.onFeedHide(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onClick(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.FeedCallback.ClickCallbackKey)) {
                         String js = getCallbackName(Const.FeedCallback.ClickCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onFeedClick(_adId);
+                        _cb.onFeedClick(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.FeedCallback.CloseCallbackKey)) {
                         String js = getCallbackName(Const.FeedCallback.CloseCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onFeedClose(_adId);
+                        _cb.onFeedClose(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });

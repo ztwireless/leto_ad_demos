@@ -885,40 +885,40 @@
             LTFeedListener : {
                 developerCallback : null,
 
-                onFeedAdLoaded : function (adId) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdLoaded(" + adId + ")");
+                onFeedAdLoaded : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onFeedAdLoaded != null && undefined != this.developerCallback.onFeedAdLoaded) {
-                        this.developerCallback.onFeedAdLoaded(adId);
+                        this.developerCallback.onFeedAdLoaded(adId, adInfo);
                     }
                 },
-                onFeedAdFailed : function(adId, errorInfo) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdFailed(" + adId + ", " + errorInfo + ")");
+                onFeedAdFailed : function(adId, errMsg) {
+                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdFailed(" + adId + ", " + errMsg + ")");
                     if(this.developerCallback != null && this.developerCallback.onFeedAdFailed != null && undefined != this.developerCallback.onFeedAdFailed) {
-                        this.developerCallback.onFeedAdFailed(adId, errorInfo);
+                        this.developerCallback.onFeedAdFailed(adId, errMsg);
                     }
                 },
-                onFeedAdShow : function (adId) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdShow(" + adId + ")");
+                onFeedAdShow : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdShow(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onFeedAdShow != null && undefined != this.developerCallback.onFeedAdShow) {
-                        this.developerCallback.onFeedAdShow(adId);
+                        this.developerCallback.onFeedAdShow(adId, adInfo);
                     }
                 },
-                onFeedAdHide : function (adId) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdHide(" + adId + ")");
+                onFeedAdHide : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdHide(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onFeedAdHide != null && undefined != this.developerCallback.onFeedAdHide) {
-                        this.developerCallback.onFeedAdHide(adId);
+                        this.developerCallback.onFeedAdHide(adId, adInfo);
                     }
                 },
-                onFeedAdClick : function (adId) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdClick(" + adId + ")");
+                onFeedAdClick : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdClick(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onFeedAdClick != null && undefined != this.developerCallback.onFeedAdClick) {
-                        this.developerCallback.onFeedAdClick(adId);
+                        this.developerCallback.onFeedAdClick(adId, adInfo);
                     }
                 },
-                onFeedAdClose : function (adId) {
-                    LTJSSDK.printLog("LTFeedJSSDK.LTFeedListener.onFeedAdClose(" + adId + ")");
+                onFeedAdClose : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdClose(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onFeedAdClose != null && undefined != this.developerCallback.onFeedAdClose) {
-                        this.developerCallback.onFeedAdClose(adId);
+                        this.developerCallback.onFeedAdClose(adId, adInfo);
                     }
                 }
             },

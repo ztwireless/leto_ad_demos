@@ -42,27 +42,27 @@ cc.Class({
     },
 
     //Callbacks
-    onFeedAdLoaded:function(adId) {
-        LTJSSDK.printLog("LetoFeedDemo::onFeedAdLoaded(" + adId + ")");
+    onFeedAdLoaded:function(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFeedDemo::onFeedAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onFeedAdFailed : function(adId, errorInfo) {
-      LTJSSDK.printLog("LetoFeedDemo::onFeedAdFailed(" + adId + ", " + errorInfo + ")");
+    onFeedAdFailed : function(adId, errMsg) {
+      LTJSSDK.printLog("LetoFeedDemo::onFeedAdFailed(" + adId + ", " + errMsg + ")");
     },
 
-    onFeedAdShow:function(adId) {
-        LTJSSDK.printLog("LetoFeedDemo::onFeedAdShow(" + adId + ")");
+    onFeedAdShow:function(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFeedDemo::onFeedAdShow(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onFeedAdHide:function(adId) {
-        LTJSSDK.printLog("LetoFeedDemo::onFeedAdHide(" + adId + ")");
+    onFeedAdHide:function(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFeedDemo::onFeedAdHide(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onFeedAdClick:function(adId) {
-        LTJSSDK.printLog("LetoFeedDemo::onFeedAdClick(" + adId + ")");
+    onFeedAdClick:function(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFeedDemo::onFeedAdClick(${adId}, ${JSON.stringify(adInfo)})`);
     },
 
-    onFeedAdClose:function(adId) {
-        LTJSSDK.printLog("LetoFeedDemo::onFeedAdClose(" + adId + ")");
+    onFeedAdClose:function(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFeedDemo::onFeedAdClose(${adId}, ${JSON.stringify(adInfo)})`);
     }
 });

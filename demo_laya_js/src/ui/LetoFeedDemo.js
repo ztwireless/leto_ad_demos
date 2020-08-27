@@ -42,27 +42,27 @@ export default class LetoFeedDemo extends Laya.Scene {
     }
 
     //Callbacks
-    onFeedAdLoaded(adId) {
-        LTJSSDK.printLog("LetoFeedDemo::onFeedAdLoaded(" + adId + ")");
+    onFeedAdLoaded(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFeedDemo::onFeedAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onFeedAdFailed(adId, errorInfo) {
-      LTJSSDK.printLog("LetoFeedDemo::onFeedAdFailed(" + adId + ", " + errorInfo + ")");
+    onFeedAdFailed(adId, errMsg) {
+      LTJSSDK.printLog("LetoFeedDemo::onFeedAdFailed(" + adId + ", " + errMsg + ")");
     }
 
-    onFeedAdShow(adId) {
-        LTJSSDK.printLog("LetoFeedDemo::onFeedAdShow(" + adId + ")");
+    onFeedAdShow(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFeedDemo::onFeedAdShow(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onFeedAdHide(adId) {
-        LTJSSDK.printLog("LetoFeedDemo::onFeedAdHide(" + adId + ")");
+    onFeedAdHide(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFeedDemo::onFeedAdHide(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onFeedAdClick(adId) {
-        LTJSSDK.printLog("LetoFeedDemo::onFeedAdClick(" + adId + ")");
+    onFeedAdClick(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFeedDemo::onFeedAdClick(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onFeedAdClose(adId) {
-        LTJSSDK.printLog("LetoFeedDemo::onFeedAdClose(" + adId + ")");
+    onFeedAdClose(adId, adInfo) {
+        LTJSSDK.printLog(`LetoFeedDemo::onFeedAdClose(${adId}, ${JSON.stringify(adInfo)})`);
     }
 }
