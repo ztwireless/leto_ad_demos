@@ -33,15 +33,6 @@ cc.Class({
     gotoFeedScene: function () {
        cc.director.loadScene("FeedDemoScene");
     },
-    gotoCoinScene: function () {
-       cc.director.loadScene("CoinDemoScene");
-    },
-    gotoExtendScene: function () {
-       cc.director.loadScene("ExtendDemoScene");
-    },
-    gotoRedPackScene: function () {
-       cc.director.loadScene("RedPackDemoScene");
-    },
     gotoFullVideoScene: function () {
        cc.director.loadScene("FullVideoDemoScene");
     }

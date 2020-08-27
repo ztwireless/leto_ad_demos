@@ -40,18 +40,6 @@ public class LetoMainDemo : MonoBehaviour {
         SceneManager.LoadScene("LetoFeedDemo");
     }
 
-    public void OnCoinClicked() {
-        SceneManager.LoadScene("LetoCoinDemo");
-    }
-
-    public void OnRedPackClicked() {
-        SceneManager.LoadScene("LetoRedPackDemo");
-    }
-
-    public void OnExtendedClicked() {
-        SceneManager.LoadScene("LetoExtendedDemo");
-    }
-
     public void OnFullVideoClicked() {
         SceneManager.LoadScene("LetoFullVideoDemo");
     }
