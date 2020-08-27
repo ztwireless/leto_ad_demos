@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LetoRedPackDemo.unity
     guid: 3f292b09d6bc94e7e8157f751a21443a
+  - enabled: 1
+    path: Assets/Scenes/LetoFullVideoDemo.unity
+    guid: 948dc384a7b34481489785417732d459
   m_configObjects: {}

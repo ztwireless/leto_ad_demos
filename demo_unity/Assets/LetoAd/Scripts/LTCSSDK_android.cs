@@ -106,46 +106,51 @@ namespace LetoAd.Android {
         }
     }
 
-    class LTRewardedVideoListenerWrapper : AndroidJavaProxy, ILTRewardedVideoListener {
+    class LTRewardedVideoListenerWrapper : AndroidJavaProxy, ILTRewardedVideoListenerInternal {
         private ILTRewardedVideoListener _listener;
 
         public LTRewardedVideoListenerWrapper(ILTRewardedVideoListener listener) : base("com.leto.ad.js.helper.IRewardedVideoListener") {
             _listener = listener;
         }
 
-        public void onRewardedVideoLoaded(int adId) {
+        public void onRewardedVideoLoaded(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onRewardedVideoLoaded(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onRewardedVideoLoaded(adId, info);
             }
         }
 
-	    public void onRewardedVideoReward(int adId) {
+	    public void onRewardedVideoReward(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onRewardedVideoReward(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onRewardedVideoReward(adId, info);
             }
         }
 
-	    public void onRewardedVideoClose(int adId, string res) {
+	    public void onRewardedVideoClose(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onRewardedVideoClose(adId, res);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onRewardedVideoClose(adId, info);
             }
         }
 
-	    public void onRewardedVideoLoadFail(int adId) {
+	    public void onRewardedVideoLoadFail(int adId, string errMsg) {
             if(_listener != null) {
-                _listener.onRewardedVideoLoadFail(adId);
+                _listener.onRewardedVideoLoadFail(adId, errMsg);
             }
         }
 
-        public void onRewardedVideoShow(int adId) {
+        public void onRewardedVideoShow(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onRewardedVideoShow(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onRewardedVideoShow(adId, info);
             }
         }
 
-	    public void onRewardedVideoClick(int adId) {
+	    public void onRewardedVideoClick(int adId, string adInfo) {
             if(_listener != null) {
-                _listener.onRewardedVideoClick(adId);
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onRewardedVideoClick(adId, info);
             }
         }
     }

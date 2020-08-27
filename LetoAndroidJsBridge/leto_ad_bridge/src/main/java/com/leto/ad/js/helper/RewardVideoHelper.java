@@ -39,76 +39,76 @@ public class RewardVideoHelper extends BaseHelper {
         if(_ad != null) {
             _ad.onLoad(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.RewardVideoCallback.LoadedCallbackKey)) {
                         String js = getCallbackName(Const.RewardVideoCallback.LoadedCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onRewardedVideoLoaded(_adId);
+                        _cb.onRewardedVideoLoaded(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(final JSONObject jsonObject) {
-                    if(jsonObject.optBoolean("isEnded")) {
+                public void onApiEvent(final JSONObject res) {
+                    if(res.optBoolean("isEnded")) {
                         if (hasCallbackName(Const.RewardVideoCallback.RewardCallbackKey)) {
                             String js = getCallbackName(Const.RewardVideoCallback.RewardCallbackKey)
-                                + "(" + _adId + ");";
+                                + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                             JSPluginUtil.runJs(js);
                         }
                         if(_cb != null) {
-                            _cb.onRewardedVideoReward(_adId);
+                            _cb.onRewardedVideoReward(_adId, res.optString("adInfo", "{}"));
                         }
                     }
                     if (hasCallbackName(Const.RewardVideoCallback.CloseCallbackKey)) {
                         String js = getCallbackName(Const.RewardVideoCallback.CloseCallbackKey)
-                            + "(" + _adId + "," + jsonObject.toString() + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onRewardedVideoClose(_adId, jsonObject.toString());
+                        _cb.onRewardedVideoClose(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onError(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.RewardVideoCallback.LoadFailCallbackKey)) {
                         String js = getCallbackName(Const.RewardVideoCallback.LoadFailCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + ",\"" + res.optString("errMsg", "") + "\");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onRewardedVideoLoadFail(_adId);
+                        _cb.onRewardedVideoLoadFail(_adId, res.optString("errMsg", ""));
                     }
                 }
             });
             _ad.onShow(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.RewardVideoCallback.ShowCallbackKey)) {
                         String js = getCallbackName(Const.RewardVideoCallback.ShowCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onRewardedVideoShow(_adId);
+                        _cb.onRewardedVideoShow(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });
             _ad.onClick(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
-                public void onApiEvent(JSONObject jsonObject) {
+                public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.RewardVideoCallback.ClickCallbackKey)) {
                         String js = getCallbackName(Const.RewardVideoCallback.ClickCallbackKey)
-                            + "(" + _adId + ");";
+                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                        _cb.onRewardedVideoClick(_adId);
+                        _cb.onRewardedVideoClick(_adId, res.optString("adInfo", "{}"));
                     }
                 }
             });

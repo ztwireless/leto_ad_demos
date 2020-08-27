@@ -37,27 +37,27 @@ export default class LetoRewardedVideoDemo extends Laya.Scene {
     }
 
     //Callbacks
-    onRewardedVideoAdLoaded(adId) {
-        LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdLoaded(" + adId + ")");
+    onRewardedVideoAdLoaded(adId, adInfo) {
+        LTJSSDK.printLog(`LetoRewardedVideoDemo::onRewardedVideoAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onRewardedVideoAdFailed(adId, errorInfo) {
-      LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdFailed(" + adId + ", " + errorInfo + ")");
+    onRewardedVideoAdFailed(adId, errMsg) {
+        LTJSSDK.printLog(`LetoRewardedVideoDemo::onRewardedVideoAdFailed(${adId}, ${errMsg})`);
     }
 
-    onRewardedVideoAdClosed(adId, callbackInfo) {
-        LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdClosed(" + adId + ", " + callbackInfo + ")");
+    onRewardedVideoAdClosed(adId, adInfo) {
+        LTJSSDK.printLog(`LetoRewardedVideoDemo::onRewardedVideoAdClosed(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onReward(adId, callbackInfo) {
-        LTJSSDK.printLog("LetoRewardedVideoDemo::onReward(" + adId + ", " + callbackInfo + ")");
+    onReward(adId, adInfo) {
+        LTJSSDK.printLog(`LetoRewardedVideoDemo::onReward(${adId}, ${JSON.stringify(adInfo)}})`);
     }
 
-    onRewardedVideoAdShow(adId) {
-        LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdShow(" + adId + ")");
+    onRewardedVideoAdShow(adId, adInfo) {
+        LTJSSDK.printLog(`LetoRewardedVideoDemo::onRewardedVideoAdShow(${adId}, ${JSON.stringify(adInfo)})`);
     }
 
-    onRewardedVideoAdClick(adId) {
-        LTJSSDK.printLog("LetoRewardedVideoDemo::onRewardedVideoAdClick(" + adId + ")");
+    onRewardedVideoAdClick(adId, adInfo) {
+        LTJSSDK.printLog(`LetoRewardedVideoDemo::onRewardedVideoAdClick(${adId}, ${JSON.stringify(adInfo)})`);
     }
 }

@@ -340,41 +340,41 @@
             LTRewardedVideoListener : {
                 developerCallback : null,
 
-                onRewardedVideoAdLoaded : function (adId) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdLoaded(" + adId + ")");
+                onRewardedVideoAdLoaded : function (adId, adInfo) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdLoaded(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdLoaded != null && undefined != this.developerCallback.onRewardedVideoAdLoaded) {
-                        this.developerCallback.onRewardedVideoAdLoaded(adId);
+                        this.developerCallback.onRewardedVideoAdLoaded(adId, adInfo);
                     }
                 },
-                onRewardedVideoAdFailed : function(adId, errorInfo) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdFailed(" + adId + ", " + errorInfo + ")");
+                onRewardedVideoAdFailed : function(adId, errMsg) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdFailed(${adId}, ${errMsg})`);
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdFailed != null && undefined != this.developerCallback.onRewardedVideoAdFailed) {
-                        this.developerCallback.onRewardedVideoAdFailed(adId, errorInfo);
+                        this.developerCallback.onRewardedVideoAdFailed(adId, errMsg);
                     }
                 },
-                onRewardedVideoAdClosed : function(adId, callbackInfo) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClosed(" + adId + ", " + callbackInfo + ")");
+                onRewardedVideoAdClosed : function(adId, adInfo) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClosed(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdClosed != null && undefined != this.developerCallback.onRewardedVideoAdClosed) {
-                        this.developerCallback.onRewardedVideoAdClosed(adId, callbackInfo);
+                        this.developerCallback.onRewardedVideoAdClosed(adId, adInfo);
                     }
                     LTRewardedVideoJSSDK.destroy(adId);
                 },
-                onReward : function(adId, callbackInfo) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onReward(" + adId + ", " + callbackInfo + ")");
+                onReward : function(adId, adInfo) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onReward(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onReward != null && undefined != this.developerCallback.onReward) {
-                        this.developerCallback.onReward(adId, callbackInfo);
+                        this.developerCallback.onReward(adId, adInfo);
                     }
                 },
-                onRewardedVideoAdShow : function(adId) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdShow(" + adId + ")");
+                onRewardedVideoAdShow : function(adId, adInfo) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdShow(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdShow != null && undefined != this.developerCallback.onRewardedVideoAdShow) {
-                        this.developerCallback.onRewardedVideoAdShow(adId);
+                        this.developerCallback.onRewardedVideoAdShow(adId, adInfo);
                     }
                 },
-                onRewardedVideoAdClick : function(adId) {
-                    LTJSSDK.printLog("LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClick(" + adId + ")");
+                onRewardedVideoAdClick : function(adId, adInfo) {
+                    LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onRewardedVideoAdClick(${adId}, ${JSON.stringify(adInfo)})`);
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdClick != null && undefined != this.developerCallback.onRewardedVideoAdClick) {
-                        this.developerCallback.onRewardedVideoAdClick(adId);
+                        this.developerCallback.onRewardedVideoAdClick(adId, adInfo);
                     }
                 }
             },

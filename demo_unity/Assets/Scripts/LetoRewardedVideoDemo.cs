@@ -32,27 +32,28 @@ public class LetoRewardedVideoDemo : MonoBehaviour
     }
 
     class EventListener : ILTRewardedVideoListener {
-        public void onRewardedVideoLoaded(int adId) {
-            Debug.Log("onRewardedVideoLoaded: " + adId);
+        public void onRewardedVideoLoaded(int adId, LTAdInfo adInfo) {
+            string s = JsonUtility.ToJson(adInfo);
+            Debug.Log("onRewardedVideoLoaded: " + adId + ", adInfo: " + s);
         }
 
-	    public void onRewardedVideoReward(int adId) {
+	    public void onRewardedVideoReward(int adId, LTAdInfo adInfo) {
             Debug.Log("onRewardedVideoReward: " + adId);
         }
 
-	    public void onRewardedVideoClose(int adId, string res) {
-            Debug.Log("onRewardedVideoClose: " + adId + ", response: " + res);
+	    public void onRewardedVideoClose(int adId, LTAdInfo adInfo) {
+            Debug.Log("onRewardedVideoClose: " + adId);
         }
 
-	    public void onRewardedVideoLoadFail(int adId) {
-            Debug.Log("onRewardedVideoLoadFail: " + adId);
+	    public void onRewardedVideoLoadFail(int adId, string errMsg) {
+            Debug.Log("onRewardedVideoLoadFail: " + adId + ", errMsg: " + errMsg);
         }
 
-        public void onRewardedVideoShow(int adId) {
+        public void onRewardedVideoShow(int adId, LTAdInfo adInfo) {
             Debug.Log("onRewardedVideoShow: " + adId);
         }
 
-	    public void onRewardedVideoClick(int adId) {
+	    public void onRewardedVideoClick(int adId, LTAdInfo adInfo) {
             Debug.Log("onRewardedVideoClick: " + adId);
         }
     }

@@ -49,6 +49,22 @@ namespace LetoAd {
         public int add_coin;
     }
 
+    [System.Serializable]
+    public class LTAdInfo {
+        public string adAppId;
+        public string adPlaceId;
+        public string adPlatform;
+        public int adPlatformId;
+        public string adSourceId;
+        public string adSourceName;
+        public string adSourceTag;
+        public int adSourceIndex;
+        public int ecpm;
+        public bool isDefault;
+        public string rewardName;
+        public int rewardNumber;
+    }
+
     public interface ILTRedPackListenerInternal {
         void onRedPackClose(string res);
     }
@@ -127,13 +143,22 @@ namespace LetoAd {
         }
     }
 
+    public interface ILTRewardedVideoListenerInternal {
+        void onRewardedVideoLoaded(int adId, string adInfo);
+	    void onRewardedVideoReward(int adId, string adInfo);
+	    void onRewardedVideoClose(int adId, string adInfo);
+	    void onRewardedVideoLoadFail(int adId, string errMsg);
+        void onRewardedVideoShow(int adId, string adInfo);
+	    void onRewardedVideoClick(int adId, string adInfo);
+    }
+
     public interface ILTRewardedVideoListener {
-        void onRewardedVideoLoaded(int adId);
-	    void onRewardedVideoReward(int adId);
-	    void onRewardedVideoClose(int adId, string res);
-	    void onRewardedVideoLoadFail(int adId);
-        void onRewardedVideoShow(int adId);
-	    void onRewardedVideoClick(int adId);
+        void onRewardedVideoLoaded(int adId, LTAdInfo adInfo);
+	    void onRewardedVideoReward(int adId, LTAdInfo adInfo);
+	    void onRewardedVideoClose(int adId, LTAdInfo adInfo);
+	    void onRewardedVideoLoadFail(int adId, string errMsg);
+        void onRewardedVideoShow(int adId, LTAdInfo adInfo);
+	    void onRewardedVideoClick(int adId, LTAdInfo adInfo);
     }
 
     public interface ILTRewardedVideoCSSDK {

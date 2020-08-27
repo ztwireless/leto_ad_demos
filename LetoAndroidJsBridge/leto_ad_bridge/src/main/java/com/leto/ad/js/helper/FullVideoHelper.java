@@ -30,7 +30,7 @@ public class FullVideoHelper extends BaseHelper {
     }
 
     public void initFullVideo(int adId) {
-        LTLog.d("initBanner >>> " + adId);
+        LTLog.d("initFullVideo >>> " + adId);
 
         _adId = adId;
         LetoAdApi api = LTJSBridge.getApi();
@@ -105,7 +105,7 @@ public class FullVideoHelper extends BaseHelper {
     }
 
     public void load(final int adId) {
-        LTLog.d("loadBanner >>> " + adId);
+        LTLog.d("loadFullVideo >>> " + adId);
         JSPluginUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -137,14 +137,14 @@ public class FullVideoHelper extends BaseHelper {
                     _ad.destroy();
                     _ad = null;
                 } else {
-                    LTLog.d("removeBanner3 >>> no banner need to be removed, adId >>> " + _adId);
+                    LTLog.d("destroy >>> no full video need to be removed, adId >>> " + _adId);
                 }
             }
         });
     }
 
     public boolean isAdReady() {
-        LTLog.d("banner isAdReady >>> " + _adId);
+        LTLog.d("fullVideo isAdReady >>> " + _adId);
         return _ad.isLoaded();
     }
 }

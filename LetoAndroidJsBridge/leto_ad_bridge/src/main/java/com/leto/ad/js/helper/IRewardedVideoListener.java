@@ -1,10 +1,10 @@
 package com.leto.ad.js.helper;
 
 public interface IRewardedVideoListener {
-	void onRewardedVideoLoaded(int adId);
-	void onRewardedVideoReward(int adId);
-	void onRewardedVideoClose(int adId, String res);
-	void onRewardedVideoLoadFail(int adId);
-	void onRewardedVideoShow(int adId);
-	void onRewardedVideoClick(int adId);
+	void onRewardedVideoLoaded(int adId, String adInfo);
+	void onRewardedVideoReward(int adId, String adInfo);
+	void onRewardedVideoClose(int adId, String adInfo);
+	void onRewardedVideoLoadFail(int adId, String errMsg);
+	void onRewardedVideoShow(int adId, String adInfo);
+	void onRewardedVideoClick(int adId, String adInfo);
 }
