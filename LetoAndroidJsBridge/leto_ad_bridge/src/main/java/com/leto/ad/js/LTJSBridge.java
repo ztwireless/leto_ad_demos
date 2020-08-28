@@ -24,9 +24,14 @@ public class LTJSBridge {
 		if(_act == null) {
 			JSPluginUtil.init();
 			_act = JSPluginUtil.getActivity();
-			LetoCore.init(_act.getApplicationContext());
-			_api = new LetoAdApi(_act);
-			LTLog.d("initSDK:" + BaseAppUtil.getChannelID(_act));
+			_act.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					LetoCore.init(_act.getApplicationContext());
+					_api = new LetoAdApi(_act);
+					LTLog.d("initSDK:" + BaseAppUtil.getChannelID(_act));
+				}
+			});
 		}
 	}
 
