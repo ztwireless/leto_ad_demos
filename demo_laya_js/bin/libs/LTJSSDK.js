@@ -620,8 +620,8 @@
         let LoadedCallbackKey = "InterstitialLoaded";
         let LoadFailCallbackKey = "InterstitialLoadFail";
         let CloseCallbackKey = "InterstitialClose";
-        let ShowCallbackKey = "InterstitialAdShow";
-        let ClickCallbackKey = "InterstitialAdClick";
+        let ShowCallbackKey = "InterstitialShow";
+        let ClickCallbackKey = "InterstitialClick";
 
         window.LTInterstitialJSSDK = LTInterstitialSDK;
     }
@@ -706,7 +706,7 @@
                     }
                 },
 
-                onFullVideoAdLoadFail : function(adId, errMsg) {
+                onFullVideoAdFail : function(adId, errMsg) {
                   if(this.developerCallback != null && this.developerCallback.onFullVideoAdFail != null && undefined != this.developerCallback.onFullVideoAdFail) {
                         this.developerCallback.onFullVideoAdFail(adId, errMsg);
                     }
@@ -796,10 +796,186 @@
         let LoadedCallbackKey = "FullVideoLoaded";
         let FailCallbackKey = "FullVideoFail";
         let CloseCallbackKey = "FullVideoClose";
-        let ShowCallbackKey = "FullVideoAdShow";
-        let ClickCallbackKey = "FullVideoAdClick";
+        let ShowCallbackKey = "FullVideoShow";
+        let ClickCallbackKey = "FullVideoClick";
 
         window.LTFullVideoJSSDK = LTFullVideoSDK;
+    }
+
+    // LTAndroidSplashJS
+    {
+        let classJavaName = "com/leto/ad/js/LTSplashJSBridge";
+        let LTAndroidSplashJS = {
+            loadSplash : function (adId) {
+                LTJSSDK.printLog("Android-loadSplash");
+                callJavaStaticMethod(classJavaName, "load", "(I)V", adId);
+            },
+
+            setAdListener: function (listener) {
+                LTJSSDK.printLog("Android-setAdListener");
+                callJavaStaticMethod(classJavaName, "setAdListener", "(Ljava/lang/String;)V", listener);
+            },
+
+            hasAdReady: function (adId) {
+                 LTJSSDK.printLog("Android-hasAdReady");
+                return callJavaStaticMethod(classJavaName, "isAdReady", "(I)Z", adId);
+            },
+
+            showAd: function(adId) {
+                LTJSSDK.printLog("Android-showAd:" + adId);
+                callJavaStaticMethod(classJavaName, "show", "(I)V", adId);
+            },
+
+            destroy: function(adId) {
+                LTJSSDK.printLog("Android-destroy:" + adId);
+                callJavaStaticMethod(classJavaName, "destroy", "(I)V", adId);
+            }
+        };
+
+        window.LTAndroidSplashJS = LTAndroidSplashJS;
+    }
+
+    // LTiOSSplashJS
+    {
+        let OC_WRAPPER_CLASS = "LTSplashAdWrapper";
+        let LTiOSSplashJS = {
+            loadSplash : function (adId) {
+                LTJSSDK.printLog("LTiOSSplashJS::loadSplash(" + adId + ")");
+                callJavaStaticMethod(OC_WRAPPER_CLASS, "loadSplash:", adId);
+            },
+
+            setAdListener : function (listener) {
+                LTJSSDK.printLog("LTiOSSplashJS::setAdListener(" + listener + ")");
+                callJavaStaticMethod(OC_WRAPPER_CLASS, "setDelegates:", listener);
+            },
+
+            hasAdReady : function (adId) {
+                LTJSSDK.printLog("LTiOSSplashJS::hasAdReady(" + adId + ")");
+                return callJavaStaticMethod(OC_WRAPPER_CLASS, "splashReady:", adId);
+            },
+
+            showAd : function(adId) {
+                LTJSSDK.printLog("LTiOSSplashJS::showAd(" + adId + ")");
+                return callJavaStaticMethod(OC_WRAPPER_CLASS, "show:", adId);
+            },
+
+            destroy: function(adId) {
+                LTJSSDK.printLog("LTiOSSplashJS::destroy(" + adId + ")");
+                return callJavaStaticMethod(OC_WRAPPER_CLASS, "destroy:", adId);
+            }  
+        };
+
+        window.LTiOSSplashJS = LTiOSSplashJS;
+    }
+
+    // LTSplashJSSDK
+    {
+        let LTSplashSDK = {
+            platformBridge: isIOS() ? window.LTiOSSplashJS : (isAndroid() ? window.LTAndroidSplashJS : null),
+
+            LTSplashListener : {
+                developerCallback : null,
+
+                onSplashAdLoaded : function (adId, adInfo) {
+                    if(this.developerCallback != null && this.developerCallback.onSplashAdLoaded != null && undefined != this.developerCallback.onSplashAdLoaded) {
+                        this.developerCallback.onSplashAdLoaded(adId, adInfo);
+                    }
+                },
+
+                onSplashAdFail : function(adId, errMsg) {
+                  if(this.developerCallback != null && this.developerCallback.onSplashAdFail != null && undefined != this.developerCallback.onSplashAdFail) {
+                        this.developerCallback.onSplashAdFail(adId, errMsg);
+                    }
+                },
+
+                onSplashAdShow : function(adId, adInfo) {
+                   if(this.developerCallback != null && this.developerCallback.onSplashAdShow != null && undefined != this.developerCallback.onSplashAdShow) {
+                        this.developerCallback.onSplashAdShow(adId, adInfo);
+                    }
+                },
+
+                onSplashAdClose : function(adId, adInfo) {
+                    if(this.developerCallback != null && this.developerCallback.onSplashAdClose != null && undefined != this.developerCallback.onSplashAdClose) {
+                        this.developerCallback.onSplashAdClose(adId, adInfo);
+                    }
+                    LTJSSDK.printLog(`onSplashAdClose, auto destroy for ${adId}`)
+                    LTSplashJSSDK.destroy(adId)
+                },
+
+                onSplashAdClick : function (adId, adInfo) {
+                    if(this.developerCallback != null && this.developerCallback.onSplashAdClick != null && undefined != this.developerCallback.onSplashAdClick) {
+                        this.developerCallback.onSplashAdClick(adId, adInfo);
+                    }
+                }
+            },
+
+            ensureBridge: function() {
+                this.platformBridge = isIOS() ? window.LTiOSSplashJS : (isAndroid() ? window.LTAndroidSplashJS : null)
+            },
+            
+            load : function(adId) {
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                    this.platformBridge.loadSplash(adId);
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+            },
+
+            setAdListener : function(listener) {
+                let eventJSON = {};
+                eventJSON[LoadedCallbackKey]="LTSplashJSSDK.LTSplashListener.onSplashAdLoaded",
+                eventJSON[FailCallbackKey]= "LTSplashJSSDK.LTSplashListener.onSplashAdFail",
+                eventJSON[CloseCallbackKey]= "LTSplashJSSDK.LTSplashListener.onSplashAdClose",
+                eventJSON[ShowCallbackKey]= "LTSplashJSSDK.LTSplashListener.onSplashAdShow"
+                eventJSON[ClickCallbackKey]= "LTSplashJSSDK.LTSplashListener.onSplashAdClick"
+
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                     this.platformBridge.setAdListener(JSON.stringify(eventJSON));
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+
+                this.LTSplashListener.developerCallback = listener;
+            },
+
+            hasAdReady : function(adId) {
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                    return this.platformBridge.hasAdReady(adId);
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+                return false;
+            },
+
+            show : function(adId) {
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                   this.platformBridge.showAd(adId);
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+            },
+
+            destroy: function(adId) {
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                   this.platformBridge.destroy(adId);
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+            },
+        };
+
+        let LoadedCallbackKey = "SplashLoaded";
+        let FailCallbackKey = "SplashFail";
+        let CloseCallbackKey = "SplashClose";
+        let ShowCallbackKey = "SplashShow";
+        let ClickCallbackKey = "SplashClick";
+
+        window.LTSplashJSSDK = LTSplashSDK;
     }
 
     // LTAndroidFeedJS

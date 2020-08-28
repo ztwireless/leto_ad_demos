@@ -1,23 +1,23 @@
 package com.leto.ad.js;
 
-import com.leto.ad.js.helper.IInterstitialListener;
-import com.leto.ad.js.helper.InterstitialHelper;
+import com.leto.ad.js.helper.ISplashListener;
+import com.leto.ad.js.helper.SplashHelper;
 import com.leto.ad.js.utils.LTLog;
 
 import java.util.HashMap;
 
-public class LTInterstitialJSBridge {
-    private static final HashMap<Integer, InterstitialHelper> sHelperMap = new HashMap<>();
+public class LTSplashJSBridge {
+    private static final HashMap<Integer, SplashHelper> sHelperMap = new HashMap<>();
 
     private static String listenerJson;
-    private static IInterstitialListener _cb; // for unity
+    private static ISplashListener _cb; // for unity
 
     public static void setAdListener(String listener) {
         LTLog.d("interstitial setAdListener >>> " + listener);
         listenerJson = listener;
     }
 
-    public static void setAdListener(IInterstitialListener cb) {
+    public static void setAdListener(ISplashListener cb) {
         _cb = cb;
     }
 
@@ -50,7 +50,7 @@ public class LTInterstitialJSBridge {
     }
 
     public static void load(int adId) {
-        InterstitialHelper helper = getHelper(adId);
+        SplashHelper helper = getHelper(adId);
         if (helper != null) {
             helper.setAdListener(listenerJson);
             helper.setAdListener(_cb);
@@ -59,14 +59,14 @@ public class LTInterstitialJSBridge {
     }
 
     public static void show(int adId) {
-        InterstitialHelper helper = getHelper(adId);
+        SplashHelper helper = getHelper(adId);
         if (helper != null) {
             helper.show();
         }
     }
 
     public static void destroy(int adId) {
-        InterstitialHelper helper = getHelper(adId);
+        SplashHelper helper = getHelper(adId);
         if (helper != null) {
             helper.destroy();
             sHelperMap.remove(adId);
@@ -74,17 +74,17 @@ public class LTInterstitialJSBridge {
     }
 
     public static boolean isAdReady(int adId) {
-        InterstitialHelper helper = getHelper(adId);
+        SplashHelper helper = getHelper(adId);
         if (helper != null) {
             return helper.isAdReady();
         }
         return false;
     }
 
-    private static InterstitialHelper getHelper(int adId) {
-        InterstitialHelper helper;
+    private static SplashHelper getHelper(int adId) {
+        SplashHelper helper;
         if (!sHelperMap.containsKey(adId)) {
-            helper = new InterstitialHelper();
+            helper = new SplashHelper();
             sHelperMap.put(adId, helper);
         } else {
             helper = sHelperMap.get(adId);

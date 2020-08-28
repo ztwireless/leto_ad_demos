@@ -323,6 +323,76 @@ namespace LetoAd.Android {
         }
     }
 
+    class LTSplashListenerWrapper : AndroidJavaProxy, ILTSplashListenerInternal {
+        private ILTSplashListener _listener;
+
+        public LTSplashListenerWrapper(ILTSplashListener listener) : base("com.leto.ad.js.helper.ISplashListener") {
+            _listener = listener;
+        }
+
+        public void onSplashLoaded(int adId, string adInfo) {
+            if(_listener != null) {
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onSplashLoaded(adId, info);
+            }
+        }
+
+        public void onSplashClose(int adId, string adInfo) {
+            if(_listener != null) {
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onSplashClose(adId, info);
+            }
+        }
+
+        public void onSplashFail(int adId, string errMsg) {
+            if(_listener != null) {
+                _listener.onSplashFail(adId, errMsg);
+            }
+        }
+
+        public void onSplashShow(int adId, string adInfo) {
+            if(_listener != null) {
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onSplashShow(adId, info);
+            }
+        }
+
+        public void onSplashClick(int adId, string adInfo) {
+            if(_listener != null) {
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onSplashClick(adId, info);
+            }
+        }
+    }
+
+    public class LTSplashCSSDK_android : ILTSplashCSSDK {
+        private AndroidJavaClass _javaSDKClass;
+
+        public LTSplashCSSDK_android() {
+            _javaSDKClass = new AndroidJavaClass("com.leto.ad.js.LTSplashJSBridge");
+        }
+
+        public void load(int adId) {
+            _javaSDKClass.CallStatic("load", adId);
+        }
+
+        public void show(int adId) {
+            _javaSDKClass.CallStatic("show", adId);
+        }
+
+        public void destroy(int adId) {
+            _javaSDKClass.CallStatic("destroy", adId);
+        }
+
+        public bool isAdReady(int adId) {
+            return _javaSDKClass.CallStatic<bool>("isAdReady", adId);
+        }
+
+        public void setAdListener(ILTSplashListener listener) {
+            _javaSDKClass.CallStatic("setAdListener", new LTSplashListenerWrapper(listener));
+        }
+    }
+
     class LTBannerListenerWrapper : AndroidJavaProxy, ILTBannerListenerInternal {
         private ILTBannerListener _listener;
 

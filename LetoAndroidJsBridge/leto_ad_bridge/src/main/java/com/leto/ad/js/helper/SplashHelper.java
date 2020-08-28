@@ -8,16 +8,16 @@ import com.mgc.leto.game.base.LetoAdApi;
 
 import org.json.JSONObject;
 
-public class InterstitialHelper extends BaseHelper {
-	private static final String TAG = InterstitialHelper.class.getSimpleName();
+public class SplashHelper extends BaseHelper {
+	private static final String TAG = SplashHelper.class.getSimpleName();
 
-	private LetoAdApi.InterstitialAd _ad;
+	private LetoAdApi.SplashAd _ad;
 	private int _adId;
 
 	// for unity
-	private IInterstitialListener _cb;
+	private ISplashListener _cb;
 
-	public InterstitialHelper() {
+	public SplashHelper() {
 		LTLog.d(TAG + " >>> " + this);
 	}
 
@@ -26,79 +26,79 @@ public class InterstitialHelper extends BaseHelper {
 		super.setAdListener(callbackNameJson);
 	}
 
-	public void setAdListener(IInterstitialListener cb) {
+	public void setAdListener(ISplashListener cb) {
 		_cb = cb;
 	}
 
-	private void initInterstitial(final int adId) {
-		LTLog.d("initInterstitial  >>> " + adId);
+	private void initSplash(final int adId) {
+		LTLog.d("initSplash  >>> " + adId);
 
 		LetoAdApi api = LTJSBridge.getApi();
-		_ad = api.createInterstitialAd(adId);
+		_ad = api.createSplashAd(adId, null);
 		_adId = adId;
 		if(_ad != null) {
 			_ad.onLoad(new LetoAdApi.ILetoAdApiCallback() {
 				@Override
 				public void onApiEvent(JSONObject res) {
-                    if (hasCallbackName(Const.InterstitialCallback.LoadedCallbackKey)) {
-                    	String js = getCallbackName(Const.InterstitialCallback.LoadedCallbackKey)
+                    if (hasCallbackName(Const.SplashCallback.LoadedCallbackKey)) {
+                    	String js = getCallbackName(Const.SplashCallback.LoadedCallbackKey)
 							+ "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                     	JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                    	_cb.onInterstitialLoaded(_adId, res.optString("adInfo", "{}"));
+                    	_cb.onSplashLoaded(_adId, res.optString("adInfo", "{}"));
 					}
 				}
 			});
 			_ad.onClose(new LetoAdApi.ILetoAdApiCallback() {
 				@Override
 				public void onApiEvent(JSONObject res) {
-                    if (hasCallbackName(Const.InterstitialCallback.CloseCallbackKey)) {
-                    	String js = getCallbackName(Const.InterstitialCallback.CloseCallbackKey)
+                    if (hasCallbackName(Const.SplashCallback.CloseCallbackKey)) {
+                    	String js = getCallbackName(Const.SplashCallback.CloseCallbackKey)
 							+ "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                     	JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                    	_cb.onInterstitialClose(_adId, res.optString("adInfo", "{}"));
+                    	_cb.onSplashClose(_adId, res.optString("adInfo", "{}"));
 					}
 				}
 			});
 			_ad.onError(new LetoAdApi.ILetoAdApiCallback() {
 				@Override
 				public void onApiEvent(JSONObject res) {
-                    if (hasCallbackName(Const.InterstitialCallback.LoadFailCallbackKey)) {
-                    	String js = getCallbackName(Const.InterstitialCallback.LoadFailCallbackKey)
+                    if (hasCallbackName(Const.SplashCallback.FailCallbackKey)) {
+                    	String js = getCallbackName(Const.SplashCallback.FailCallbackKey)
 							+ "(" + _adId + ",\"" + res.optString("errMsg", "") + "\");";
                     	JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
-                    	_cb.onInterstitialLoadFail(_adId, res.optString("errMsg", ""));
+                    	_cb.onSplashFail(_adId, res.optString("errMsg", ""));
 					}
 				}
 			});
 			_ad.onShow(new LetoAdApi.ILetoAdApiCallback() {
 				@Override
 				public void onApiEvent(JSONObject res) {
-					if (hasCallbackName(Const.InterstitialCallback.ShowCallbackKey)) {
-						String js = getCallbackName(Const.InterstitialCallback.ShowCallbackKey)
+					if (hasCallbackName(Const.SplashCallback.ShowCallbackKey)) {
+						String js = getCallbackName(Const.SplashCallback.ShowCallbackKey)
 							+ "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
 						JSPluginUtil.runJs(js);
 					}
 					if(_cb != null) {
-						_cb.onInterstitialShow(_adId, res.optString("adInfo", "{}"));
+						_cb.onSplashShow(_adId, res.optString("adInfo", "{}"));
 					}
 				}
 			});
 			_ad.onClick(new LetoAdApi.ILetoAdApiCallback() {
 				@Override
 				public void onApiEvent(JSONObject res) {
-					if (hasCallbackName(Const.InterstitialCallback.ClickCallbackKey)) {
-						String js = getCallbackName(Const.InterstitialCallback.ClickCallbackKey)
+					if (hasCallbackName(Const.SplashCallback.ClickCallbackKey)) {
+						String js = getCallbackName(Const.SplashCallback.ClickCallbackKey)
 							+ "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
 						JSPluginUtil.runJs(js);
 					}
 					if(_cb != null) {
-						_cb.onInterstitialClick(_adId, res.optString("adInfo", "{}"));
+						_cb.onSplashClick(_adId, res.optString("adInfo", "{}"));
 					}
 				}
 			});
@@ -106,12 +106,12 @@ public class InterstitialHelper extends BaseHelper {
 	}
 
 	public void load(final int adId) {
-		LTLog.d("loadInterstitial >>> " + adId);
+		LTLog.d("loadSplash >>> " + adId);
 		JSPluginUtil.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				if(_ad == null) {
-					initInterstitial(adId);
+					initSplash(adId);
 				}
 				_ad.load();
 			}
@@ -131,17 +131,17 @@ public class InterstitialHelper extends BaseHelper {
 	}
 
 	public void show() {
-		LTLog.d("showInterstitial >>> " + _adId);
+		LTLog.d("showSplash >>> " + _adId);
 		JSPluginUtil.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				if(_ad != null) {
 					_ad.show();
 				} else {
-					LTLog.d("showInterstitial error  ..you must call loadRewardVideo first, unitId" + _adId);
-					if(hasCallbackName(Const.InterstitialCallback.LoadFailCallbackKey)) {
-						String js = getCallbackName(Const.InterstitialCallback.LoadFailCallbackKey)
-							+ "(" + _adId + ",'" + "you must call loadInterstitial first" + "');";
+					LTLog.d("showSplash error  ..you must call load first, unitId" + _adId);
+					if(hasCallbackName(Const.SplashCallback.FailCallbackKey)) {
+						String js = getCallbackName(Const.SplashCallback.FailCallbackKey)
+							+ "(" + _adId + ",'" + "you must call load first" + "');";
 						JSPluginUtil.runJs(js);
 					}
 				}
@@ -150,7 +150,7 @@ public class InterstitialHelper extends BaseHelper {
 	}
 
 	public boolean isAdReady() {
-		LTLog.d("interstitial isAdReady >>> " + _adId);
+		LTLog.d("splash isAdReady >>> " + _adId);
 		if(_ad != null) {
 			return _ad.isLoaded();
 		} else {

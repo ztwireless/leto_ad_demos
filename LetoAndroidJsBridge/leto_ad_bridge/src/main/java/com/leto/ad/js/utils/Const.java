@@ -14,8 +14,16 @@ public class Const {
         public static final String LoadedCallbackKey = "InterstitialLoaded";
         public static final String LoadFailCallbackKey = "InterstitialLoadFail";
         public static final String CloseCallbackKey = "InterstitialClose";
-        public static final String ShowCallbackKey = "InterstitialAdShow";
-        public static final String ClickCallbackKey = "InterstitialAdClick";
+        public static final String ShowCallbackKey = "InterstitialShow";
+        public static final String ClickCallbackKey = "InterstitialClick";
+    }
+
+    public static class SplashCallback {
+        public static final String LoadedCallbackKey = "SplashLoaded";
+        public static final String FailCallbackKey = "SplashFail";
+        public static final String CloseCallbackKey = "SplashClose";
+        public static final String ShowCallbackKey = "SplashShow";
+        public static final String ClickCallbackKey = "SplashClick";
     }
 
     public static class BannerCallback {

@@ -550,4 +550,60 @@ namespace LetoAd {
             _pltSdk.setAdListener(listener);
         }
     }
+
+    public interface ILTSplashListenerInternal {
+        void onSplashLoaded(int adId, string adInfo);
+        void onSplashFail(int adId, string errMsg);
+        void onSplashClick(int adId, string adInfo);
+        void onSplashShow(int adId, string adInfo);
+        void onSplashClose(int adId, string adInfo);
+    }
+
+    public interface ILTSplashListener {
+        void onSplashLoaded(int adId, LTAdInfo adInfo);
+        void onSplashFail(int adId, string errMsg);
+        void onSplashClick(int adId, LTAdInfo adInfo);
+        void onSplashShow(int adId, LTAdInfo adInfo);
+        void onSplashClose(int adId, LTAdInfo adInfo);
+    }
+
+    public interface ILTSplashCSSDK {
+        void load(int adId);
+        void show(int adId);
+        void destroy(int adId);
+        bool isAdReady(int adId);
+        void setAdListener(ILTSplashListener listener);
+    }
+
+    public class LTSplashCSSDK: ILTSplashCSSDK {
+        private ILTSplashCSSDK _pltSdk;
+
+        public LTSplashCSSDK() {
+            #if UNITY_ANDROID
+                _pltSdk = new LTSplashCSSDK_android();
+            #elif UNITY_IOS
+                _pltSdk = new LTSplashCSSDK_ios();
+            #endif
+        }
+
+        public void load(int adId) {
+            _pltSdk.load(adId);
+        }
+
+        public void show(int adId) {
+            _pltSdk.show(adId);
+        }
+
+        public void destroy(int adId) {
+            _pltSdk.destroy(adId);
+        }
+
+        public bool isAdReady(int adId) {
+            return _pltSdk.isAdReady(adId);
+        }
+
+        public void setAdListener(ILTSplashListener listener) {
+            _pltSdk.setAdListener(listener);
+        }
+    }
 }
