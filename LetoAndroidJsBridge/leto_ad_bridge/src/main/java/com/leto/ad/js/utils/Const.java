@@ -16,6 +16,7 @@ public class Const {
         public static final String CloseCallbackKey = "InterstitialClose";
         public static final String ShowCallbackKey = "InterstitialShow";
         public static final String ClickCallbackKey = "InterstitialClick";
+        public static final String DestroyCallbackKey = "InterstitialDestroy";
     }
 
     public static class SplashCallback {

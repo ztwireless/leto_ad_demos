@@ -55,4 +55,8 @@ export default class LetoInterstitialDemo extends Laya.Scene {
     onInterstitialAdClick(adId, adInfo) {
         LTJSSDK.printLog(`LetoInterstitialDemo::onInterstitialAdClick(${adId}, ${JSON.stringify(adInfo)})`);
     }
+
+    onInterstitialAdDestroy(adId, adInfo) {
+        LTJSSDK.printLog(`LetoInterstitialDemo::onInterstitialAdDestroy(${adId}, ${JSON.stringify(adInfo)})`);
+    }
 }

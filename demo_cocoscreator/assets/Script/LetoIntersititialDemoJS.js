@@ -53,5 +53,9 @@ cc.Class({
 
     onInterstitialAdClick: function(adId, adInfo) {
         LTJSSDK.printLog(`LetoInterstitialDemo::onInterstitialAdClick(${adId}, ${JSON.stringify(adInfo)})`);
+    },
+
+    onInterstitialAdDestroy: function(adId, adInfo) {
+        LTJSSDK.printLog(`LetoInterstitialDemo::onInterstitialAdDestroy(${adId}, ${JSON.stringify(adInfo)})`);
     }
 });

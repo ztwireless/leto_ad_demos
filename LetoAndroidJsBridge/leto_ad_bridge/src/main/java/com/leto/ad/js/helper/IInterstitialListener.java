@@ -6,4 +6,5 @@ public interface IInterstitialListener {
 	void onInterstitialLoadFail(int adId, String errMsg);
 	void onInterstitialShow(int adId, String adInfo);
 	void onInterstitialClick(int adId, String adInfo);
+	void onInterstitialDestroy(int adId, String adInfo);
 }

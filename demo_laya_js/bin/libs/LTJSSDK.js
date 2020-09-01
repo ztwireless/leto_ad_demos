@@ -357,7 +357,7 @@
                     if(this.developerCallback != null && this.developerCallback.onRewardedVideoAdClosed != null && undefined != this.developerCallback.onRewardedVideoAdClosed) {
                         this.developerCallback.onRewardedVideoAdClosed(adId, adInfo);
                     }
-                    LTRewardedVideoJSSDK.destroy(adId);
+                    LTRewardedVideoSDK.load(adId)
                 },
                 onReward : function(adId, adInfo) {
                     LTJSSDK.printLog(`LTRewardedVideoJSSDK.LTRewardedVideoListener.onReward(${adId}, ${JSON.stringify(adInfo)})`);
@@ -554,6 +554,12 @@
                     if(this.developerCallback != null && this.developerCallback.onInterstitialAdClick != null && undefined != this.developerCallback.onInterstitialAdClick) {
                         this.developerCallback.onInterstitialAdClick(adId, adInfo);
                     }
+                },
+
+                onInterstitialAdDestroy : function (adId, adInfo) {
+                    if(this.developerCallback != null && this.developerCallback.onInterstitialAdDestroy != null && undefined != this.developerCallback.onInterstitialAdDestroy) {
+                        this.developerCallback.onInterstitialAdDestroy(adId, adInfo);
+                    }
                 }
             },
 
@@ -572,11 +578,12 @@
 
             setAdListener : function(listener) {
                 let eventJSON = {};
-                eventJSON[LoadedCallbackKey]="LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdLoaded",
-                eventJSON[LoadFailCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdLoadFail",
-                eventJSON[CloseCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdClose",
+                eventJSON[LoadedCallbackKey]="LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdLoaded"
+                eventJSON[LoadFailCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdLoadFail"
+                eventJSON[CloseCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdClose"
                 eventJSON[ShowCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdShow"
                 eventJSON[ClickCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdClick"
+                eventJSON[DestroyCallbackKey]= "LTInterstitialJSSDK.LTInterstitialListener.onInterstitialAdDestroy"
 
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
@@ -617,11 +624,12 @@
             },
         };
 
-        let LoadedCallbackKey = "InterstitialLoaded";
-        let LoadFailCallbackKey = "InterstitialLoadFail";
-        let CloseCallbackKey = "InterstitialClose";
-        let ShowCallbackKey = "InterstitialShow";
-        let ClickCallbackKey = "InterstitialClick";
+        let LoadedCallbackKey = "InterstitialLoaded"
+        let LoadFailCallbackKey = "InterstitialLoadFail"
+        let CloseCallbackKey = "InterstitialClose"
+        let ShowCallbackKey = "InterstitialShow"
+        let ClickCallbackKey = "InterstitialClick"
+        let DestroyCallbackKey = "InterstitialDestroy"
 
         window.LTInterstitialJSSDK = LTInterstitialSDK;
     }
