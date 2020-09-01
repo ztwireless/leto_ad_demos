@@ -112,6 +112,7 @@ public class FullVideoHelper extends BaseHelper {
                 if (_ad == null) {
                     initFullVideo(adId);
                 }
+                _ad.load();
             }
         });
     }
