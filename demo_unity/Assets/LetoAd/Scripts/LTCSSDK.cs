@@ -207,6 +207,7 @@ namespace LetoAd {
         void onInterstitialLoadFail(int adId, string errMsg);
         void onInterstitialShow(int adId, string adInfo);
         void onInterstitialClick(int adId, string adInfo);
+        void onInterstitialDestroy(int adId, string adInfo);
     }
 
     public interface ILTInterstitialListener {
@@ -215,6 +216,7 @@ namespace LetoAd {
         void onInterstitialLoadFail(int adId, string errMsg);
         void onInterstitialShow(int adId, LTAdInfo adInfo);
         void onInterstitialClick(int adId, LTAdInfo adInfo);
+        void onInterstitialDestroy(int adId, LTAdInfo adInfo);
     }
 
     public interface ILTInterstitialCSSDK {

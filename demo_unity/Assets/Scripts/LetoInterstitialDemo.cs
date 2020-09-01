@@ -51,5 +51,9 @@ public class LetoInterstitialDemo : MonoBehaviour
         public void onInterstitialClick(int adId, LTAdInfo adInfo) {
             Debug.Log("onInterstitialClick: " + adId);
         }
+
+        public void onInterstitialDestroy(int adId, LTAdInfo adInfo) {
+            Debug.Log("onInterstitialDestroy: " + adId);
+        }
     }
 }

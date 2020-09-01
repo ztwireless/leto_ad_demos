@@ -223,6 +223,13 @@ namespace LetoAd.Android {
                 _listener.onInterstitialClick(adId, info);
             }
         }
+
+        public void onInterstitialDestroy(int adId, string adInfo) {
+            if(_listener != null) {
+                LTAdInfo info = JsonUtility.FromJson<LTAdInfo>(adInfo);
+                _listener.onInterstitialDestroy(adId, info);
+            }
+        }
     }
 
     public class LTInterstitialCSSDK_android : ILTInterstitialCSSDK {
