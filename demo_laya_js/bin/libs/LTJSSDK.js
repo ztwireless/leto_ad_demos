@@ -1114,7 +1114,7 @@
 
             setAdListener : function(listener) {
                 let eventJSON = {};
-                eventJSON[LoadedCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdLoaded",
+                eventJSON[LoadedCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdLoaded"
                 eventJSON[FailedCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdFailed"
                 eventJSON[ShowCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdShow"
                 eventJSON[HideCallbackKey]= "LTFeedJSSDK.LTFeedListener.onFeedAdHide"
