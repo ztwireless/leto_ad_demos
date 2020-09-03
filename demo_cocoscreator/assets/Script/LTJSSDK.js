@@ -560,6 +560,7 @@
                     if(this.developerCallback != null && this.developerCallback.onInterstitialAdDestroy != null && undefined != this.developerCallback.onInterstitialAdDestroy) {
                         this.developerCallback.onInterstitialAdDestroy(adId, adInfo);
                     }
+                    LTInterstitialJSSDK.load(adId)
                 }
             },
 
@@ -730,8 +731,7 @@
                     if(this.developerCallback != null && this.developerCallback.onFullVideoAdClose != null && undefined != this.developerCallback.onFullVideoAdClose) {
                         this.developerCallback.onFullVideoAdClose(adId, adInfo);
                     }
-                    LTJSSDK.printLog(`onFullVideoAdClose, auto destroy for ${adId}`)
-                    LTFullVideoJSSDK.destroy(adId)
+                    LTFullVideoJSSDK.load(adId)
                 },
 
                 onFullVideoAdClick : function (adId, adInfo) {
@@ -1092,6 +1092,8 @@
                     if(this.developerCallback != null && this.developerCallback.onFeedAdHide != null && undefined != this.developerCallback.onFeedAdHide) {
                         this.developerCallback.onFeedAdHide(adId, adInfo);
                     }
+                    LTJSSDK.printLog(`onFeedAdHide, auto destroy for ${adId}`)
+                    LTFeedSDK.destroy(adId)
                 },
                 onFeedAdClick : function (adId, adInfo) {
                     LTJSSDK.printLog(`LTFeedJSSDK.LTFeedListener.onFeedAdClick(${adId}, ${JSON.stringify(adInfo)})`);
@@ -1104,6 +1106,7 @@
                     if(this.developerCallback != null && this.developerCallback.onFeedAdClose != null && undefined != this.developerCallback.onFeedAdClose) {
                         this.developerCallback.onFeedAdClose(adId, adInfo);
                     }
+                    LTFeedSDK.load(adId)
                 }
             },
 
