@@ -152,7 +152,7 @@ public class InterstitialHelper extends BaseHelper {
 				if(_ad != null) {
 					_ad.show();
 				} else {
-					LTLog.d("showInterstitial error  ..you must call loadRewardVideo first, unitId" + _adId);
+					LTLog.d("showInterstitial error  ..you must call loadInterstitial first, adId: " + _adId);
 					if(hasCallbackName(Const.InterstitialCallback.LoadFailCallbackKey)) {
 						String js = getCallbackName(Const.InterstitialCallback.LoadFailCallbackKey)
 							+ "(" + _adId + ",'" + "you must call loadInterstitial first" + "');";
