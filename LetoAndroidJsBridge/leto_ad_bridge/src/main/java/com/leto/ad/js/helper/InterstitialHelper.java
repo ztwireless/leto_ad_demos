@@ -119,10 +119,10 @@ public class InterstitialHelper extends BaseHelper {
 	}
 
 	public void load(final int adId) {
-		LTLog.d("loadInterstitial >>> " + adId);
 		JSPluginUtil.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				LTLog.d("loadInterstitial >>> " + adId);
 				if(_ad == null) {
 					initInterstitial(adId);
 				}
@@ -135,6 +135,7 @@ public class InterstitialHelper extends BaseHelper {
 		JSPluginUtil.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				LTLog.d("destroyInterstitial >>> " + _adId);
 				if(_ad != null) {
 					_ad.destroy();
 					_ad = null;
@@ -144,10 +145,10 @@ public class InterstitialHelper extends BaseHelper {
 	}
 
 	public void show() {
-		LTLog.d("showInterstitial >>> " + _adId);
 		JSPluginUtil.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				LTLog.d("showInterstitial >>> " + _adId);
 				if(_ad != null) {
 					_ad.show();
 				} else {
