@@ -60,7 +60,7 @@ public class LTBannerJSBridge {
      * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
      */
     public static void destroy(double adId) {
-        destroy((int)adId);
+        remove((int)adId);
     }
 
     /**
