@@ -55,6 +55,10 @@ public class LTFeedJSBridge {
 		isAdReady((int)adId);
 	}
 
+	public static void load(int adId) {
+		load(adId, "{}");
+	}
+
 	public static void load(int adId, String params) {
 		LTLog.d("LTFeedJSBridge load >>> " + adId);
 		FeedHelper helper = getHelper(adId);
