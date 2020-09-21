@@ -10,6 +10,7 @@ import com.leto.ad.js.utils.JSPluginUtil;
 import com.leto.ad.js.utils.LTLog;
 import com.mgc.leto.game.base.LetoAdApi;
 import com.mgc.leto.game.base.LetoCore;
+import com.mgc.leto.game.base.listener.ILetoInitListener;
 import com.mgc.leto.game.base.utils.BaseAppUtil;
 
 import org.json.JSONException;
@@ -20,19 +21,23 @@ public class LTJSBridge {
 	private static LetoAdApi _api = null;
 	private static LetoAdApi.WithdrawIcon _withdrawIcon;
 
-	public static void initSDK() {
+	public static void initSDK(final ILetoInitListener l) {
 		if(_act == null) {
 			JSPluginUtil.init();
 			_act = JSPluginUtil.getActivity();
 			_act.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					LetoCore.init(_act.getApplicationContext());
+					LetoCore.init(_act.getApplicationContext(), l);
 					_api = new LetoAdApi(_act);
 					LTLog.d("initSDK:" + BaseAppUtil.getChannelID(_act));
 				}
 			});
 		}
+	}
+
+	public static void initSDK() {
+		initSDK((ILetoInitListener)null);
 	}
 
 	public static void initSDK(Activity act) {
