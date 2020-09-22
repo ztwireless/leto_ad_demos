@@ -131,10 +131,10 @@ public class SplashHelper extends BaseHelper {
 	}
 
 	public void show() {
-		LTLog.d("showSplash >>> " + _adId);
 		JSPluginUtil.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				LTLog.d("showSplash >>> " + _adId);
 				if(_ad != null) {
 					_ad.show();
 				} else {

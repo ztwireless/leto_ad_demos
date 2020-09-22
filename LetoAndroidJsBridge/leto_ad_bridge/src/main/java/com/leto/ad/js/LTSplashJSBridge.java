@@ -13,11 +13,12 @@ public class LTSplashJSBridge {
     private static ISplashListener _cb; // for unity
 
     public static void setAdListener(String listener) {
-        LTLog.d("interstitial setAdListener >>> " + listener);
+        LTLog.d("splash setAdListener >>> " + listener);
         listenerJson = listener;
     }
 
     public static void setAdListener(ISplashListener cb) {
+        LTLog.d("splash ISplashListener");
         _cb = cb;
     }
 
