@@ -1,5 +1,7 @@
 package com.leto.ad.js.helper;
 
+import android.view.ViewGroup;
+
 import com.leto.ad.js.LTJSBridge;
 import com.leto.ad.js.utils.Const;
 import com.leto.ad.js.utils.JSPluginUtil;
@@ -30,11 +32,11 @@ public class SplashHelper extends BaseHelper {
 		_cb = cb;
 	}
 
-	private void initSplash(final int adId) {
+	private void initSplash(final int adId, ViewGroup container) {
 		LTLog.d("initSplash  >>> " + adId);
 
 		LetoAdApi api = LTJSBridge.getApi();
-		_ad = api.createSplashAd(adId, null);
+		_ad = api.createSplashAd(adId, container);
 		_adId = adId;
 		if(_ad != null) {
 			_ad.onLoad(new LetoAdApi.ILetoAdApiCallback() {
@@ -105,17 +107,21 @@ public class SplashHelper extends BaseHelper {
 		}
 	}
 
-	public void load(final int adId) {
+	public void load(final int adId, final ViewGroup container) {
 		LTLog.d("loadSplash >>> " + adId);
 		JSPluginUtil.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				if(_ad == null) {
-					initSplash(adId);
+					initSplash(adId, container);
 				}
 				_ad.load();
 			}
 		});
+	}
+
+	public void load(int adId) {
+		load(adId, null);
 	}
 
 	public void destroy() {

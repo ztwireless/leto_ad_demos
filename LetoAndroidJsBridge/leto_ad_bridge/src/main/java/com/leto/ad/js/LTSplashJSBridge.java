@@ -1,5 +1,7 @@
 package com.leto.ad.js;
 
+import android.view.ViewGroup;
+
 import com.leto.ad.js.helper.ISplashListener;
 import com.leto.ad.js.helper.SplashHelper;
 import com.leto.ad.js.utils.LTLog;
@@ -50,13 +52,17 @@ public class LTSplashJSBridge {
         isAdReady((int)adId);
     }
 
-    public static void load(int adId) {
+    public static void load(int adId, ViewGroup container) {
         SplashHelper helper = getHelper(adId);
         if (helper != null) {
             helper.setAdListener(listenerJson);
             helper.setAdListener(_cb);
-            helper.load(adId);
+            helper.load(adId, container);
         }
+    }
+
+    public static void load(int adId) {
+        load(adId, null);
     }
 
     public static void show(int adId) {
