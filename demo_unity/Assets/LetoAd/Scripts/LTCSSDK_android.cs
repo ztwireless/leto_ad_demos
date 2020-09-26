@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LetoAd;
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_EDITOR
 
 namespace LetoAd.Android {
     class LTGetUserCoinListenerWrapper : AndroidJavaProxy, ILTGetUserCoinListenerInternal {

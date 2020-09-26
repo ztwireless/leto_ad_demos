@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using LetoAd;
 
+#if UNITY_IOS || UNITY_EDITOR
+
 namespace LetoAd.IOS {
     public class LTCSSDK_ios : ILTCSSDK {
         public LTCSSDK_ios() {
@@ -227,3 +229,4 @@ namespace LetoAd.IOS {
     }
 }
 
+#endif
