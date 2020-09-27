@@ -1,8 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LetoAd.Android;
-using LetoAd.IOS;
+
+#if UNITY_ANDROID || UNITY_EDITOR
+    using LetoAd.Android;
+#endif
+
+#if UNITY_IOS || UNITY_EDITOR
+    using LetoAd.IOS;
+#endif
 
 namespace LetoAd {
     [System.Serializable]
