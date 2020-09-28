@@ -25,14 +25,18 @@ public class LTJSBridge {
 		if(_act == null) {
 			JSPluginUtil.init();
 			_act = JSPluginUtil.getActivity();
-			_act.runOnUiThread(new Runnable() {
-				@Override
-				public void run() {
-					LetoCore.init(_act.getApplicationContext(), l);
-					_api = new LetoAdApi(_act);
-					LTLog.d("initSDK:" + BaseAppUtil.getChannelID(_act));
-				}
-			});
+			if(_act != null) {
+				_act.runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						LetoCore.init(_act.getApplicationContext(), l);
+						_api = new LetoAdApi(_act);
+						LTLog.d("initSDK:" + BaseAppUtil.getChannelID(_act));
+					}
+				});
+			} else if(l != null) {
+				l.onFail("400", "No activity detected");
+			}
 		}
 	}
 
