@@ -1,7 +1,7 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":30,
+    "selectedBox":1,
     "selecteID":30,
     "searchKey":"Scene",
     "referenceLines":null,
@@ -88,8 +88,8 @@
         {
             "x":15,
             "type":"Button",
-            "searchKey":"Button,btnFullVideo",
-            "props":{"width":244,"top":469,"skin":"comp/button.png","name":"btnFullVideo","labelSize":30,"label":"FullVideo","height":86,"centerX":-127},
+            "searchKey":"Button,btnFullVideo,btnFullVideo",
+            "props":{"width":244,"var":"btnFullVideo","top":469,"skin":"comp/button.png","name":"btnFullVideo","labelSize":30,"label":"FullVideo","height":86,"centerX":-127},
             "nodeParent":1,
             "label":"btnFullVideo",
             "isDirectory":false,
