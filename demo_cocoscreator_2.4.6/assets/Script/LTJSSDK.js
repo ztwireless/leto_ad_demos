@@ -79,6 +79,11 @@
             showRedPack: function(params) {
                 params = params || {}
                 callJavaStaticMethod(classJavaName, "showSceneRedPack", "(Ljava/lang/String;)V", JSON.stringify(params));
+            },
+
+            checkRealName: function(params) {
+                params = params || {}
+                callJavaStaticMethod(classJavaName, "checkRealName", "(Ljava/lang/String;)V", JSON.stringify(params));
             }
         };
         window.LTAndroidJS = LTAndroidJS;
@@ -128,6 +133,11 @@
             showRedPack: function(params) {
                 params = params || {}
                 callJavaStaticMethod(OC_BIRDGE_CLASS, "showSceneRedPack:", JSON.stringify(params));
+            },
+
+            checkRealName: function(params) {
+                params = params || {}
+                callJavaStaticMethod(OC_BIRDGE_CLASS, "checkRealName:", JSON.stringify(params));
             }
         };
         window.LTiOSJS = LTiOSJS;
@@ -135,6 +145,7 @@
 
     // LTJSSDK
     {
+        const CheckRealNameResultCallbackKey = "CheckRealNameResult";
         let LTSDK = {
             isDebugLog: false,
             platformBridge: isIOS() ? window.LTiOSJS : (isAndroid() ? window.LTAndroidJS : null),
@@ -165,6 +176,15 @@
                 onRedPackClose: function(res) {
                     this.redPackCloseCb && this.redPackCloseCb(res)
                     this.redPackCloseCb = null
+                }
+            },
+
+            LTCheckRealNameListener: {
+                developerCallback: null,
+                onCheckRealNameResult: function(errCode, errMsg) {
+                    if(this.developerCallback != null && this.developerCallback.onFeedAdClose != null && undefined != this.developerCallback.onCheckRealNameResult) {
+                        this.developerCallback.onCheckRealNameResult(errCode, errMsg);
+                    }
                 }
             },
 
@@ -261,8 +281,26 @@
                 } else {
                     LTJSSDK.printLog("You must run on Android or iOS.");
                 }
+            },
+
+            checkRealName: function(listener) {
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                    this.ensureBridge()
+                    if (undefined != this.platformBridge && this.platformBridge != null) {
+                        let eventJSON = {};
+                        eventJSON[CheckRealNameResultCallbackKey] = "LTJSSDK.LTCheckRealNameListener.onCheckRealNameResult"
+                        this.LTCheckRealNameListener.developerCallback = listener;
+                        this.platformBridge.checkRealName(JSON.stringify(eventJSON));
+                    } else {
+                        LTJSSDK.printLog("You must run on Android or iOS.");
+                    }
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
             }
         };
+
         window.LTJSSDK = LTSDK;
     }
 

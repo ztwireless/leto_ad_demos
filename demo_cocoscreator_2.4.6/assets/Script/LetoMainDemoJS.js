@@ -35,5 +35,17 @@ cc.Class({
     },
     gotoFullVideoScene: function () {
        cc.director.loadScene("FullVideoDemoScene");
+    },
+
+    onCheckRealNameClicked() {
+      LTJSSDK.checkRealName(this)
+    },
+
+    onCheckRealNameResult(errCode, errMsg) {
+      if(errCode == 0) {
+         cc.log(`onCheckRealNameResult success`)
+      } else {
+         cc.log(`onCheckRealNameResult failed`)
+      }
     }
 });
