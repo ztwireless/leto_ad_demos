@@ -99,6 +99,10 @@ namespace LetoAd {
 	    void onAddCoinSuccess(LTAddCoinResult result);
     }
 
+    public interface ILTCheckRealNameListener {
+        void onCheckRealNameResult(int errCode, string errMsg);
+    }
+    
     public interface ILTCSSDK {
         void initSDK();
         void getUserCoin(ILTGetUserCoinListener listener);
@@ -107,6 +111,7 @@ namespace LetoAd {
         void showWithdrawIcon(int styleId, int left, int top, bool pinned, bool dock);
         void hideWithdrawIcon();
         void showRedPack(LTRedPackRequest req, ILTRedPackListener listener);
+        void checkRealName(ILTCheckRealNameListener listener);
     }
 
     public class LTCSSDK : ILTCSSDK {
@@ -146,6 +151,10 @@ namespace LetoAd {
 
         public void showRedPack(LTRedPackRequest req, ILTRedPackListener listener) {
             _pltSdk.showRedPack(req, listener);
+        }
+
+        public void checkRealName(ILTCheckRealNameListener listener) {
+            _pltSdk.checkRealName(listener);
         }
     }
 

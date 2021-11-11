@@ -104,6 +104,24 @@ namespace LetoAd.Android {
             string param = JsonUtility.ToJson(req);
             _javaSDKClass.CallStatic("showSceneRedPack", param, new LTRedPackListenerWrapper(listener));
         }
+
+        public void checkRealName(ILTCheckRealNameListener listener) {
+            _javaSDKClass.CallStatic("checkRealName", new LTCheckRealNameListenerWrapper(listener));
+        }
+    }
+
+    class LTCheckRealNameListenerWrapper : AndroidJavaProxy, ILTCheckRealNameListener {
+        private ILTCheckRealNameListener _listener;
+
+        public LTCheckRealNameListenerWrapper(ILTCheckRealNameListener listener) : base("com.leto.ad.js.helper.ICheckRealNameListener") {
+            _listener = listener;
+        }
+
+        public void onCheckRealNameResult(int errCode, string errMsg) {
+            if(_listener != null) {
+                _listener.onCheckRealNameResult(errCode, errMsg);
+            }
+        }
     }
 
     class LTRewardedVideoListenerWrapper : AndroidJavaProxy, ILTRewardedVideoListenerInternal {

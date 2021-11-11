@@ -8,7 +8,7 @@ using LetoAd;
 namespace LetoAd.IOS {
     public class LTCSSDK_ios : ILTCSSDK {
         public LTCSSDK_ios() {
-
+            // TODO
         }
 
         public void initSDK() {
@@ -16,27 +16,31 @@ namespace LetoAd.IOS {
         }
 
         public void getUserCoin(ILTGetUserCoinListener listener) {
-
+            // TODO
         }
 
         public void addCoin(int coin, ILTAddCoinListener listener) {
-
+            // TODO
         }
 
         public void showWithdraw() {
-
+            // TODO
         }
 
         public void showWithdrawIcon(int styleId, int left, int top, bool pinned, bool dock) {
-
+            // TODO
         }
 
         public void hideWithdrawIcon() {
-
+            // TODO
         }
         
         public void showRedPack(LTRedPackRequest req, ILTRedPackListener listener) {
+            // TODO
+        }
 
+        public void checkRealName(ILTCheckRealNameListener listener) {
+            // TODO
         }
     }
 

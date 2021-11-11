@@ -43,4 +43,18 @@ public class LetoMainDemo : MonoBehaviour {
     public void OnFullVideoClicked() {
         SceneManager.LoadScene("LetoFullVideoDemo");
     }
+
+    public void OnCheckRealNameClicked() {
+        _letoSdk.checkRealName(new EventListener());
+    }
+
+    class EventListener : ILTCheckRealNameListener {
+        public void onCheckRealNameResult(int errCode, string errMsg) {
+            if(errCode == 0) {
+                Debug.Log("onCheckRealNameResult: success");
+            } else {
+                Debug.Log("onCheckRealNameResult: failed");
+            }
+        }
+    }
 }
