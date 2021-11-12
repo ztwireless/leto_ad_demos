@@ -19,7 +19,7 @@ public class LetoBannerDemo : MonoBehaviour
     }
 
     public void OnLoadClicked() {
-        _letoSdk.load(_adId);
+        _letoSdk.load(_adId, "{\"width\": 1080, \"height\": 150}");
     }
 
     public void OnReadyClicked() {

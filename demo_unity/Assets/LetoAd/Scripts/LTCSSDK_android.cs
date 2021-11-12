@@ -477,6 +477,9 @@ namespace LetoAd.Android {
         public void load(int adId) {
             _javaSDKClass.CallStatic("load", adId);
         }
+        public void load(int adId, string styleJsonStr) {
+            _javaSDKClass.CallStatic("load", adId, styleJsonStr);
+        }
 
         public void show(int adId) {
             _javaSDKClass.CallStatic("show", adId);

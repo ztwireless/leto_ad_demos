@@ -21,6 +21,15 @@ public class LTBannerJSBridge {
         _cb = cb;
     }
 
+
+    /**
+     * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
+     */
+    public static void load(double adId, String styleJson) {
+        load((int)adId, styleJson);
+    }
+
+
     /**
      * Laya的jsbridge封装只支持double类型的参数, 所以定义一个double类型的重载
      */
@@ -76,6 +85,14 @@ public class LTBannerJSBridge {
             helper.setAdListener(listenerJson);
             helper.setAdListener(_cb);
             helper.load(adId);
+        }
+    }
+    public static void load(int adId, String styleJson) {
+        BannerHelper helper = getHelper(adId);
+        if (helper != null) {
+            helper.setAdListener(listenerJson);
+            helper.setAdListener(_cb);
+            helper.load(adId, styleJson);
         }
     }
 

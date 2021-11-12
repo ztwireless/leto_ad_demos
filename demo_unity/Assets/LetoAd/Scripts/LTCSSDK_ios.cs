@@ -143,6 +143,9 @@ namespace LetoAd.IOS {
         public void load(int adId) {
 
         }
+        public void load(int adId, string styleJsonStr) {
+
+        }
         
         public void show(int adId) {
 

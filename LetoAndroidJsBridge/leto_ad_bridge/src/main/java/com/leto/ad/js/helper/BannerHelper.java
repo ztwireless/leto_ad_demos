@@ -35,13 +35,26 @@ public class BannerHelper extends BaseHelper {
         _adId = adId;
         LetoAdApi api = LTJSBridge.getApi();
         _ad = api.createBannerAd(adId);
+        initBannerListener(_ad, _adId);
+    }
+
+    public void initBanner(int adId, String styleParams) {
+        LTLog.d("initBanner >>> " + adId);
+
+        _adId = adId;
+        LetoAdApi api = LTJSBridge.getApi();
+        _ad = api.createBannerAd(adId, null, styleParams);
+        initBannerListener(_ad, _adId);
+    }
+
+    public void initBannerListener(LetoAdApi.BannerAd _ad, int adId) {
         if(_ad != null) {
             _ad.onLoad(new LetoAdApi.ILetoAdApiCallback() {
                 @Override
                 public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.LoadedCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.LoadedCallbackKey)
-                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
+                                + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
@@ -54,7 +67,7 @@ public class BannerHelper extends BaseHelper {
                 public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.LoadFailCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.LoadFailCallbackKey)
-                            + "(" + _adId + ",\"" + res.optString("errMsg", "") + "\");";
+                                + "(" + _adId + ",\"" + res.optString("errMsg", "") + "\");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
@@ -67,7 +80,7 @@ public class BannerHelper extends BaseHelper {
                 public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.ClickCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.ClickCallbackKey)
-                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
+                                + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
@@ -80,7 +93,7 @@ public class BannerHelper extends BaseHelper {
                 public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.ShowCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.ShowCallbackKey)
-                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
+                                + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
@@ -93,7 +106,7 @@ public class BannerHelper extends BaseHelper {
                 public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.HideCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.HideCallbackKey)
-                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
+                                + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
@@ -106,7 +119,7 @@ public class BannerHelper extends BaseHelper {
                 public void onApiEvent(JSONObject res) {
                     if (hasCallbackName(Const.BannerCallback.CloseCallbackKey)) {
                         String js = getCallbackName(Const.BannerCallback.CloseCallbackKey)
-                            + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
+                                + "(" + _adId + "," + res.optString("adInfo", "{}") + ");";
                         JSPluginUtil.runJs(js);
                     }
                     if(_cb != null) {
@@ -124,6 +137,18 @@ public class BannerHelper extends BaseHelper {
             public void run() {
                 if (_ad == null) {
                     initBanner(adId);
+                }
+            }
+        });
+    }
+
+    public void load(final int adId, String styleJsonParam) {
+        LTLog.d("loadBanner >>> " + adId);
+        JSPluginUtil.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (_ad == null) {
+                    initBanner(adId, styleJsonParam);
                 }
             }
         });

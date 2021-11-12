@@ -294,6 +294,7 @@ namespace LetoAd {
 
     public interface ILTBannerCSSDK {
         void load(int adId);
+        void load(int adId, string styleJsonStr);
         void show(int adId);
         void reShow(int adId);
         void hide(int adId);
@@ -315,6 +316,9 @@ namespace LetoAd {
 
         public void load(int adId) {
             _pltSdk.load(adId);
+        }
+        public void load(int adId, string styleJsonStr) {
+            _pltSdk.load(adId, styleJsonStr);
         }
 
         public void show(int adId) {

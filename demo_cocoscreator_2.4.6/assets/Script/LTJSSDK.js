@@ -1498,6 +1498,11 @@
                 callJavaStaticMethod(classJavaName, "load", "(I)V", adId);
             },
 
+            load : function (adId, styleJsonStr) {
+                LTJSSDK.printLog("Android-loadBanner");
+                callJavaStaticMethod(classJavaName, "load", "(ILjava/lang/String;)V", adId, styleJsonStr);
+            },
+
             setAdListener : function (listener) {
                 LTJSSDK.printLog("Android-setAdListener");
                 callJavaStaticMethod(classJavaName, "setAdListener", "(Ljava/lang/String;)V", listener);
@@ -1538,6 +1543,10 @@
         let OC_WRAPPER_CLASS = "LTBannerAdWrapper";
         let LTiOSBannerJS = {
             load: function(adId) {
+                LTJSSDK.printLog("LTiOSBannerJS::loadBanner(" + adId);
+                callJavaStaticMethod(OC_WRAPPER_CLASS, "load:", adId);
+            },
+            load: function(adId, styleJsonStr) {
                 LTJSSDK.printLog("LTiOSBannerJS::loadBanner(" + adId);
                 callJavaStaticMethod(OC_WRAPPER_CLASS, "load:", adId);
             },
@@ -1628,6 +1637,14 @@
                 this.ensureBridge()
                 if (undefined != this.platformBridge && this.platformBridge != null) {
                     this.platformBridge.load(adId);
+                } else {
+                    LTJSSDK.printLog("You must run on Android or iOS.");
+                }
+            },
+            load : function(adId, styleJsonStr) {
+                this.ensureBridge()
+                if (undefined != this.platformBridge && this.platformBridge != null) {
+                    this.platformBridge.load(adId, styleJsonStr);
                 } else {
                     LTJSSDK.printLog("You must run on Android or iOS.");
                 }

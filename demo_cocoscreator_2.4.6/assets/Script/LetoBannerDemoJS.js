@@ -25,6 +25,11 @@ cc.Class({
         LTJSSDK.printLog("LetoAdBannerDemo::loadAd(" + this.adId() + ")");
         LTBannerJSSDK.load(this.adId());
     },
+    loadAdBySize : function () {
+        LTJSSDK.printLog("LetoAdBannerDemo::loadAd(" + this.adId()+ ", " + "{\"width\": 1080, \"height\": 150}" + ")")
+        LTBannerJSSDK.load(this.adId(), "{\"width\": 1080, \"height\": 150}");
+    },
+
 
     showAd : function () {
          LTBannerJSSDK.show(this.adId());
