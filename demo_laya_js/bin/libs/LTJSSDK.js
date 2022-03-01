@@ -560,7 +560,6 @@
                     if(this.developerCallback != null && this.developerCallback.onInterstitialAdDestroy != null && undefined != this.developerCallback.onInterstitialAdDestroy) {
                         this.developerCallback.onInterstitialAdDestroy(adId, adInfo);
                     }
-                    LTInterstitialJSSDK.load(adId)
                 }
             },
 
